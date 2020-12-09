@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { BlankPageComponent } from './blank-page/blank-page.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {AppComponent} from './app.component';
+import {BlankPageComponent} from './blank-page/blank-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AppComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'dashboards' },
+      {path: '', pathMatch: 'full', redirectTo: 'dashboards'},
       {
         path: 'dashboards',
         loadChildren: () =>
@@ -37,7 +37,14 @@ const routes: Routes = [
         loadChildren: () =>
           import('./menu/menu.module').then((m) => m.MenuModule),
       },
-      { path: 'blank-page', component: BlankPageComponent },
+      {path: 'blank-page', component: BlankPageComponent},
+      {
+        path: 'dashboard', component: BlankPageComponent,
+        children: [
+          {path: 'upload', component: BlankPageComponent},
+        ]
+      },
+
     ],
   },
 ];
@@ -46,4 +53,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

@@ -14,6 +14,12 @@ export interface IMenuItem {
 
 const data: IMenuItem[] = [
   {
+    icon: 'simple-icon-cloud-upload',
+    label: 'menu.blank-page',
+    to: `${adminRoot}/blank-page`,
+    // roles: [UserRole.Editor],
+  },
+  {
     icon: 'iconsminds-shop-4',
     label: 'menu.dashboards',
     to: `${adminRoot}/dashboards`,

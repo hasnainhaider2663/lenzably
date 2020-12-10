@@ -16,7 +16,6 @@ export class ModalEventsComponent {
 
   openModal(template: TemplateRef<any>): void {
     this.messages = [];
-
     // tslint:disable-next-line:variable-name
     let _combine: Subscription;
     _combine = combineLatest([

@@ -142,13 +142,16 @@ export class UploadsComponent implements OnInit {
 
 
   onUploadError(event): void {
-    console.log(alert('Invalid image'));
+    console.log(event[1]);
+    console.log('error event', event[0].type);
+    console.log('error event', event);
+    alert(event[1]);
   }
 
   onUploadSuccess(event): void {
-    console.log(event)
-    console.log('width: 77px, height: 58px');
+    console.log(event[0].height);
+    console.log(event[0].width);
+    console.log(event[0].size / 1024 / 1024);
   }
-
 
 }

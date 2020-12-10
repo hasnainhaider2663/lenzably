@@ -46,6 +46,7 @@ import { ProfileComponent } from './profile/profile.component';
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
+    // ComponentsModule,
     ContextMenuModule.forRoot({
       useBootstrap4: true,
     }),

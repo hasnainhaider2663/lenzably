@@ -9,6 +9,10 @@
 </app-list-page-header>
 <app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>
 
+<!--<div style="margin-bottom: 20px">-->
+<!--  <alert type="danger rounded" [dismissible]="true" [dismissOnTimeout]="10000">-->
+<!--  {{'alert.dismissing-without-animate-text' | translate}} (10 seconds)</alert>-->
+<!--</div>-->
 <div style="margin-bottom: 20px">
   <dropzone [config]="config" [message]="'form-components.dropzone-message' | translate" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
 </div>

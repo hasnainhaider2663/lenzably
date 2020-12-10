@@ -23,6 +23,11 @@
     "code": "Reset Code"
   },
   "menu": {
+    "uploads": "Uploads",
+    "profile": "Profile",
+
+
+
     "home": "Home",
     "app": "Home",
     "dashboards": "Dashboards",

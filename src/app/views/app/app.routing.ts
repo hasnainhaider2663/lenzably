@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {BlankPageComponent} from './blank-page/blank-page.component';
+import {UploadsComponent} from "./uploads/uploads.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -38,13 +40,8 @@ const routes: Routes = [
           import('./menu/menu.module').then((m) => m.MenuModule),
       },
       {path: 'blank-page', component: BlankPageComponent},
-      {
-        path: 'dashboard', component: BlankPageComponent,
-        children: [
-          {path: 'upload', component: BlankPageComponent},
-        ]
-      },
-
+      {path: 'uploads', component: UploadsComponent},
+      {path: 'profile', component: ProfileComponent},
     ],
   },
 ];

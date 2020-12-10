@@ -33,6 +33,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@nicky-lenaers/ngx-scroll-to": "^9.0.0",
     "@swimlane/ngx-datatable": "^17.0.0",
+    "@types/npm": "^2.0.31",
     "angular-archwizard": "^6.1.0",
     "angular-svg-round-progressbar": "^3.0.1",
     "angular2-hotkeys": "^2.2.0",

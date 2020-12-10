@@ -29,7 +29,7 @@ export const environment = {
   isDarkSwitchActive: true,
   defaultDirection: 'ltr',
   themeRadiusStorageKey: 'vien-themeradius',
-  isAuthGuardActive: true,
+  isAuthGuardActive: false,
   defaultRole: UserRole.Admin,
   firebase: {
     apiKey: 'AIzaSyCqoNLB_jTw4nncO12qR-eDH9gAeWiZVaw',

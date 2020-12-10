@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AuthGuard } from '../shared/auth.guard';
 import { ProductComponent } from './product/product.component';
+import {LayoutContainersModule} from "../containers/layout/layout.containers.module";
+import {PagesContainersModule} from "../containers/pages/pages.containers.module";
 @NgModule({
   declarations: [HomeComponent, ProductComponent],
   imports: [
@@ -26,6 +28,8 @@ import { ProductComponent } from './product/product.component';
     BrowserAnimationsModule,
     HeadroomModule,
     ScrollToModule.forRoot(),
+    LayoutContainersModule,
+    PagesContainersModule,
   ],
   providers: [AuthGuard],
 })

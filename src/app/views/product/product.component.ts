@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import {ScrollToService, ScrollToConfigOptions} from '@nicky-lenaers/ngx-scroll-to';
 import {environment} from 'src/environments/environment';
+import {carouselImages, carouselThumbs, ICarouselImage} from "../../data/carousels";
 
 @Component({
   selector: 'app-product',
@@ -17,6 +18,10 @@ import {environment} from 'src/environments/environment';
 export class ProductComponent implements OnInit, OnDestroy {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {
   }
+
+
+  detailImages: ICarouselImage[] = carouselImages;
+  detailThumbs: ICarouselImage[] = carouselThumbs;
 
   showMobileMenu = false;
 

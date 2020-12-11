@@ -1,0 +1,86 @@
+<div [ngClass]="{'landing-page light-mode public-pages': true,'show-mobile-menu': showMobileMenu}">
+  <div class="mobile-menu" (click)="$event.stopPropagation()">
+    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
+      <span></span>
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
+      <li class="nav-item">
+        <div class="separator"></div>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Login</a>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-container">
+
+    <ngx-headroom class="landing-page-nav">
+      <nav class="navbar">
+        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
+          <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">
+            <span class="white"></span>
+            <span class="dark"></span>
+          </a>
+          <div class="search" (click)="searchAreaClick($event)">
+            <input placeholder="Search..." [(ngModel)]="searchKey" (keyup)="searchKeyUp($event)">
+            <span class="search-icon" (click)="searchClick($event)">
+        <i class="simple-icon-magnifier"></i>
+      </span>
+          </div>
+          <ul class="navbar-nav d-none d-lg-flex flex-row">
+            <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a>
+            </li>
+            <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
+            <li class="nav-item pl-3 pr-2">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Login</a>
+            </li>
+            <li class="nav-item pl-2 pr-0">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Sign Up</a>
+            </li>
+          </ul>
+          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
+                        <i class="simple-icon-menu"></i>
+                    </span>
+        </div>
+      </nav>
+    </ngx-headroom>
+
+
+    <div class="content-container" id="home">
+      <div class="row">
+        <div class="col-12 mb-5">
+          <img class="social-header card-img" src="/assets/img/social/header.jpg" />
+        </div>
+      </div>
+      <div style="padding: 0 10px">
+        <div class="row">
+          <div class="col-12 col-lg-5 col-xl-4 col-left">
+            <app-profile-user-social></app-profile-user-social>
+            <app-profile-photos></app-profile-photos>
+            <app-profile-who-to-follow></app-profile-who-to-follow>
+            <app-profile-recent-posts></app-profile-recent-posts>
+          </div>
+          <div class="col-12 col-lg-7 col-xl-8 col-right">
+            <app-profile-posts></app-profile-posts>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

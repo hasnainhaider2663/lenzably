@@ -18,6 +18,8 @@ import {PagesContainersModule} from "../containers/pages/pages.containers.module
 import {FormsModule} from "@angular/forms";
 import { HomeCopyComponent } from './home-copy/home-copy.component';
 import { ProfileComponent } from './profile/profile.component';
+import {DashboardsContainersModule} from "../containers/dashboards/dashboards.containers.module";
+import {NgSelectModule} from "@ng-select/ng-select";
 @NgModule({
   declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent],
   imports: [
@@ -34,6 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
     LayoutContainersModule,
     PagesContainersModule,
     FormsModule,
+    DashboardsContainersModule,
+    NgSelectModule,
   ],
   providers: [AuthGuard],
 })

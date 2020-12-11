@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AddNewProductModalComponent } from 'src/app/containers/pages/add-new-product-modal/add-new-product-modal.component';
-import { HotkeysService, Hotkey } from 'angular2-hotkeys';
-import { ApiService } from 'src/app/data/api.service';
-import { IProduct } from 'src/app/data/api.service';
-import { ContextMenuComponent } from 'ngx-contextmenu';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AddNewProductModalComponent} from 'src/app/containers/pages/add-new-product-modal/add-new-product-modal.component';
+import {Hotkey, HotkeysService} from 'angular2-hotkeys';
+import {ApiService, IProduct} from 'src/app/data/api.service';
+import {ContextMenuComponent} from 'ngx-contextmenu';
+import {AngularFireService} from "../../../../../angular-fire.service";
 
 @Component({
   selector: 'app-image-list',
@@ -25,7 +25,7 @@ export class ImageListComponent implements OnInit {
 
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
-  @ViewChild('addNewModalRef', { static: true }) addNewModalRef: AddNewProductModalComponent;
+  @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -83,6 +83,7 @@ export class ImageListComponent implements OnInit {
   isSelected(p: IProduct): boolean {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
+
   onSelect(item: IProduct): void {
     if (this.isSelected(item)) {
       this.selected = this.selected.filter(x => x.id !== item.id);

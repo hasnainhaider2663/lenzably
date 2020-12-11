@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AngularFireService {
 
-  constructor() { }
+  user: Observable<any>;
+  constructor(firestore: AngularFirestore) {
+    this.user = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB').valueChanges();
+  }
 }

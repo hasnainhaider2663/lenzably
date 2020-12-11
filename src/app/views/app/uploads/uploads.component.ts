@@ -4,6 +4,7 @@ import {HotkeysService, Hotkey} from 'angular2-hotkeys';
 import {ApiService} from 'src/app/data/api.service';
 import {IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
+import {AngularFireService} from "../../../angular-fire.service";
 
 @Component({
   selector: 'app-uploads',
@@ -34,7 +35,7 @@ export class UploadsComponent implements OnInit {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -48,6 +49,7 @@ export class UploadsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
+    this.angularFireService.user.subscribe(x => console.log('user changed', x))
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = ''): void {

@@ -16,10 +16,6 @@
         height: 80px;
       }
 
-      .navbar-logo {
-
-      }
-
       .search {
         position: absolute;
         left: 160px;
@@ -105,6 +101,10 @@
         color: #3a3a3a;
       }
       .navbar {
+        background: white;
+        .search{
+          background: #f8f8f8;
+        }
         .navbar-logo {
           .white {
             display: none;
@@ -148,3 +148,23 @@
   }
 }
 
+.landing-page-nav{
+  .navbar{
+    padding: 0 20px;
+    height: 80px;
+    background: transparent;
+    box-shadow: none;
+    .navbar-nav {
+      .nav-item {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        a{
+          font-size: .9rem;
+        }
+      }
+      .nav-item > a {
+        color: #d0d0d0;
+      }
+    }
+  }
+}

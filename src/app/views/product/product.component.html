@@ -60,35 +60,13 @@
     </ngx-headroom>
 
 
-    <div class="content-container" id="home">
+    <div class="content-container" id="home" style="padding: 10px">
 
-      <div style="margin-top: 145px;">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div>
-                <h1>Chocolate Cake</h1>
-                <div class="top-right-button-container mb-2">
-                  <div dropdown>
-                    <button dropdownToggle type="button"
-                            class="btn btn-outline-primary btn-lg flex-grow-1 dropdown-toggle">
-                      {{ 'pages.actions' | translate }} <span class="caret"></span>
-                    </button>
-                    <ul *dropdownMenu class="dropdown-menu">
-                      <li role="menuitem"><a class="dropdown-item" href="javascript:;">Action</a></li>
-                      <li role="menuitem"><a class="dropdown-item" href="javascript:;">Another action</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12 col-md-12 col-xl-8 col-left">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <app-glide-thumbs [images]="detailImages" [settingsImages]="{
+      <div class="row">
+        <div class="col-12 col-md-12 col-xl-8 col-left">
+          <div class="card mb-4">
+            <div class="card-body">
+              <app-glide-thumbs [images]="detailImages" [settingsImages]="{
               bound: true,
               rewind: false,
               focusAt: 0,
@@ -108,20 +86,17 @@
                 '420' : { perView: 3 }
               }
             }"></app-glide-thumbs>
-                </div>
-              </div>
-
-              <app-product-detail-tabs></app-product-detail-tabs>
-            </div>
-
-            <div class="col-12 col-md-12 col-xl-4 col-right">
-              <app-product-detail-info></app-product-detail-info>
-              <app-profile-photos></app-profile-photos>
             </div>
           </div>
+
+          <app-product-detail-tabs></app-product-detail-tabs>
+        </div>
+
+        <div class="col-12 col-md-12 col-xl-4 col-right">
+          <app-product-detail-info></app-product-detail-info>
+          <app-profile-photos></app-profile-photos>
         </div>
       </div>
-
 
       <div class="section footer mb-0">
         <div class="container">

@@ -16,8 +16,10 @@ import { ProductComponent } from './product/product.component';
 import {LayoutContainersModule} from "../containers/layout/layout.containers.module";
 import {PagesContainersModule} from "../containers/pages/pages.containers.module";
 import {FormsModule} from "@angular/forms";
+import { HomeCopyComponent } from './home-copy/home-copy.component';
+import { ProfileComponent } from './profile/profile.component';
 @NgModule({
-  declarations: [HomeComponent, ProductComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,

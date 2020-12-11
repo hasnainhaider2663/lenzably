@@ -1,4 +1,4 @@
-<div [ngClass]="{'landing-page public-pages': true,'show-mobile-menu': showMobileMenu}">
+<div [ngClass]="{'landing-page light-mode public-pages': true,'show-mobile-menu': showMobileMenu}">
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -13,7 +13,10 @@
         <div class="separator"></div>
       </li>
       <li class="nav-item text-center">
-        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">BUY</a>
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Login</a>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Sign Up</a>
       </li>
     </ul>
   </div>
@@ -22,7 +25,7 @@
 
     <ngx-headroom class="landing-page-nav">
       <nav class="navbar">
-        <div class="container d-flex align-items-center justify-content-between">
+        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
           <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">
             <span class="white"></span>
             <span class="dark"></span>
@@ -40,11 +43,11 @@
             </li>
             <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
             <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
-            <li class="nav-item pl-3">
+            <li class="nav-item pl-3 pr-2">
               <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
                  [href]="buyUrl">Login</a>
             </li>
-            <li class="nav-item pl-3">
+            <li class="nav-item pl-2 pr-0">
               <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
                  [href]="buyUrl">Sign Up</a>
             </li>

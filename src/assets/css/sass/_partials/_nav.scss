@@ -1,0 +1,33 @@
+
+.landing-page-nav {
+  .navbar {
+    padding: 0 20px;
+    height: 80px;
+
+    .container {
+      position: relative;
+      height: 80px;
+    }
+
+    .search {
+      position: absolute;
+      left: 160px;
+      width: 300px;
+    }
+
+    .navbar-nav {
+      .nav-item {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        a {
+          font-size: .8rem;
+        }
+      }
+    }
+
+  }
+}
+
+
+

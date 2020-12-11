@@ -15,6 +15,7 @@ import { AuthGuard } from '../shared/auth.guard';
 import { ProductComponent } from './product/product.component';
 import {LayoutContainersModule} from "../containers/layout/layout.containers.module";
 import {PagesContainersModule} from "../containers/pages/pages.containers.module";
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [HomeComponent, ProductComponent],
   imports: [
@@ -30,6 +31,7 @@ import {PagesContainersModule} from "../containers/pages/pages.containers.module
     ScrollToModule.forRoot(),
     LayoutContainersModule,
     PagesContainersModule,
+    FormsModule,
   ],
   providers: [AuthGuard],
 })

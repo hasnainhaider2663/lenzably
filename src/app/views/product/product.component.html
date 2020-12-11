@@ -1,4 +1,4 @@
-<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+<div [ngClass]="{'landing-page public-pages': true,'show-mobile-menu': showMobileMenu}">
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -19,13 +19,20 @@
   </div>
 
   <div class="main-container">
+
     <ngx-headroom class="landing-page-nav">
-      <nav>
+      <nav class="navbar">
         <div class="container d-flex align-items-center justify-content-between">
           <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">
             <span class="white"></span>
             <span class="dark"></span>
           </a>
+          <div class="search" (click)="searchAreaClick($event)">
+            <input placeholder="Search..." [(ngModel)]="searchKey" (keyup)="searchKeyUp($event)">
+            <span class="search-icon" (click)="searchClick($event)">
+        <i class="simple-icon-magnifier"></i>
+      </span>
+          </div>
           <ul class="navbar-nav d-none d-lg-flex flex-row">
             <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
             <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
@@ -33,9 +40,13 @@
             </li>
             <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
             <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
-            <li class="nav-item pl-4">
+            <li class="nav-item pl-3">
               <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
-                 [href]="buyUrl">BUY</a>
+                 [href]="buyUrl">Login</a>
+            </li>
+            <li class="nav-item pl-3">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Sign Up</a>
             </li>
           </ul>
           <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
@@ -66,8 +77,6 @@
                     </ul>
                   </div>
                 </div>
-                <app-breadcrumb></app-breadcrumb>
-                <div class="separator mb-5"></div>
               </div>
             </div>
           </div>

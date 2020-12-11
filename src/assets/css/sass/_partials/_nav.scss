@@ -1,0 +1,45 @@
+
+.public-pages{
+  .landing-page-nav {
+    .container {
+      position: relative;
+    }
+    .mobile-menu-button {
+      color: #3a3a3a;
+    }
+    .navbar-nav {
+      .nav-item{
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .nav-item > a {
+        color: #3a3a3a;
+        font-size: .9rem;
+      }
+
+      .btn-outline-semi-light {
+        border: 1px solid rgba(20, 83, 136, 0.3);
+        color: #145388;
+      }
+    }
+    .navbar-logo{
+      .white {
+        display: none;
+      }
+      .dark {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+
+.landing-page-nav {
+  .navbar {
+    padding: 0;
+    .search{
+      position: absolute;
+      left: 160px;
+    }
+  }
+}

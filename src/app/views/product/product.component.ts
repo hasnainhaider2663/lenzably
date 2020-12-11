@@ -9,6 +9,7 @@ import {
 import {ScrollToService, ScrollToConfigOptions} from '@nicky-lenaers/ngx-scroll-to';
 import {environment} from 'src/environments/environment';
 import {carouselImages, carouselThumbs, ICarouselImage} from "../../data/carousels";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,7 @@ import {carouselImages, carouselThumbs, ICarouselImage} from "../../data/carouse
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy {
-  constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {
+  constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService, private router: Router) {
   }
 
 
@@ -177,6 +178,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     {title: 'Granola Yellow', class: 'granolayellow'},
   ];
 
+  searchKey = '';
+
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'no-footer');
   }
@@ -227,4 +230,59 @@ export class ProductComponent implements OnInit, OnDestroy {
 
     this.scrollToService.scrollTo(config);
   }
+
+
+
+
+
+  searchKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.search();
+    } else if (event.key === 'Escape') {
+      const input = document.querySelector('.mobile-view');
+      if (input && input.classList) {
+        input.classList.remove('mobile-view');
+      }
+      this.searchKey = '';
+    }
+  }
+
+  searchAreaClick(event): void {
+    event.stopPropagation();
+  }
+  searchClick(event): void {
+    if (window.innerWidth < environment.menuHiddenBreakpoint) {
+      let elem = event.target;
+      if (!event.target.classList.contains('search')) {
+        if (event.target.parentElement.classList.contains('search')) {
+          elem = event.target.parentElement;
+        } else if (
+          event.target.parentElement.parentElement.classList.contains('search')
+        ) {
+          elem = event.target.parentElement.parentElement;
+        }
+      }
+
+      if (elem.classList.contains('mobile-view')) {
+        this.search();
+        elem.classList.remove('mobile-view');
+      } else {
+        elem.classList.add('mobile-view');
+      }
+    } else {
+      this.search();
+    }
+    event.stopPropagation();
+  }
+
+  search(): void {
+    if (this.searchKey && this.searchKey.length > 1) {
+      this.router.navigate([this.adminRoot + '/pages/miscellaneous/search'], {
+        queryParams: { key: this.searchKey.toLowerCase().trim() },
+      });
+      this.searchKey = '';
+    }
+  }
+
+
 }

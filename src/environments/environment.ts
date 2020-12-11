@@ -32,13 +32,12 @@ export const environment = {
   isAuthGuardActive: false,
   defaultRole: UserRole.Admin,
   firebase: {
-    apiKey: 'AIzaSyCqoNLB_jTw4nncO12qR-eDH9gAeWiZVaw',
-    authDomain: 'vien-angular-login.firebaseapp.com',
-    databaseURL: 'https://vien-angular-login.firebaseio.com',
-    projectId: 'vien-angular-login',
-    storageBucket: 'vien-angular-login.appspot.com',
-    messagingSenderId: '16217062888',
-    appId: '1:16217062888:web:6b08232ca0c9662fedb85d',
-    measurementId: 'G-8ETT79WRRN'
+    apiKey: 'AIzaSyB1ZmSJpV6avrTtRwOd2zYQ1XIaL-jL09U',
+    authDomain: 'freedom-collective.firebaseapp.com',
+    projectId: 'freedom-collective',
+    storageBucket: 'freedom-collective.appspot.com',
+    messagingSenderId: '277969243612',
+    appId: '1:277969243612:web:0013a3bdfc45283db55319',
+    measurementId: 'G-Z9MXSV8KF7'
   }
 };

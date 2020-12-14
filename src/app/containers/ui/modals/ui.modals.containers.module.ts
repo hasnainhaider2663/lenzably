@@ -19,6 +19,7 @@ import { ModalInnerComponent } from './modal-component/modal-inner-component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalEditProfileComponent } from './modal-edit-profile/modal-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     ModalSizesComponent,
     ModalChildComponent,
     ModalInnerComponent,
+    ModalEditProfileComponent,
   ],
   imports: [
     SharedModule,

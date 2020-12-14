@@ -1,7 +1,7 @@
 <div class="section-artist-about" [style.background-image]="'url(/assets/img/social/header.jpg)'">
 
 
-  <div class="position-absolute card-top-buttons" *ngIf="editMode"><button class="btn btn-outline-white icon-button"><i class="simple-icon-pencil"></i></button></div>
+  <div class="position-absolute card-top-buttons" *ngIf="editMode"><button class="btn btn-outline-white icon-button" (click)="openModalWithComponent()"><i class="simple-icon-pencil"></i></button></div>
 
 
   <div class="section-artist-about__content">

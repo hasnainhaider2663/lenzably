@@ -178,6 +178,7 @@
     "top-rated-items": "Top Rated Items"
   },
   "pages": {
+    "interests": "Interests",
     "add-new": "ADD NEW",
     "add-new-modal-title": "Add New Item",
     "display-options": "Display Options",
@@ -476,6 +477,7 @@
     "quill-bubble": "Quill Bubble"
   },
   "forms": {
+    "location": "Location",
     "basic": "Basic",
     "email": "E-mail",
     "email-muted": "We'll never share your email with anyone else.",

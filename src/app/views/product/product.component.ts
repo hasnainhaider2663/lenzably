@@ -10,6 +10,7 @@ import {ScrollToService, ScrollToConfigOptions} from '@nicky-lenaers/ngx-scroll-
 import {environment} from 'src/environments/environment';
 import {carouselImages, carouselThumbs, ICarouselImage} from "../../data/carousels";
 import {Router} from "@angular/router";
+import {Lightbox} from "ngx-lightbox";
 
 @Component({
   selector: 'app-product',
@@ -17,7 +18,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy {
-  constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService, private router: Router) {
+  constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService, private router: Router, private lightbox: Lightbox) {
   }
 
 
@@ -28,6 +29,34 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
+
+
+  album = [
+    {
+      src: '/assets/img/products/marble-cake.jpg',
+      thumb: '/assets/img/products/marble-cake-thumb.jpg'
+    },
+    {
+      src: '/assets/img/products/parkin.jpg',
+      thumb: '/assets/img/products/parkin-thumb.jpg'
+    },
+    {
+      src: '/assets/img/products/fruitcake.jpg',
+      thumb: '/assets/img/products/fruitcake-thumb.jpg'
+    },
+    {
+      src: '/assets/img/products/tea-loaf.jpg',
+      thumb: '/assets/img/products/tea-loaf-thumb.jpg'
+    },
+    {
+      src: '/assets/img/products/napoleonshat.jpg',
+      thumb: '/assets/img/products/napoleonshat-thumb.jpg'
+    },
+    {
+      src: '/assets/img/products/magdalena.jpg',
+      thumb: '/assets/img/products/magdalena-thumb.jpg'
+    }
+  ];
 
   slideSettings = {
     type: 'carousel',
@@ -232,9 +261,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
 
-
-
-
   searchKeyUp(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.search();
@@ -250,6 +276,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   searchAreaClick(event): void {
     event.stopPropagation();
   }
+
   searchClick(event): void {
     if (window.innerWidth < environment.menuHiddenBreakpoint) {
       let elem = event.target;
@@ -278,10 +305,24 @@ export class ProductComponent implements OnInit, OnDestroy {
   search(): void {
     if (this.searchKey && this.searchKey.length > 1) {
       this.router.navigate([this.adminRoot + '/pages/miscellaneous/search'], {
-        queryParams: { key: this.searchKey.toLowerCase().trim() },
+        queryParams: {key: this.searchKey.toLowerCase().trim()},
       });
       this.searchKey = '';
     }
+  }
+
+
+  openLightbox(index: number): void {
+    this.lightbox.open(this.album, index, {
+      centerVertically: true,
+      positionFromTop: 0,
+      disableScrolling: true,
+      wrapAround: true
+    });
+  }
+
+  close(): void {
+    this.lightbox.close();
   }
 
 

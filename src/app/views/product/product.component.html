@@ -62,7 +62,7 @@
 
     <div class="content-container" id="home" style="padding: 10px">
 
-      <div class="row">
+      <div class="row row-eq-height">
         <div class="col-12 col-md-12 col-xl-8 col-left">
           <div class="card mb-4">
             <div class="card-body">
@@ -89,13 +89,32 @@
             </div>
           </div>
 
-          <app-product-detail-tabs></app-product-detail-tabs>
         </div>
 
         <div class="col-12 col-md-12 col-xl-4 col-right">
           <app-product-detail-info></app-product-detail-info>
-          <app-profile-photos></app-profile-photos>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title"><span>{{ 'More from this artist' | translate }}</span><a
+                class="btn-link float-right text-small pt-1"
+                href="javascript:;">{{ 'pages.view-all' | translate }}</a>
+              </h5>
+              <div class=" social-image-row gallery" style="height: 300px">
+                <perfect-scrollbar class="scroll" [config]="{suppressScrollX: true, wheelPropagation: false}">
+                  <div class="row">
+                    <div class="col-md-4" *ngFor="let image of album; let i=index">
+                      <img class="img-fluid border-radius c-pointer" [src]="image.thumb" (click)="openLightbox(i)"/>
+                    </div>
+                  </div>
+                </perfect-scrollbar>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div>
+      <div>
+        <app-profile-photos title="Similar items" colSplit="col-md-3"></app-profile-photos>
       </div>
 
       <div class="section footer mb-0">

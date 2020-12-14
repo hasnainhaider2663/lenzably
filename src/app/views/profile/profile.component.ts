@@ -1,3 +1,5 @@
+
+
 import {
   Component,
   OnInit,
@@ -12,11 +14,11 @@ import {carouselImages, carouselThumbs, ICarouselImage} from "../../data/carouse
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class ProductComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService, private router: Router) {
   }
 

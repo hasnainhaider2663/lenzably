@@ -22,6 +22,7 @@ import {LayoutContainersModule} from '../../containers/layout/layout.containers.
 import {SharedModule} from '../../shared/shared.module';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
 import { ProfileComponent } from './profile/profile.component';
+import {AlertModule} from "ngx-bootstrap/alert";
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ProfileComponent } from './profile/profile.component';
     ContextMenuModule.forRoot({
       useBootstrap4: true,
     }),
-    DropzoneModule
+    DropzoneModule,
+    AlertModule.forRoot(),
   ]
 })
 export class AppModule { }

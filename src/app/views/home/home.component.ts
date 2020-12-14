@@ -20,7 +20,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
+  selectToppings = [
+    { label: 'Chocolate', value: 'chocolate' },
+    { label: 'Vanilla', value: 'vanilla' },
+    { label: 'Strawberry', value: 'strawberry' },
+    { label: 'Caramel', value: 'caramel' },
+    { label: 'Cookies and Cream', value: 'cookiescream' },
+    { label: 'Peppermint', value: 'peppermint' }
+  ];
 
+  selectTypes = [
+    { label: 'Cake', value: 'cake' },
+    { label: 'Cupcake', value: 'cupcake' },
+    { label: 'Dessert', value: 'dessert' }
+  ];
   slideSettings = {
     type: 'carousel',
     gap: 30,

@@ -15,8 +15,13 @@ import { AuthGuard } from '../shared/auth.guard';
 import { ProductComponent } from './product/product.component';
 import {LayoutContainersModule} from "../containers/layout/layout.containers.module";
 import {PagesContainersModule} from "../containers/pages/pages.containers.module";
+import {FormsModule} from "@angular/forms";
+import { HomeCopyComponent } from './home-copy/home-copy.component';
+import { ProfileComponent } from './profile/profile.component';
+import {DashboardsContainersModule} from "../containers/dashboards/dashboards.containers.module";
+import {NgSelectModule} from "@ng-select/ng-select";
 @NgModule({
-  declarations: [HomeComponent, ProductComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,
@@ -30,6 +35,9 @@ import {PagesContainersModule} from "../containers/pages/pages.containers.module
     ScrollToModule.forRoot(),
     LayoutContainersModule,
     PagesContainersModule,
+    FormsModule,
+    DashboardsContainersModule,
+    NgSelectModule,
   ],
   providers: [AuthGuard],
 })

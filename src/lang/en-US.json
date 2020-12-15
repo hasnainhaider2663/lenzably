@@ -477,6 +477,7 @@
     "quill-bubble": "Quill Bubble"
   },
   "forms": {
+    "avatar": "Avatar",
     "interests": "Interests",
     "location": "Location",
     "basic": "Basic",
@@ -486,6 +487,7 @@
     "custom-checkbox": "Check this custom checkbox",
     "age": "Age",
     "submit": "Submit",
+    "clear": "Clear",
     "horizontal": "Horizontal",
     "radios": "Radios",
     "first-radio": "First radio",
@@ -578,6 +580,7 @@
     "iconsmind": "Iconsmind Icons"
   },
   "input-groups": {
+    "social-links": "Social links",
     "basic": "Basic",
     "sizing": "Sizing",
     "small": "Small",

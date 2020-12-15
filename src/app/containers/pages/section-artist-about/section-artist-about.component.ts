@@ -25,9 +25,9 @@ export class SectionArtistAboutComponent implements OnInit {
 
   openModalWithComponent(): void {
     const initialState = {
-      title: this.translateService.instant('modal.edit-profile')
+      title: this.translateService.instant('modal.edit-profile'),
     };
-    this.bsModalRef = this.modalService.show(ModalEditProfileComponent, { initialState });
+    this.bsModalRef = this.modalService.show(ModalEditProfileComponent, { initialState, class: 'modal-lg' });
     this.bsModalRef.content.closeBtnName = this.translateService.instant('modal.close');
   }
 }

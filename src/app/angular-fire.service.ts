@@ -19,3 +19,26 @@ export class AngularFireService {
     this.userTable = firestore.collection('users')
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GenericAngularService {
+
+  userObservable: Observable<any>;
+  userDocument: AngularFirestoreDocument;
+  userTable: AngularFirestoreCollection
+
+  constructor(firestore: AngularFirestore) {
+    // firestore
+    // firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB')
+    this.userDocument = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB');
+    this.userObservable = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB').valueChanges();
+    this.userTable = firestore.collection('users')
+  }
+
+
+  subscribeToCollection(path){}
+  subscribeToDocument(path){}
+  updateDocument(path){}
+}

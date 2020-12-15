@@ -4,6 +4,7 @@ import {Hotkey, HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AngularFireService} from "../../../angular-fire.service";
+import {UploadService} from "../../../upload.service";
 
 @Component({
   selector: 'app-uploads',
@@ -35,7 +36,7 @@ export class UploadsComponent implements OnInit {
   @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
   user
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
+  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private uploadService: UploadService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -168,8 +169,16 @@ export class UploadsComponent implements OnInit {
   }
 
   onUploadSuccess(event): void {
-   const data = {width : event[0].width, filename : event[0].name, type: event[0].type, height: event[0].height, size: event[0].size};
-   console.log(data);
-   console.log(event);
+    const data = {
+      width: event[0].width,
+      filename: event[0].name,
+      type: event[0].type,
+      height: event[0].height,
+      size: event[0].size
+    };
+    console.log(data);
+    console.log(event);
+
+    this.uploadService.upload(data.filename, event[0])
   }
 }

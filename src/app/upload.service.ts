@@ -9,7 +9,7 @@ export class UploadService {
 
   constructor(firebase: FirebaseApp) {
     // firestore
-    this.storageRef = firebase.storage().ref();
+    // this.storageRef = firebase.storage('assets').ref();
   }
 
   upload(filename, file): void {

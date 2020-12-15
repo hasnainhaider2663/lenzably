@@ -2,10 +2,10 @@
                       (itemsPerPageChange)="itemsPerPageChange($event)"
                       (searchKeyUp)="searchKeyUp($event)"
                       (selectAllChange)="selectAllChange($event)"
-                      [displayMode]="displayMode"
+                      [displayMode]="displayMode" [showDisplayMode]="false"
                       [itemOptionsPerPage]="[4,8,12]"
                       [itemsPerPage]="itemsPerPage"
-                      [selectAllState]="selectAllState"
+                      [selectAllState]="selectAllState" [showOrderBy]="true" [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }]"
 >
 </app-list-page-header>
 <app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>
@@ -34,57 +34,6 @@
 
 
 <div class="row">
-  <div *ngIf="displayMode==='list'" class="col-12 list">
-    <div *ngFor="let p of data; let i=index" [contextMenuSubject]="p"
-         [contextMenu]="basicMenu" [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}">
-      <div class="d-flex flex-grow-1 min-width-zero">
-        <div
-          class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-          <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{p.title}}
-          </a>
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.category}}</p>
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
-          <div class="w-15 w-xs-100">
-            <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
-          </div>
-        </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i" class="custom-control-input"
-                 type="checkbox">
-          <label [for]="'customCheck'+i" class="custom-control-label"></label>
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="displayMode==='thumb'" class="col-12 list">
-    <div *ngFor="let p of data; let i=index" [contextMenuSubject]="p"
-         [contextMenu]="basicMenu" [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}">
-      <a class="d-flex" href="javascript:;">
-        <img [alt]="p.title" [src]="p.img" class="list-thumbnail responsive border-0 card-img-left"/>
-      </a>
-      <div class="pl-2 d-flex flex-grow-1 min-width-zero">
-        <div
-          class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-          <a class="w-40 w-sm-100" href="javascript:;">
-            <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
-          </a>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.category}}</p>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
-          <div class="w-15 w-sm-100">
-            <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
-          </div>
-        </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i" class="custom-control-input"
-                 type="checkbox">
-          <label [for]="'customCheck'+i" class="custom-control-label"></label>
-        </label>
-      </div>
-    </div>
-  </div>
-
   <div *ngIf="displayMode==='image'" class="col-12 list">
     <div class="row">
       <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p"

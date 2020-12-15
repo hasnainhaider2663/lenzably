@@ -1344,6 +1344,10 @@ a.btn-secondary:not([href]):not([tabindex]) {
 }
 
 /* 04.Borders */
+.lb-border {
+  border: 1px solid $separator-color !important;
+}
+
 .border {
   border: 1px solid $separator-color-light !important;
 }
@@ -9519,7 +9523,7 @@ footer.page-footer {
   }
 
   .btn-outline-semi-light {
-    border: 1px solid rgba($button-text-color, 0.3);
+    border: 1px solid rgba($primary-color, 0.3);
     color: $button-text-color;
     background: transparent;
 
@@ -9582,7 +9586,8 @@ footer.page-footer {
       height: 40px;
 
       .white {
-        display: inline-block;
+        //display: inline-block;
+        display: none;
         width: 120px;
         height: 40px;
         background: url($lp-logo-path);
@@ -9594,7 +9599,8 @@ footer.page-footer {
         height: 40px;
         background: url($lp-logo-path-pinned);
         background-repeat: no-repeat;
-        display: none;
+        //display: none;
+        display: inline-block;
       }
     }
 
@@ -9649,7 +9655,7 @@ footer.page-footer {
 
       .nav-item > a,
       .nav-item > .dropdown > a {
-        color: $button-text-color;
+        color: $primary-color;
         font-family: Nunito, sans-serif;
         font-size: 1rem;
         display: inline-block;
@@ -9750,7 +9756,7 @@ footer.page-footer {
 
   .landing-page-nav .headroom--unfixed {
     .mobile-menu-button {
-      color: $button-text-color;
+      color: $primary-color;
     }
   }
 

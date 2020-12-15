@@ -62,10 +62,14 @@ export class UploadsComponent implements OnInit {
 
     this.assetService.watchUserAssets().subscribe(assetsArray => {
       assetsArray.forEach(async asset => {
-        if (!(this.assets.find(x => x.md5Hash === asset.md5Hash))) {
-          asset['thumbnailURL'] = await this.assetService.getFullURL(asset.fullPath)
-          this.assets.push(asset)
-        }
+       try {
+         if (!(this.assets.find(x => x.md5Hash === asset.md5Hash))) {
+           asset['thumbnailURL'] = await this.assetService.getFullURL(asset.fullPath)
+           this.assets.push(asset)
+         }
+       }catch (e) {
+
+       }
       });
     });
 

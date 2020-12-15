@@ -39,7 +39,11 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>{{ 'forms.interests' | translate }}</label>
-          <input type="text" class="form-control" formControlName="interests">
+          <ng-select [items]="peopleAsyncSearch | async" bindLabel="name" [addTag]="true" [multiple]="true"
+                     [hideSelected]="true" [trackByFn]="trackByFn" [minTermLength]="2" [loading]="peopleLoadingAsyncSearch"
+                     typeToSearchText="Please enter 2 or more characters" [typeahead]="peopleInputAsyncSearch"
+                     formControlName="interests">
+          </ng-select>
           <div *ngIf="basicForm.get('interests').errors?.required && form.submitted" class="invalid-tooltip">Interests are required!</div>
         </div>
       </div>

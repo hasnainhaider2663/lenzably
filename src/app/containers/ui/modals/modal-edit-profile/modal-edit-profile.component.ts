@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {concat, Observable, of, Subject} from "rxjs";
+import {Person} from "../../../forms/select/select.data.service";
 
 @Component({
   selector: 'app-modal-edit-profile',
@@ -12,6 +14,11 @@ export class ModalEditProfileComponent implements OnInit {
   title: string;
   closeBtnName: string;
   basicForm: FormGroup;
+
+  peopleAsyncSearch: Observable<Person[]>;
+  peopleLoadingAsyncSearch = false;
+  peopleInputAsyncSearch = new Subject<string>();
+
   config = {
     url: 'https://httpbin.org/post',
     thumbnailWidth: 160,
@@ -37,6 +44,11 @@ export class ModalEditProfileComponent implements OnInit {
       instagram: new FormControl(null, [Validators.required]),
       pinterest: new FormControl(null, [Validators.required]),
     });
+
+  }
+
+  trackByFn(item: Person): string {
+    return item.id;
   }
 
 

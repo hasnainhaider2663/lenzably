@@ -2,7 +2,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class FirebaseAssetService {
 
 
   watchUserAssets(): Observable<any> {
-   return  this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges();
+    return this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges();
   }
 
   getUserAssets(cb) {
@@ -35,8 +35,8 @@ export class FirebaseAssetService {
 
   }
 
-async  getFullURL(url){
-    return  await this.storage.ref(url).getDownloadURL().toPromise();
+  async getFullURL(url) {
+    return await this.storage.ref(url).getDownloadURL().toPromise();
   }
 
   async uploadAsset(file): Promise<any> {
@@ -45,7 +45,14 @@ async  getFullURL(url){
     const result = await filePath.put(file);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
     fileInfo['userId'] = this.user.id;
-    return await this.firestore.collection('assets').add(fileInfo);
+    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*')
+    // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
+    // if (docRef) {
+    //   console.log('already exists')
+    //   await this.storage.ref(`assets/${this.user.id}/${file.name}`).delete().toPromise()
+    //   return true
+    // }
+    return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
   }
 
   subscribeToDocument(path): AngularFirestoreDocument<any> {

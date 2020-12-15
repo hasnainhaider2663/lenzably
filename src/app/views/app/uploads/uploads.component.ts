@@ -168,15 +168,8 @@ export class UploadsComponent implements OnInit {
   }
 
   onUploadSuccess(event): void {
-    // filename
-    // extension
-    //width
-    //heigth
-    //size in bytes
-    let data = {};
-    console.log(event[0].height);
-    console.log(event[0].width);
-    console.log(event[0].size / 1024 / 1024);
+   const data = {width : event[0].width, filename : event[0].name, type: event[0].type, height: event[0].height, size: event[0].size};
+   console.log(data);
+   console.log(event);
   }
-
 }

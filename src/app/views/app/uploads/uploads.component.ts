@@ -46,7 +46,7 @@ export class UploadsComponent implements OnInit {
     }));
   }
 
-  async ngOnInit(): void {
+  async ngOnInit() {
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
     //READ
     // this.angularFireService.userObservable.subscribe(changes => {
@@ -173,7 +173,7 @@ export class UploadsComponent implements OnInit {
     //width
     //heigth
     //size in bytes
-    let data = {}
+    let data = {};
     console.log(event[0].height);
     console.log(event[0].width);
     console.log(event[0].size / 1024 / 1024);

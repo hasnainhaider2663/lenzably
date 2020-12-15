@@ -20,7 +20,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalEditProfileComponent } from './modal-edit-profile/modal-edit-profile.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DropzoneModule} from "ngx-dropzone-wrapper";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ModalModule.forRoot(),
     PopoverModule.forRoot(),
     TooltipModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DropzoneModule,
+    NgSelectModule,
+    FormsModule
   ],
   providers: [],
   entryComponents: [ModalInnerComponent],

@@ -35,6 +35,11 @@
       <div *ngIf="basicForm.get('state').errors?.required && form.submitted" class="invalid-tooltip">Option is required</div>
     </div>
     <div class="form-group">
+      <label>{{ 'forms.interests' | translate }}</label>
+      <textarea class="form-control" rows="2" formControlName="interests"></textarea>
+      <div *ngIf="basicForm.get('interests').errors?.required && form.submitted" class="invalid-tooltip">Interests are required!</div>
+    </div>
+    <div class="form-group">
       <label>{{ 'forms.details' | translate }}</label>
       <textarea class="form-control" rows="2" formControlName="details"></textarea>
       <div *ngIf="basicForm.get('details').errors?.required && form.submitted" class="invalid-tooltip">Details are required!</div>

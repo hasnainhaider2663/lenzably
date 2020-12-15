@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Lightbox} from "ngx-lightbox";
-import {ModalInnerComponent} from "../../ui/modals/modal-component/modal-inner-component";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {TranslateService} from "@ngx-translate/core";
-import {ModalEditProfileComponent} from "../../ui/modals/modal-edit-profile/modal-edit-profile.component";
+import {Lightbox} from 'ngx-lightbox';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {TranslateService} from '@ngx-translate/core';
+import {ModalEditProfileComponent} from '../../ui/modals/modal-edit-profile/modal-edit-profile.component';
 
 @Component({
   selector: 'app-section-artist-about',

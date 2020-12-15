@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-modal-edit-profile',
@@ -22,6 +22,7 @@ export class ModalEditProfileComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       location: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
+      interests: new FormControl(null, [Validators.required]),
       details: new FormControl(null, [Validators.required])
     });
   }

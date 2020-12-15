@@ -477,6 +477,7 @@
     "quill-bubble": "Quill Bubble"
   },
   "forms": {
+    "interests": "Interests",
     "location": "Location",
     "basic": "Basic",
     "email": "E-mail",

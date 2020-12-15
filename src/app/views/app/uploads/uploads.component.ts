@@ -158,7 +158,7 @@ export class UploadsComponent implements OnInit {
 
   searchKeyUp(event): void {
     const val = event.target.value.toLowerCase().trim();
-    this.loadData(this.itemsPerPage, 1, val, this.orderBy);
+    // this.loadData(this.itemsPerPage, 1, val, this.orderBy);
   }
 
   onContextMenuClick(action: string, item: IProduct): void {

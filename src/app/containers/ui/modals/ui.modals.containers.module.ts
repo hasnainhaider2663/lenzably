@@ -21,7 +21,6 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalEditProfileComponent } from './modal-edit-profile/modal-edit-profile.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [

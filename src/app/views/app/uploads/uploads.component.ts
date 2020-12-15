@@ -168,7 +168,7 @@ export class UploadsComponent implements OnInit {
     console.log('error event', event);
     alert(event[1]);
   }
-
+  // @ts-ignore
   async onUploadSuccess(event): void {
     const data = {
       width: event[0].width,

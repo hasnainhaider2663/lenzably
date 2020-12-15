@@ -1,3 +1,4 @@
+/* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
@@ -23,6 +24,7 @@ export class FirebaseAssetService {
     const sub = this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges().subscribe(assets => {
 
       assets.forEach(async asset => {
+        // @ts-ignore
         asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
 
       });

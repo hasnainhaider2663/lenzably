@@ -88,7 +88,7 @@
   <div *ngIf="displayMode==='image'" class="col-12 list">
     <div class="row">
       <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p"
-           [contextMenu]="basicMenu" class="col-xl-2 col-lg-4 col-12 col-sm-6 mb-4" style="height: 450px">
+           [contextMenu]="basicMenu" class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" >
         <div [ngClass]="{'card': true, 'active':isSelected(p)}">
           <div class="position-relative">
             <a href="javascript:;"><img [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>

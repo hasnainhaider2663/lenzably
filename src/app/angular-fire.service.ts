@@ -28,8 +28,10 @@ export class GenericAngularService {
   userObservable: Observable<any>;
   userDocument: AngularFirestoreDocument;
   userTable: AngularFirestoreCollection
+  firestore: AngularFirestore
 
   constructor(firestore: AngularFirestore) {
+    this.firestore = firestore
     // firestore
     // firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB')
     this.userDocument = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB');
@@ -38,7 +40,20 @@ export class GenericAngularService {
   }
 
 
-  subscribeToCollection(path){}
-  subscribeToDocument(path){}
-  updateDocument(path){}
+  subscribeToCollection(path): AngularFirestoreCollection<any> {
+   return  this.firestore.collection(path)
+  }
+
+  subscribeToDocument(path): AngularFirestoreDocument<any> {
+    return this.firestore.doc(path)
+  }
+
+  async updateDocument(path) {
+    await this.firestore.doc(path).update(path)
+  }
+
+  async createDocumentInCollection(path, document) {
+    await this.firestore.doc(path).set(document)
+  }
+
 }

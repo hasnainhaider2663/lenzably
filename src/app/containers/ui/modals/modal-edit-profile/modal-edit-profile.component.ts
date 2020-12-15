@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {concat, Observable, of, Subject} from "rxjs";
-import {Person} from "../../../forms/select/select.data.service";
+import {Person, SelectDataService} from "../../../forms/select/select.data.service";
+import {catchError, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-modal-edit-profile',
@@ -28,7 +29,7 @@ export class ModalEditProfileComponent implements OnInit {
 
   @ViewChild('form') form: NgForm;
 
-  constructor(public bsModalRef: BsModalRef) {
+  constructor(public bsModalRef: BsModalRef, private selectDataService: SelectDataService) {
   }
 
   ngOnInit(): void {
@@ -44,6 +45,19 @@ export class ModalEditProfileComponent implements OnInit {
       instagram: new FormControl(null, [Validators.required]),
       pinterest: new FormControl(null, [Validators.required]),
     });
+
+
+    this.peopleAsyncSearch = concat(
+      of([]), // default items
+      this.peopleInputAsyncSearch.pipe(
+        distinctUntilChanged(),
+        tap(() => this.peopleLoadingAsyncSearch = true),
+        switchMap(term => this.selectDataService.getPeople(term).pipe(
+          catchError(() => of([])), // empty list on error
+          tap(() => this.peopleLoadingAsyncSearch = false)
+        ))
+      )
+    );
 
   }
 

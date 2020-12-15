@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AddNewProductModalComponent} from 'src/app/containers/pages/add-new-product-modal/add-new-product-modal.component';
-import {HotkeysService, Hotkey} from 'angular2-hotkeys';
-import {ApiService} from 'src/app/data/api.service';
-import {IProduct} from 'src/app/data/api.service';
+import {Hotkey, HotkeysService} from 'angular2-hotkeys';
+import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AngularFireService} from "../../../angular-fire.service";
 
@@ -34,6 +33,7 @@ export class UploadsComponent implements OnInit {
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
+  user
 
   constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -46,10 +46,27 @@ export class UploadsComponent implements OnInit {
     }));
   }
 
-
-  ngOnInit(): void {
+  async ngOnInit(): void {
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
-    this.angularFireService.user.subscribe(x => console.log('user changed', x))
+    //READ
+    // this.angularFireService.userObservable.subscribe(changes => {
+    //
+    //
+    //     this.user = changes
+    //   }
+    // )
+
+
+    this.user = this.angularFireService.userObservable;
+    // Update
+    await this.angularFireService.userDocument.update({lastname: 'same beenish'})
+    //delete
+    // await this.angularFireService.userDocument.delete()
+
+    //create
+    await this.angularFireService.userTable.add({lastname: 'same beenish', name: 'Batool'})
+
+    // CREATE READ UPDATE DELETE C.R.U.D
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = ''): void {

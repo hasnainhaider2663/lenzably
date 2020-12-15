@@ -4,7 +4,7 @@ import {Hotkey, HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AngularFireService} from "../../../angular-fire.service";
-import {UploadService} from "../../../upload.service";
+import {FirebaseAssetService} from "../../../firebase-asset.service";
 
 @Component({
   selector: 'app-uploads',
@@ -35,8 +35,9 @@ export class UploadsComponent implements OnInit {
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
   user
+  assets
 
-  constructor(private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private uploadService: UploadService) {
+  constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selected = [...this.data];
       return false;
@@ -49,25 +50,15 @@ export class UploadsComponent implements OnInit {
 
   async ngOnInit() {
     this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
-    //READ
-    // this.angularFireService.userObservable.subscribe(changes => {
-    //
-    //
-    //     this.user = changes
-    //   }
-    // )
 
 
     this.user = this.angularFireService.userObservable;
-    // Update
-    await this.angularFireService.userDocument.update({lastname: 'same beenish'})
-    //delete
-    // await this.angularFireService.userDocument.delete()
 
-    //create
-    await this.angularFireService.userTable.add({lastname: 'same beenish', name: 'Batool'})
 
-    // CREATE READ UPDATE DELETE C.R.U.D
+    this.assets = this.assetService.currentUserAssets;
+    this.assets.subscribe(x => console.log(x))
+
+
   }
 
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = ''): void {
@@ -168,7 +159,7 @@ export class UploadsComponent implements OnInit {
     alert(event[1]);
   }
 
-  onUploadSuccess(event): void {
+  async onUploadSuccess(event): void {
     const data = {
       width: event[0].width,
       filename: event[0].name,
@@ -179,6 +170,7 @@ export class UploadsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    this.uploadService.upload(data.filename, event[0])
+    const result = await this.assetService.uploadAsset(event[0])
+    console.log(result)
   }
 }

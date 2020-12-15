@@ -35,6 +35,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SectionArtistAboutComponent } from './section-artist-about/section-artist-about.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ProductDetailOrdersComponent,
     ProductDetailCommentsComponent,
     ProductDetailInfoComponent,
-    ProductDetailTabsComponent
+    ProductDetailTabsComponent,
+    SectionArtistAboutComponent
   ],
   imports: [
     CommonModule,
@@ -99,7 +101,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ProductDetailOrdersComponent,
     ProductDetailCommentsComponent,
     ProductDetailInfoComponent,
-    ProductDetailTabsComponent
+    ProductDetailTabsComponent,
+    SectionArtistAboutComponent
   ]
 })
 export class PagesContainersModule { }

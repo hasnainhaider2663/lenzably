@@ -348,6 +348,7 @@
     "new": "New"
   },
   "button": {
+    "purchase-now": "Purchase Now",
     "default": "Bootstrap Default",
     "colors": "Colors",
     "rounded": "Rounded",

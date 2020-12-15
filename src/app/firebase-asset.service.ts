@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {BehaviorSubject, Observable} from "rxjs";
 
@@ -8,30 +8,33 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class FirebaseAssetService {
   user = {id: undefined};
-  currentUserAssets: Observable<any>;
-  assetSubject: BehaviorSubject<any>;
 
-  constructor(private firestore: AngularFirestore, private storage: AngularFireStorage) {
+  constructor(private firestore: AngularFirestore, public storage: AngularFireStorage) {
     this.user.id = 'VgbSx1fiEpfuwGMNrqaB';
-    this.assetSubject = new BehaviorSubject({});
-    this.currentUserAssets = this.assetSubject.asObservable()
-    this.getCurrentUserAssets()
+
   }
 
 
-  getCurrentUserAssets(): AngularFirestoreCollection<any> {
-    this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges().subscribe(assets => {
+  watchUserAssets(): Observable<any> {
+   return  this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges();
+  }
 
-      assets.forEach(asset => {
-        this.storage.ref(asset.fullPath).getDownloadURL().subscribe(url => {
-          asset['thumbnailURL'] = url;
-          this.assetSubject.next(assets.filter(x => x.thumbnailURL));
-        });
+  getUserAssets(cb) {
+    const sub = this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges().subscribe(assets => {
+
+      assets.forEach(async asset => {
+        asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
 
       });
+      cb(assets)
+      sub.unsubscribe()
+    })
 
 
-    });
+  }
+
+async  getFullURL(url){
+    return  await this.storage.ref(url).getDownloadURL().toPromise();
   }
 
   async uploadAsset(file): Promise<any> {

@@ -3,8 +3,8 @@ import {AddNewProductModalComponent} from 'src/app/containers/pages/add-new-prod
 import {Hotkey, HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
-import {AngularFireService} from "../../../angular-fire.service";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {AngularFireService} from '../../../angular-fire.service';
+import {FirebaseAssetService} from '../../../firebase-asset.service';
 
 @Component({
   selector: 'app-uploads',
@@ -34,8 +34,8 @@ export class UploadsComponent implements OnInit {
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
-  user
-  assets
+  user;
+  assets;
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -55,9 +55,19 @@ export class UploadsComponent implements OnInit {
     this.user = this.angularFireService.userObservable;
 
 
-    this.assets = this.assetService.currentUserAssets;
-    this.assets.subscribe(x => console.log(x))
+    this.assetService.getUserAssets(x => {
+      this.assets = x;
+      console.log(this.assets);
+    });
 
+    this.assetService.watchUserAssets().subscribe(assetsArray => {
+      assetsArray.forEach(async asset => {
+        if (!(this.assets.find(x => x.md5Hash === asset.md5Hash))) {
+          asset['thumbnailURL'] = await this.assetService.getFullURL(asset.fullPath)
+          this.assets.push(asset)
+        }
+      });
+    });
 
   }
 
@@ -170,7 +180,7 @@ export class UploadsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.assetService.uploadAsset(event[0])
-    console.log(result)
+    const result = await this.assetService.uploadAsset(event[0]);
+    console.log(result);
   }
 }

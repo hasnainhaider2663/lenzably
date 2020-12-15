@@ -36,6 +36,7 @@ export class UploadsComponent implements OnInit {
   @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
   user;
   assets;
+  originalAssets;
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -57,6 +58,7 @@ export class UploadsComponent implements OnInit {
 
     this.assetService.getUserAssets(x => {
       this.assets = x;
+      this.originalAssets = x;
       console.log(this.assets);
     });
 
@@ -158,7 +160,7 @@ export class UploadsComponent implements OnInit {
 
   searchKeyUp(event): void {
     const val = event.target.value.toLowerCase().trim();
-    // this.loadData(this.itemsPerPage, 1, val, this.orderBy);
+    this.assets = this.originalAssets.filter(x => x.name.includes(val));
   }
 
   onContextMenuClick(action: string, item: IProduct): void {

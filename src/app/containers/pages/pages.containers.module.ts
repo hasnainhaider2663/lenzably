@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LightboxModule} from 'ngx-lightbox';
 import {SharedModule} from 'src/app/shared/shared.module';
 import {NgSelectModule} from '@ng-select/ng-select';
@@ -89,7 +89,8 @@ import { LbFooterComponent } from './lb-footer/lb-footer.component';
     RatingModule.forRoot(),
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [
     AddNewProductModalComponent,

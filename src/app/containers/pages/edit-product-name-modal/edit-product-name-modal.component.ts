@@ -1,6 +1,7 @@
 import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product-name-modal',
@@ -42,16 +43,20 @@ export class EditProductNameModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-  inputText = ''
+  inputText = '';
+  form;
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
+  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService, private fb: FormBuilder) {
   }
 
-
   show(): void {
+    this.form = this.fb.group({
+      name: [this.inputText]
+    });
     this.modalRef = this.modalService.show(this.template, this.config);
+
   }
 
   closeClicked() {
@@ -59,6 +64,6 @@ export class EditProductNameModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {name: 'Le cube'});
+    await this.assetService.updateBatch(this.items, {name: this.form.value.name});
   }
 }

@@ -5,16 +5,19 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
 
-    <div class="mt-4">
-      <label>{{ 'pages.description' | translate }}</label>
-      <textarea class="form-control" rows="3"></textarea>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="modal-body">
+
+      <div class="mt-4">
+        <label>{{ 'pages.description' | translate }}</label>
+        <textarea formControlName="description" class="form-control" rows="3" placeholder="10 characters or more"></textarea>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary"
-            (click)="closeClicked()">{{'pages.cancel' | translate }}</button>
-    <button type="button" (click)="submit()" class="btn btn-primary float-right">{{ 'pages.submit' | translate}}</button>
-  </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary"
+              (click)="closeClicked()">{{'pages.cancel' | translate }}</button>
+      <button type="submit"  class="btn btn-primary float-right">{{ 'pages.submit' | translate}}</button>
+    </div>
+  </form>
 </ng-template>

@@ -6,18 +6,18 @@
     </button>
   </div>
 
-  <form>
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="modal-body">
         <div>
           <label>{{ 'pages.product-name' | translate }}</label>
-          <input type="email" class="form-control" placeholder="">
+          <input formControlName="name" type="text" class="form-control" placeholder="Enter 8 characters or more">
         </div>
 
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-primary"
               (click)="closeClicked()">{{'pages.cancel' | translate }}</button>
-      <button type="button" (click)="submit()"
+      <button type="submit"
               class="btn btn-primary float-right">{{ 'pages.submit' | translate}}</button>
     </div>
   </form>

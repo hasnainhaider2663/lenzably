@@ -1,6 +1,6 @@
-import {Component, TemplateRef, ViewChild} from "@angular/core";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FirebaseAssetService} from '../../../firebase-asset.service';
 
 @Component({
   selector: 'app-product-edit-tags-modal',
@@ -47,6 +47,7 @@ export class EditProductTagsModalComponent {
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
   error: any;
   success: any;
+  replaceTags: 'replace' | 'append' ;
 
   constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
   }
@@ -66,12 +67,29 @@ export class EditProductTagsModalComponent {
   }
 
   async submit() {
+    if (this.replaceTags === 'append') {
+      this.items.forEach(async x => {
+        await this.assetService.updateDocument(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});
+      });
+    } else if (this.replaceTags === 'replace') {
+      this.items.forEach(async x => {
+        await this.assetService.updateDocument(x.md5Hash, {tags: this.tags});
+      });
+    } else {
+      this.error = 'A serious error occurred while saving tags. Please contact support.';
+      return;
+    }
     if (this.tags.length < 3 || this.tags.filter(x => x.length < 3).length > 0) {
       this.error = 'Please enter at least 3 tags, each 3 or more characters';
       return;
     }
-    await this.assetService.updateBatch(this.items, {tags: this.tags});
+    this.reset();
+
+  }
+
+  reset() {
     this.error = undefined;
     this.success = true;
+    this.replaceTags = undefined;
   }
 }

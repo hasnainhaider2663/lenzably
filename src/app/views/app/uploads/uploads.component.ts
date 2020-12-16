@@ -199,6 +199,7 @@ export class UploadsComponent implements OnInit {
         this.showModal(this.editProductDescriptionModalComponent);
         break;
       case 'tags':
+        this.editProductTagsModalComponent.replaceTags = 'replace';
         this.editProductTagsModalComponent.tags = item.tags;
         this.showModal(this.editProductTagsModalComponent);
         break;
@@ -209,6 +210,44 @@ export class UploadsComponent implements OnInit {
 
     }
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
+  }
+
+  changeDropdownItem($event: any) {
+    switch ($event.value) {
+      case 'name':
+        this.showModal(this.editProductNameModalComponent);
+        break;
+      case 'description':
+        this.showModal(this.editProductDescriptionModalComponent);
+        break;
+      case 'tags':
+        this.editProductTagsModalComponent.replaceTags = 'append';
+        this.editProductTagsModalComponent.tags = this.findTagIntersection();
+        this.showModal(this.editProductTagsModalComponent);
+        break;
+      case 'category':
+        this.showModal(this.editProductCategoriesModalComponent);
+        break;
+
+    }
+  }
+
+  findTagIntersection() {
+    const intersection = [];
+    this.selectedItemsArray.forEach(myItem => {
+      if (myItem.tags) {
+        myItem.tags.forEach(tag => {
+          if (!intersection.includes(tag)) {
+            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
+            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
+              intersection.push(tag);
+            }
+          }
+          console.log(intersection);
+        });
+      }
+    });
+    return intersection;
   }
 
 
@@ -235,40 +274,4 @@ export class UploadsComponent implements OnInit {
     console.log(result);
   }
 
-  changeDropdownItem($event: any) {
-    switch ($event.value) {
-      case 'name':
-        this.showModal(this.editProductNameModalComponent);
-        break;
-      case 'description':
-        this.showModal(this.editProductDescriptionModalComponent);
-        break;
-      case 'tags':
-        this.editProductTagsModalComponent.tags = this.findTagIntersection();
-        this.showModal(this.editProductTagsModalComponent);
-        break;
-      case 'category':
-        this.showModal(this.editProductCategoriesModalComponent);
-        break;
-
-    }
-  }
-
-  findTagIntersection() {
-    const intersection = [];
-    this.selectedItemsArray.forEach(myItem => {
-      if (myItem.tags) {
-        myItem.tags.forEach(tag => {
-          if (!intersection.includes(tag)) {
-            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
-            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
-              intersection.push(tag);
-            }
-          }
-          console.log(intersection);
-        });
-      }
-    });
-    return intersection
-  }
 }

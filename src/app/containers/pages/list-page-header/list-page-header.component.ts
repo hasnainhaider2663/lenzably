@@ -10,6 +10,7 @@ export class ListPageHeaderComponent {
   @Input() showOrderBy = true;
   @Input() showSearch = true;
   @Input() showItemsPerPage = true;
+  @Input() showAddNewButton = false;
   @Input() showDisplayMode = true;
   @Input() displayMode = 'list';
   @Input() selectAllState = '';

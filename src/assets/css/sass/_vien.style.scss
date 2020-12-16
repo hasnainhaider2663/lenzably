@@ -9482,7 +9482,7 @@ footer.page-footer {
 
   h1 {
     font-size: 3rem;
-    color: $theme-color-1;
+    color: $primary-color;
     margin-bottom: 2rem;
 
     @include respond-below(sm) {
@@ -9492,7 +9492,7 @@ footer.page-footer {
 
   h2 {
     font-size: 1.8rem;
-    color: $theme-color-1;
+    color: $primary-color;
     margin-bottom: 2rem;
 
     @include respond-below(md) {
@@ -9507,7 +9507,7 @@ footer.page-footer {
   h3 {
     font-size: 1.4rem;
     line-height: 1.4;
-    color: $theme-color-1;
+    color: $primary-color;
 
     @include respond-below(sm) {
       font-size: 1.1rem;
@@ -9529,6 +9529,7 @@ footer.page-footer {
 
     &:hover,
     &:active {
+      color: $button-text-color !important;
       border: 1px solid darken($theme-color-1, 10%);
       background: darken($theme-color-1, 10%);
     }
@@ -9698,6 +9699,7 @@ footer.page-footer {
           }
         }
       }
+
     }
   }
 

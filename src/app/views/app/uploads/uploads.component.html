@@ -6,7 +6,9 @@
                       [displayMode]="displayMode" [showDisplayMode]="false"
                       [itemOptionsPerPage]="[4,8,12]"
                       [itemsPerPage]="itemsPerPage"
-                      [selectAllState]="selectAllState" [showOrderBy]="true" [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }]"
+                      [selectAllState]="selectAllState" [showOrderBy]="true"
+                      [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
+                      {label: 'Oldest First' , value : 'oldest'}]"
 >
 </app-list-page-header>
 <app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>

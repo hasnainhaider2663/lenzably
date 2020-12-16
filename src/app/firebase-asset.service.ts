@@ -67,6 +67,12 @@ export class FirebaseAssetService {
     await this.firestore.doc(path).update(path);
   }
 
+  async updateBatch(items, data): Promise<any> {
+    items.forEach(async x => {
+      await this.firestore.doc(`assets/${x.md5Hash}`).update(data);
+    })
+  }
+
   async createDocumentInCollection(path, document): Promise<any> {
     await this.firestore.doc(path).set(document);
   }

@@ -40,7 +40,7 @@ export class UploadsComponent implements OnInit {
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
-      this.selectedItemsArray = [...this.data];
+      this.selectedItemsArray = [...this.assets];
       return false;
     }));
     this.hotkeysService.add(new Hotkey('ctrl+d', (event: KeyboardEvent): boolean => {
@@ -50,7 +50,6 @@ export class UploadsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.loadData(this.itemsPerPage, this.currentPage, this.search, this.orderBy);
 
 
     this.user = this.angularFireService.userObservable;
@@ -63,11 +62,16 @@ export class UploadsComponent implements OnInit {
     });
 
     this.assetService.watchUserAssets().subscribe(assetsArray => {
-      assetsArray.forEach(async asset => {
+      assetsArray.forEach(async updatedAsset => {
         try {
-          if (!(this.assets.find(x => x.md5Hash === asset.md5Hash))) {
-            asset['thumbnailURL'] = await this.assetService.getFullURL(asset.fullPath);
-            this.assets.push(asset);
+          const assetInArray = this.assets.find(x => x.md5Hash === updatedAsset.md5Hash);
+          if (!(assetInArray)) {
+            updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
+            this.assets.push(updatedAsset);
+          } else {
+            Object.keys(updatedAsset).forEach(key => {
+              assetInArray[key] = updatedAsset[key];
+            });
           }
         } catch (e) {
 
@@ -75,35 +79,6 @@ export class UploadsComponent implements OnInit {
       });
     });
 
-  }
-
-  loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', orderBy: string = ''): void {
-    this.itemsPerPage = pageSize;
-    this.currentPage = currentPage;
-    this.search = search;
-    this.orderBy = orderBy;
-
-    this.apiService.getProducts(pageSize, currentPage, search, orderBy).subscribe(
-      data => {
-        if (data.status) {
-          this.isLoading = false;
-          this.data = data.data.map(x => {
-            return {
-              ...x,
-              img: x.img.replace('/img/', '/img/products/')
-            };
-          });
-          this.totalItem = data.totalItem;
-          this.totalPage = data.totalPage;
-          this.setSelectAllState();
-        } else {
-          this.endOfTheList = true;
-        }
-      },
-      error => {
-        this.isLoading = false;
-      }
-    );
   }
 
   changeDisplayMode(mode): void {
@@ -114,7 +89,8 @@ export class UploadsComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  editItemModal(item): void {
+  editItemNameModal(): void {
+    this.addNewModalRef.items = this.selectedItemsArray;
     this.addNewModalRef.show();
   }
 
@@ -129,7 +105,7 @@ export class UploadsComponent implements OnInit {
       this.selectedItemsArray.push(item);
     }
     this.setSelectAllState();
-    let intersection = [];
+    const intersection = [];
     this.selectedItemsArray.forEach(myItem => {
       if (myItem.tags) {
         myItem.tags.forEach(tag => {
@@ -143,10 +119,11 @@ export class UploadsComponent implements OnInit {
         });
       }
     });
+
   }
 
   setSelectAllState(): void {
-    if (this.selectedItemsArray.length === this.data.length) {
+    if (this.selectedItemsArray.length === this.assets.length) {
       this.selectAllState = 'checked';
     } else if (this.selectedItemsArray.length !== 0) {
       this.selectAllState = 'indeterminate';
@@ -157,7 +134,7 @@ export class UploadsComponent implements OnInit {
 
   selectAllChange($event): void {
     if ($event.target.checked) {
-      this.selectedItemsArray = [...this.data];
+      this.selectedItemsArray = [...this.assets];
     } else {
       this.selectedItemsArray = [];
     }
@@ -165,11 +142,11 @@ export class UploadsComponent implements OnInit {
   }
 
   pageChanged(event: any): void {
-    this.loadData(this.itemsPerPage, event.page, this.search, this.orderBy);
+    // this.loadData(this.itemsPerPage, event.page, this.search, this.orderBy);
   }
 
   itemsPerPageChange(perPage: number): void {
-    this.loadData(perPage, 1, this.search, this.orderBy);
+    // this.loadData(perPage, 1, this.search, this.orderBy);
   }
 
   changeOrderBy(item: any): void {
@@ -187,7 +164,7 @@ export class UploadsComponent implements OnInit {
 
     if (item.value === 'latest') {
       this.assets = this.originalAssets.sort((x, y) => {
-        //11 < 12 means 12 should comes before 11 so that we get the latest item first
+        // 11 < 12 means 12 should comes before 11 so that we get the latest item first
         if (x.updated < y.updated) {
           return 1;
         } else if (x.updated > y.updated) {
@@ -199,7 +176,7 @@ export class UploadsComponent implements OnInit {
 
     if (item.value === 'oldest') {
       this.assets = this.originalAssets.sort((x, y) => {
-        //11 < 12 means 12 comes after 11
+        // 11 < 12 means 12 comes after 11
         if (x.updated < y.updated) {
           return -1;
         } else if (x.updated > y.updated) {
@@ -216,7 +193,9 @@ export class UploadsComponent implements OnInit {
     this.assets = this.originalAssets.filter(x => x.name.toLowerCase().includes(val));
   }
 
-  onContextMenuClick(action: string, item: IProduct): void {
+  onContextMenuClick(action: string, item): void {
+    this.selectedItemsArray = [item];
+    this.editItemNameModal();
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
   }
 
@@ -242,5 +221,11 @@ export class UploadsComponent implements OnInit {
 
     const result = await this.assetService.uploadAsset(event[0]);
     console.log(result);
+  }
+
+  changeDropdownItem($event: any) {
+    if ($event.value === 'names') {
+      this.editItemNameModal();
+    }
   }
 }

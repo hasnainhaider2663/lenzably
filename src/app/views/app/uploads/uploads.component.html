@@ -8,7 +8,8 @@
                       [itemsPerPage]="itemsPerPage"
                       [selectAllState]="selectAllState" [showOrderBy]="true"
                       [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
-                      {label: 'Oldest First' , value : 'oldest'}]"
+                      {label: 'Oldest First' , value : 'oldest'}]" (changeDropdownItem)="changeDropdownItem($event)"
+                      [dropDownItems]="[{ label: 'Edit names', value: 'names' }, { label: 'Edit descriptions', value: 'descriptions' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit categories', value: 'categories' } ]"
 >
 </app-list-page-header>
 <app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>
@@ -24,14 +25,16 @@
 </div>
 
 <context-menu #basicMenu>
-  <ng-template (execute)="onContextMenuClick('copy',$event.item)" contextMenuItem let-item>
-    <i class="simple-icon-docs mr-1"></i> <span>Copy</span>
+  <ng-template (execute)="onContextMenuClick('name',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-pencil mr-1"></i> <span>Edit name</span>
   </ng-template>
-  <ng-template (execute)="onContextMenuClick('move-to-archive',$event.item)" contextMenuItem let-item>
-    <i class="simple-icon-drawer mr-1"></i> <span>Move to archive</span>
+  <ng-template (execute)="onContextMenuClick('description',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-paper-clip mr-1"></i> <span>Edit description</span>
   </ng-template>
-  <ng-template (execute)="onContextMenuClick('delete',$event.item)" contextMenuItem let-item>
-    <i class="simple-icon-trash mr-1"></i><span>Delete</span>
+  <ng-template (execute)="onContextMenuClick('tags',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-tag mr-1"></i><span>Edit tags</span>
+  </ng-template> <ng-template (execute)="onContextMenuClick('categories',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-list mr-1"></i><span>Edit categories</span>
   </ng-template>
 </context-menu>
 

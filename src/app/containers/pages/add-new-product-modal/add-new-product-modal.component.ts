@@ -1,5 +1,6 @@
 import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FirebaseAssetService} from "../../../firebase-asset.service";
 
 @Component({
   selector: 'app-add-new-product-modal',
@@ -40,12 +41,12 @@ export class AddNewProductModalComponent {
     {label: 'History', value: 'history'},
     {label: 'Sustainability', value: 'sustainability'},
   ];
-  items
-  callback
+  items;
+
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
   }
 
 
@@ -55,5 +56,9 @@ export class AddNewProductModalComponent {
 
   closeClicked() {
     this.modalRef.hide();
+  }
+
+  async submit() {
+    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
   }
 }

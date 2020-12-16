@@ -1,11 +1,12 @@
-import { Component, TemplateRef,  ViewChild } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+
 @Component({
   selector: 'app-add-new-product-modal',
   templateUrl: './add-new-product-modal.component.html',
   styles: []
 })
-export class AddNewProductModalComponent  {
+export class AddNewProductModalComponent {
   modalRef: BsModalRef;
   config = {
     backdrop: true,
@@ -13,15 +14,16 @@ export class AddNewProductModalComponent  {
     class: 'modal-right'
   };
   categories = [
-    { label: 'Cakes', value: 'chocolate' },
-    { label: 'Cupcakes', value: 'vanilla' },
-    { label: 'Desserts', value: 'strawberry' }
+    {label: 'Cakes', value: 'chocolate'},
+    {label: 'Cupcakes', value: 'vanilla'},
+    {label: 'Desserts', value: 'strawberry'}
   ];
+  callback
 
+  @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  @ViewChild('template', { static: true }) template: TemplateRef<any>;
-
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService) {
+  }
 
 
   show(): void {

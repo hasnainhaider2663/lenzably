@@ -114,6 +114,10 @@ export class UploadsComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
+  editItemModal(item): void {
+    this.addNewModalRef.show();
+  }
+
   isSelected(p: IProduct): boolean {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }
@@ -160,7 +164,7 @@ export class UploadsComponent implements OnInit {
       this.assets = this.originalAssets.sort((x, y) => {
         if (x.name.toLowerCase() < y.name.toLowerCase()) {
           return -1;
-        } else if (x.name.toLowerCase() > y.name.toLowerCase()){
+        } else if (x.name.toLowerCase() > y.name.toLowerCase()) {
           return 1;
         }
         return 0;
@@ -172,7 +176,7 @@ export class UploadsComponent implements OnInit {
         //11 < 12 means 12 should comes before 11 so that we get the latest item first
         if (x.updated < y.updated) {
           return 1;
-        } else if (x.updated > y.updated){
+        } else if (x.updated > y.updated) {
           return -1;
         }
         return 0;
@@ -184,7 +188,7 @@ export class UploadsComponent implements OnInit {
         //11 < 12 means 12 comes after 11
         if (x.updated < y.updated) {
           return -1;
-        } else if (x.updated > y.updated){
+        } else if (x.updated > y.updated) {
           return 1;
         }
         return 0;

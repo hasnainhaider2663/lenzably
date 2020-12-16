@@ -43,6 +43,7 @@ export class EditProductTagsModalComponent {
   ];
   items;
   selectedCompanies
+  tags
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 

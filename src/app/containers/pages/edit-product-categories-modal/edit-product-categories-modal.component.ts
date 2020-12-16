@@ -42,7 +42,7 @@ export class EditProductCategoriesModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-
+  category
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 

@@ -42,6 +42,7 @@ export class EditProductDescriptionModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
+  inputText = ''
 
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;

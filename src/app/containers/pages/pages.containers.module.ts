@@ -40,6 +40,7 @@ import {EditProductNameModalComponent} from './edit-product-name-modal/edit-prod
 import {EditProductDescriptionModalComponent} from './edit-product-description-modal/edit-product-description-modal.component';
 import {EditProductCategoriesModalComponent} from './edit-product-categories-modal/edit-product-categories-modal.component';
 import {EditProductTagsModalComponent} from './edit-product-tags-modal/edit-product-tags-modal.component';
+import { LbFooterComponent } from './lb-footer/lb-footer.component';
 
 
 
@@ -70,7 +71,8 @@ import {EditProductTagsModalComponent} from './edit-product-tags-modal/edit-prod
     ProductDetailCommentsComponent,
     ProductDetailInfoComponent,
     ProductDetailTabsComponent,
-    SectionArtistAboutComponent
+    SectionArtistAboutComponent,
+    LbFooterComponent
   ],
   imports: [
     CommonModule,
@@ -115,7 +117,8 @@ import {EditProductTagsModalComponent} from './edit-product-tags-modal/edit-prod
     ProductDetailCommentsComponent,
     ProductDetailInfoComponent,
     ProductDetailTabsComponent,
-    SectionArtistAboutComponent
+    SectionArtistAboutComponent,
+    LbFooterComponent
   ]
 })
 export class PagesContainersModule {

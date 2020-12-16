@@ -63,7 +63,7 @@
 
     <div class="product-container d-flex flex-row justify-content-between overflow-hidden">
       <div style="overflow: hidden">
-        <div class="" style="width: calc(100vw - 400px); height: 100%; overflow: hidden">
+        <div class="separator" style="width: calc(100vw - 400px); height: 100%; overflow: hidden">
           <div class="blur-bg-wrap" style="height: calc(100vh - 400px); overflow: hidden">
             <div class="blur-bg" [style.background-image]="'url(/assets/img//details/5.jpg)'"></div>
             <figure>
@@ -180,47 +180,102 @@
     </div>
 
 
-    <div class="content-container" id="home" style="padding: 0 10px">
+    <div class="content-container" id="home">
 
 
+      <div>
 
+        <h3 class="card-title mt-4" style="padding: 0 35px">Similar images</h3>
 
-
-      <div class="grid-layout">
-        <div class="grid-item span-2 grid-item-1"[style.background-image]="'url(/assets/img//details/1.jpg)'"></div>
-        <div class="grid-item  span-4 grid-item-2"[style.background-image]="'url(/assets/img//details/2.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-3"[style.background-image]="'url(/assets/img//details/3.jpg)'"></div>
-        <div class="grid-item grid-item-4"[style.background-image]="'url(/assets/img//details/4.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-5"[style.background-image]="'url(/assets/img//details/5.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-6" [style.background-image]="'url(/assets/img//profiles/1.jpg)'"></div>
-        <div class="grid-item grid-item-7" [style.background-image]="'url(/assets/img//profiles/l-1.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-8" [style.background-image]="'url(/assets/img//cards/thumb-1.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-9" [style.background-image]="'url(/assets/img//profiles/l-2.jpg)'"> </div>
-        <div class="grid-item span-2 grid-item-10" [style.background-image]="'url(/assets/img//products/bebinca-thumb.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-11" [style.background-image]="'url(/assets/img//profiles/l-3.jpg)'"></div>
-        <div class="grid-item grid-item-12" [style.background-image]="'url(/assets/img//profiles/l-4.jpg)'"></div>
-        <div class="grid-item grid-item-14" [style.background-image]="'url(/assets/img//profiles/l-5.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-15" [style.background-image]="'url(/assets/img//cards/thumb-2.jpg)'"></div>
-        <div class="grid-item grid-item-16" [style.background-image]="'url(/assets/img//profiles/l-6.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-17"[style.background-image]="'url(/assets/img//details/3.jpg)'"></div>
-        <div class="grid-item grid-item-18" [style.background-image]="'url(/assets/img//profiles/l-6.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-19" [style.background-image]="'url(/assets/img//cards/thumb-3.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-20" [style.background-image]="'url(/assets/img//profiles/l-8.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-22" [style.background-image]="'url(/assets/img//profiles/l-9.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-23" [style.background-image]="'url(/assets/img//cards/thumb-4.jpg)'"></div>
-        <div class="grid-item grid-item-24" [style.background-image]="'url(/assets/img//profiles/l-10.jpg)'"></div>
-        <div class="grid-item span-4  grid-item-25" [style.background-image]="'url(/assets/img//profiles/l-11.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-26"[style.background-image]="'url(/assets/img//products/bebinca-thumb.jpg)'"></div>
-        <div class="grid-item grid-item-27"[style.background-image]="'url(/assets/img//details/4.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-28"[style.background-image]="'url(/assets/img//details/1.jpg)'"></div>
-        <div class="grid-item grid-item-31"[style.background-image]="'url(/assets/img//details/3.jpg)'"></div>
-        <div class="grid-item span-4grid-item-34"[style.background-image]="'url(/assets/img//products/bebinca-thumb.jpg)'"></div>
-        <div class="grid-item grid-item-35"[style.background-image]="'url(/assets/img//details/1.jpg)'"></div>
-        <div class="grid-item grid-item-37"[style.background-image]="'url(/assets/img//details/4.jpg)'"></div>
-        <div class="grid-item span-4grid-item-41"[style.background-image]="'url(/assets/img//products/bebinca-thumb.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-44"[style.background-image]="'url(/assets/img//profiles/l-5.jpg)'"></div>
-        <div class="grid-item span-3 grid-item-45"[style.background-image]="'url(/assets/img//details/1.jpg)'"></div>
-        <div class="grid-item span-4 grid-item-47" [style.background-image]="'url(/assets/img//cards/thumb-1.jpg)'"></div>
+        <div class="containerw3 row-grid">
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-5.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-6.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-7.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-9.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-11.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-8.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/5.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/6.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-10.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/7.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/8.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/9.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/10.jpg"/>
+          </a>
+        </div>
       </div>
 
 

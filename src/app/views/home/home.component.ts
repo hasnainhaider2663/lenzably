@@ -191,10 +191,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'no-footer');
+    this.renderer.addClass(document.body, 'no-padding-bottom');
   }
   ngOnDestroy(): void {
-    this.renderer.removeClass(document.body, 'no-footer');
+    this.renderer.removeClass(document.body, 'no-padding-bottom');
   }
 
   @HostListener('window:resize', ['$event'])

@@ -9128,6 +9128,9 @@ body {
       display: none;
     }
   }
+  &.no-padding-bottom {
+    padding-bottom: 0;
+  }
 }
 
 footer.page-footer {

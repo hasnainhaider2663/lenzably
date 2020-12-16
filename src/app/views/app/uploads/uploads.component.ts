@@ -204,15 +204,19 @@ export class UploadsComponent implements OnInit {
     this.selectedItemsArray = [item];
     switch (action) {
       case 'name':
+        this.editProductNameModalComponent.inputText = item.name;
         this.showModal(this.editProductNameModalComponent);
         break;
       case 'description':
+        this.editProductDescriptionModalComponent.inputText = item.description;
         this.showModal(this.editProductDescriptionModalComponent);
         break;
       case 'tags':
+        this.editProductTagsModalComponent.tags = item.tags;
         this.showModal(this.editProductTagsModalComponent);
         break;
       case 'category':
+        this.editProductCategoriesModalComponent.category = item.category;
         this.showModal(this.editProductCategoriesModalComponent);
         break;
 

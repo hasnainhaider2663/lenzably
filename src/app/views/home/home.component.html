@@ -26,8 +26,7 @@
 
     <div class="content-container" id="home">
 
-      <div class="main-banner">
-
+      <div class="main-banner position-relative" [style.background-image]="'url(/assets/img//details/5.jpg)'">
         <ngx-headroom class="landing-page-nav">
           <nav class="navbar">
             <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
@@ -58,87 +57,138 @@
           </nav>
         </ngx-headroom>
 
-        <div class="card dashboard-search" style="background-size: cover; height: 750px">
-          <div class="card-body">
-            <div class="home-text" style="margin-bottom: 40px">
-              <div class="display-1">MAGIC IS IN <br>THE DETAILS</div>
-              <p class="white mb-5"> Vien is the combination of good design, quality code and attention for details.<br><br>
-                We used same design language for components, layouts, apps and other parts of the template. <br><br>
-                Hope you enjoy it! </p><a target="_blank" class="btn btn-light btn-xl mr-2 mb-2" href="/app"> VIEW NOW
-              <i class="simple-icon-arrow-right"></i></a></div>
-            <div class="form-container" style="    height: 140px;">
-              <form>
-                <div class="row">
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>{{ 'dashboards.toppings' | translate}}</label>
-                      <ng-select appearance="outline" [searchable]="false">
-                        <ng-option *ngFor="let item of selectToppings" [value]="item.value">{{item.label}}</ng-option>
-                      </ng-select>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>{{ 'dashboards.type' | translate }}</label>
-                      <ng-select appearance="outline" [searchable]="false">
-                        <ng-option *ngFor="let item of selectTypes" [value]="item.value">{{item.label}}</ng-option>
-                      </ng-select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>{{ 'dashboards.keyword' | translate }}</label>
-                      <div class="input-group date">
-                        <input type="text" class="form-control">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group text-center">
-                      <label style="color: transparent">Button</label>
-                      <button type="submit"
-                              class="btn btn-primary btn-lg d-block" style="width: 100%">{{ 'dashboards.search' | translate}}</button>
-                    </div>
-                  </div>
-                </div>
+        <div style="width: 650px; position:absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center">
+          <div class="home-text">
+            <div class="display-1">World's Cheapest <br />Images and Videos</div>
 
 
-              </form>
-
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-
-
-
-
-      <div class="section footer mb-0">
-        <div class="container">
-          <div class="row footer-row">
-            <div class="col-12 text-right">
-              <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
-                 (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
-            </div>
-            <div class="col-12 text-center footer-content">
-              <a (click)="scrollTo('#home')" href="javascript:;">
-                <img class="footer-logo" alt="footer logo"
-                     src="/assets/logos/white-full.svg"/>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="container copyright pt-5 pb-5">
-          <div class="row">
-            <div class="col-12"></div>
-            <div class="col-12 text-center">
-              <p class="mb-0">2020 © ColoredStrategies</p>
-            </div>
           </div>
         </div>
       </div>
+
+
+
+      <div class="text-center" style="margin: 30px 35px 20px">
+        <p class="d-sm-inline-block mb-0">
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">All</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Milk</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Milk</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+          <a href="javascript:;" class="badge badge-lg badge-dark mr-2 mb-2">View all</a>
+        </p>
+      </div>
+
+      <div class="containerw3 row-grid">
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-5.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-6.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-7.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-9.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-11.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-8.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/5.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/6.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-10.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/7.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/8.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/9.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/10.jpg"/>
+        </a>
+      </div>
+
 
     </div>
   </div>

@@ -14,7 +14,6 @@ export class AddNewProductModalComponent {
     class: 'modal-right'
   };
   categories = [
-    {label: 'Cakes', value: 'chocolate'},
     {label: 'Wallpapers', value: 'wallpapers'},
     {label: 'Nature', value: 'nature'},
     {label: 'People', value: 'people'},

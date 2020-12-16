@@ -1,0 +1,147 @@
+<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+
+  <div class="mobile-menu" (click)="$event.stopPropagation()">
+    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
+      <span></span>
+    </a>
+    <ul class="">
+      <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
+      <li class="nav-item">
+        <div class="separator"></div>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Login</a>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-container" id="home">
+
+
+    <ngx-headroom class="landing-page-nav">
+      <nav class="navbar">
+        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
+          <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">
+            <span class="white"></span>
+            <span class="dark"></span>
+          </a>
+          <ul class="navbar-nav d-none d-lg-flex flex-row">
+            <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a>
+            </li>
+            <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
+            <li class="nav-item pl-3 pr-2">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Login</a>
+            </li>
+            <li class="nav-item pl-2 pr-0">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Sign Up</a>
+            </li>
+          </ul>
+          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
+                        <i class="simple-icon-menu"></i>
+                    </span>
+        </div>
+      </nav>
+    </ngx-headroom>
+
+    <div class="content-container" style="padding-top: 80px">
+
+      <div class="main-banner position-relative" [style.background-image]="'url(/assets/img//details/5.jpg)'">
+        <div class="home-text">
+          <h2>World's most affordable <br/>Images and Videos</h2>
+
+          <div class="home-page-search">
+            <i class="iconsminds-magnifi-glass"></i>
+            <ng-select [items]="peopleAsyncSearch | async" bindLabel="name" [addTag]="true" [multiple]="true"
+                       [hideSelected]="true" [trackByFn]="trackByFn" [minTermLength]="2"
+                       [loading]="peopleLoadingAsyncSearch" placeholder="Search the perfect creative images and videos"
+                       typeToSearchText="Please enter 2 or more characters" [typeahead]="peopleInputAsyncSearch"
+                       [(ngModel)]="selectedPersonsAsyncSearch">
+            </ng-select>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div style="padding: 30px 35px 20px">
+
+        <div class="row" *ngFor="let item of data">
+
+          <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+            <a href="javascript:;">
+              <img [src]="item.thumb" [alt]="item.title"
+                   class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+            </a>
+            <div class="pl-3 pr-2">
+              <a href="javascript:;">
+                <p class="font-weight-medium mb-0 ">{{ item.title }}</p>
+                <p class="text-muted mb-1 text-small">{{ item.description }}</p>
+                <div>
+                  <ng-template #t2 let-index="index" let-value="value">{{index < value ? '' : ''}}</ng-template>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12">
+
+            <app-glide [settings]="{
+      gap: 0,
+      type: 'carousel',
+      hideNav: true,
+      perView: 4,
+      breakpoints: {
+        '480': { perView: 1 },
+        '800': { perView: 2 },
+        '1200': { perView: 3 }
+      }
+    }">
+
+              <div *ngFor="let item of carouselItems" class="glide__slide">
+
+                <div class="card">
+                  <div class="position-relative">
+                    <img class="card-img-top" [src]="item.img" alt="Card image cap">
+                  </div>
+                </div>
+
+              </div>
+            </app-glide>
+          </div>
+        </div>
+        <div class="col-12">
+          <pagination class="justify-content-center" [totalItems]="30"
+                      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+          </pagination>
+        </div>
+      </div>
+      <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+        <i class='simple-icon-arrow-right'></i>
+      </ng-template>
+      <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+        <i class='simple-icon-arrow-left'></i>
+      </ng-template>
+
+
+      <app-lb-footer></app-lb-footer>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+

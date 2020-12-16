@@ -14,9 +14,9 @@ export class AddNewProductModalComponent {
     class: 'modal-right'
   };
   categories = [
-    {label: 'Cakes', value: 'chocolate'},
-    {label: 'Cupcakes', value: 'vanilla'},
-    {label: 'Desserts', value: 'strawberry'}
+    {label: 'Cakes', value: 'chocolate'}
+
+
   ];
   callback
 

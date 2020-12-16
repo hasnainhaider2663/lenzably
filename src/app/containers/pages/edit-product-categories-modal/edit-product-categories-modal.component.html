@@ -10,8 +10,8 @@
     <div class="mt-4">
       <label>{{ 'pages.category' | translate }}</label>
       <label class="w-100">
-        <ng-select appearance="outline" [searchable]="false">
-          <ng-option *ngFor="let item of categories" [value]="item.value">{{item.label}}
+        <ng-select appearance="outline" [searchable]="false" [(ngModel)]="category">
+          <ng-option *ngFor="let item of categories" [value]="item">{{item.label}}
           </ng-option>
         </ng-select>
       </label>

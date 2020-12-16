@@ -59,6 +59,6 @@ export class EditProductCategoriesModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
+    await this.assetService.updateBatch(this.items, {category: this.category})
   }
 }

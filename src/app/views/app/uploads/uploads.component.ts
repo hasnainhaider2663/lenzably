@@ -226,6 +226,7 @@ export class UploadsComponent implements OnInit {
         this.showModal(this.editProductTagsModalComponent);
         break;
       case 'category':
+        this.editProductCategoriesModalComponent.category = this.findcategoryIntersection();
         this.showModal(this.editProductCategoriesModalComponent);
         break;
 
@@ -247,6 +248,16 @@ export class UploadsComponent implements OnInit {
         });
       }
     });
+    return intersection;
+  }
+
+  findcategoryIntersection() {
+    let intersection;
+    if (this.selectedItemsArray.filter(z => z.category && this.selectedItemsArray[0].category && (z.category.value === this.selectedItemsArray[0].category.value)).length === this.selectedItemsArray.length) {
+      intersection = this.selectedItemsArray[0].category;
+    }
+    console.log(intersection);
+
     return intersection;
   }
 

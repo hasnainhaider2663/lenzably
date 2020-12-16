@@ -14,7 +14,7 @@ export class AddNewProductModalComponent {
     class: 'modal-right'
   };
   categories = [
-    {label: 'Cakes', value: 'chocolate'}
+    {label: 'Cakes', value: 'chocolate'},
     {label: 'Health and wellness', value: 'health&wellness'}
 
 

@@ -41,6 +41,7 @@ import {EditProductDescriptionModalComponent} from './edit-product-description-m
 import {EditProductCategoriesModalComponent} from './edit-product-categories-modal/edit-product-categories-modal.component';
 import {EditProductTagsModalComponent} from './edit-product-tags-modal/edit-product-tags-modal.component';
 import { LbFooterComponent } from './lb-footer/lb-footer.component';
+import {AlertModule} from "ngx-bootstrap/alert";
 
 
 
@@ -90,7 +91,8 @@ import { LbFooterComponent } from './lb-footer/lb-footer.component';
     TabsModule.forRoot(),
     AccordionModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule
   ],
   exports: [
     AddNewProductModalComponent,

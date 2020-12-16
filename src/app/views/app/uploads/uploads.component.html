@@ -1,5 +1,4 @@
-<app-list-page-header (addNewItem)="showAddNewModal()" (changeDisplayMode)="changeDisplayMode($event)"
-                      (changeOrderBy)="changeOrderBy($event)"
+<app-list-page-header (changeOrderBy)="changeOrderBy($event)"
                       (itemsPerPageChange)="itemsPerPageChange($event)"
                       (searchKeyUp)="searchKeyUp($event)"
                       (selectAllChange)="selectAllChange($event)"
@@ -12,15 +11,13 @@
                       [dropDownItems]="[{ label: 'Edit names', value: 'name' }, { label: 'Edit descriptions', value: 'description' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
 >
 </app-list-page-header>
-<!--<app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>-->
 <app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
 <app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
 <app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
 <app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
-<!--{{(user | async ).name}}-->
-<div style="margin-bottom: 20px">
+<div style="margin-bottom: 20px" *ngIf="error">
   <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
-    {{'alert.dismissing-without-animate-text' | translate}} (10 seconds)
+    {{error}}
   </alert>
 </div>
 <div style="margin-bottom: 20px">

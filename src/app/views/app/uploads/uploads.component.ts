@@ -43,6 +43,7 @@ export class UploadsComponent implements OnInit {
   user;
   assets;
   originalAssets;
+  error: any;
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -112,20 +113,6 @@ export class UploadsComponent implements OnInit {
       this.selectedItemsArray.push(item);
     }
     this.setSelectAllState();
-    const intersection = [];
-    this.selectedItemsArray.forEach(myItem => {
-      if (myItem.tags) {
-        myItem.tags.forEach(tag => {
-          if (!intersection.includes(tag)) {
-            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
-            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
-              intersection.push(tag);
-            }
-          }
-          console.log(intersection);
-        });
-      }
-    });
 
   }
 
@@ -257,6 +244,7 @@ export class UploadsComponent implements OnInit {
         this.showModal(this.editProductDescriptionModalComponent);
         break;
       case 'tags':
+        this.editProductTagsModalComponent.tags = this.findTagIntersection();
         this.showModal(this.editProductTagsModalComponent);
         break;
       case 'category':
@@ -264,5 +252,23 @@ export class UploadsComponent implements OnInit {
         break;
 
     }
+  }
+
+  findTagIntersection() {
+    const intersection = [];
+    this.selectedItemsArray.forEach(myItem => {
+      if (myItem.tags) {
+        myItem.tags.forEach(tag => {
+          if (!intersection.includes(tag)) {
+            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
+            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
+              intersection.push(tag);
+            }
+          }
+          console.log(intersection);
+        });
+      }
+    });
+    return intersection
   }
 }

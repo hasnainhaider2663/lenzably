@@ -42,18 +42,22 @@ export class EditProductTagsModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-  selectedCompanies
-  tags
+  tags;
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
+  error: any;
+  success: any;
 
   constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
   }
 
   addTagFn(addedName): { name: any; tag: true } {
-    return { name: addedName, tag: true };
+    return addedName;
   }
+
   show(): void {
+    this.error = undefined;
+    this.success = undefined;
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
@@ -62,6 +66,12 @@ export class EditProductTagsModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
+    if (this.tags.length < 3 || this.tags.filter(x => x.length < 3).length > 0) {
+      this.error = 'Please enter at least 3 tags, each 3 or more characters';
+      return;
+    }
+    await this.assetService.updateBatch(this.items, {tags: this.tags});
+    this.error = undefined;
+    this.success = true;
   }
 }

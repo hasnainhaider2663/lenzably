@@ -9,13 +9,24 @@
         <div>
             <label>{{ 'pages.product-name' | translate }}</label>
             <ng-select [addTag]="addTagFn" [hideSelected]="true" multiple="true" bindLabel="name" [items]="[]"
-                       [(ngModel)]="selectedCompanies">
+                       [(ngModel)]="tags">
             </ng-select>
         </div>
+      <div style="margin-top: 20px" *ngIf="error && !success">
+        <alert [dismissible]="true" type="danger rounded">
+          {{error}}
+        </alert>
+      </div>
+      <div style="margin-top: 20px" *ngIf="success && !error">
+        <alert [dismissOnTimeout]="10000" [dismissible]="true" type="success rounded">
+          Your changes have been saved
+        </alert>
+      </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary"
             (click)="closeClicked()">{{'pages.cancel' | translate }}</button>
         <button type="button" (click)="submit()" class="btn btn-primary float-right">{{ 'pages.submit' | translate}}</button>
     </div>
+
 </ng-template>

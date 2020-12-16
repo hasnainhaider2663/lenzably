@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { environment } from 'src/environments/environment';
+import {Observable, Subject} from "rxjs";
+import {Person} from "../../containers/forms/select/select.data.service";
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {}
 
   showMobileMenu = false;
+
+  peopleAsyncSearch: Observable<Person[]>;
+  peopleLoadingAsyncSearch = false;
+  peopleInputAsyncSearch = new Subject<string>();
+  selectedPersonsAsyncSearch = [];
 
   buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
@@ -232,4 +239,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.scrollToService.scrollTo(config);
   }
+
+
+  trackByFn(item: Person): string {
+    return item.id;
+  }
+
 }

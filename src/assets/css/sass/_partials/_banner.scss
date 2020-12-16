@@ -1,16 +1,32 @@
-.main-banner{
-  height: 600px;
+.main-banner {
+  height: 660px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  &:before{
+
+  &:before {
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
     content: '';
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .home-text {
+    margin-top: 0;
+    width: 650px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    h2 {
+      font-size: 2.3rem;
+      color: white;
+    }
   }
 }

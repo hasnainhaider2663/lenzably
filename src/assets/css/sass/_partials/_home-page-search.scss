@@ -1,0 +1,48 @@
+.home-page-search{
+  position: relative;
+  i{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    z-index: 9;
+  }
+  .ng-select{
+    .ng-select-container{
+      .ng-value-container{
+        padding-top: 10px;
+        padding-left: 50px;
+        padding-bottom: 10px;
+        .ng-input>input{
+          font-size: 22px;
+        }
+        .ng-value{
+          .ng-value-label{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    &.ng-select-opened{
+      .ng-select-container{
+        border-color: #d7d7d7 !important;
+      }
+    }
+  }
+  .ng-dropdown-panel{
+    .ng-dropdown-panel-items{
+      .ng-option{
+        text-align: left;
+        &.ng-option-marked {
+          background-color: #000;
+          color: #fff;
+        }
+      }
+    }
+    &.ng-select-bottom{
+      border-color: #d7d7d7 !important;
+      border-top-color: white;
+    }
+  }
+}

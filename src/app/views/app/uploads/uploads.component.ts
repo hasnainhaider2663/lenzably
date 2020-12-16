@@ -156,6 +156,7 @@ export class UploadsComponent implements OnInit {
 
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
+    this.assets = this.originalAssets.sort(x => x.name);
   }
 
   searchKeyUp(event): void {

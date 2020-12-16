@@ -15,9 +15,11 @@ export class AddNewProductModalComponent {
   };
   categories = [
     {label: 'Cakes', value: 'chocolate'}
+    {label: 'Health and wellness', value: 'health&wellness'}
 
 
   ];
+  items
   callback
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
@@ -30,4 +32,7 @@ export class AddNewProductModalComponent {
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
+  closeClicked() {
+    this.modalRef.hide();
+  }
 }

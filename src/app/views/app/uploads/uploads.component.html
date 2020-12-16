@@ -9,10 +9,14 @@
                       [selectAllState]="selectAllState" [showOrderBy]="true"
                       [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
                       {label: 'Oldest First' , value : 'oldest'}]" (changeDropdownItem)="changeDropdownItem($event)"
-                      [dropDownItems]="[{ label: 'Edit names', value: 'names' }, { label: 'Edit descriptions', value: 'descriptions' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit categories', value: 'categories' } ]"
+                      [dropDownItems]="[{ label: 'Edit names', value: 'names' }, { label: 'Edit descriptions', value: 'descriptions' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
 >
 </app-list-page-header>
-<app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>
+<!--<app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>-->
+<app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
+<app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
+<app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
+<app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
 <!--{{(user | async ).name}}-->
 <div style="margin-bottom: 20px">
   <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
@@ -33,8 +37,8 @@
   </ng-template>
   <ng-template (execute)="onContextMenuClick('tags',$event.item)" contextMenuItem let-item>
     <i class="simple-icon-tag mr-1"></i><span>Edit tags</span>
-  </ng-template> <ng-template (execute)="onContextMenuClick('categories',$event.item)" contextMenuItem let-item>
-    <i class="simple-icon-list mr-1"></i><span>Edit categories</span>
+  </ng-template> <ng-template (execute)="onContextMenuClick('category',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-list mr-1"></i><span>Edit category</span>
   </ng-template>
 </context-menu>
 

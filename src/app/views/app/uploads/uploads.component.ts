@@ -1,10 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AddNewProductModalComponent} from 'src/app/containers/pages/add-new-product-modal/add-new-product-modal.component';
 import {Hotkey, HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AngularFireService} from '../../../angular-fire.service';
 import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {EditProductNameModalComponent} from '../../../containers/pages/edit-product-name-modal/edit-product-name-modal.component';
+import {EditProductDescriptionModalComponent} from '../../../containers/pages/edit-product-description-modal/edit-product-description-modal.component';
+import {EditProductCategoriesModalComponent} from '../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component';
+import {EditProductTagsModalComponent} from '../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component';
 
 @Component({
   selector: 'app-uploads',
@@ -33,7 +36,10 @@ export class UploadsComponent implements OnInit {
 
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
-  @ViewChild('addNewModalRef', {static: true}) addNewModalRef: AddNewProductModalComponent;
+  @ViewChild('editProductNameModalComponent', {static: true}) editProductNameModalComponent: EditProductNameModalComponent;
+  @ViewChild('editProductDescriptionModalComponent', {static: true}) editProductDescriptionModalComponent: EditProductDescriptionModalComponent;
+  @ViewChild('editProductCategoriesModalComponent', {static: true}) editProductCategoriesModalComponent: EditProductCategoriesModalComponent;
+  @ViewChild('editProductTagsModalComponent', {static: true}) editProductTagsModalComponent: EditProductTagsModalComponent;
   user;
   assets;
   originalAssets;
@@ -86,12 +92,13 @@ export class UploadsComponent implements OnInit {
   }
 
   showAddNewModal(): void {
-    this.addNewModalRef.show();
+    // this.addNewModalRef.show();
   }
 
-  editItemNameModal(): void {
-    this.addNewModalRef.items = this.selectedItemsArray;
-    this.addNewModalRef.show();
+
+  showModal(component) {
+    component.items = this.selectedItemsArray;
+    component.show();
   }
 
   isSelected(p): boolean {
@@ -195,7 +202,21 @@ export class UploadsComponent implements OnInit {
 
   onContextMenuClick(action: string, item): void {
     this.selectedItemsArray = [item];
-    this.editItemNameModal();
+    switch (action) {
+      case 'name':
+        this.showModal(this.editProductNameModalComponent);
+        break;
+      case 'description':
+        this.showModal(this.editProductDescriptionModalComponent);
+        break;
+      case 'tags':
+        this.showModal(this.editProductTagsModalComponent);
+        break;
+      case 'category':
+        this.showModal(this.editProductCategoriesModalComponent);
+        break;
+
+    }
     console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
   }
 
@@ -224,8 +245,20 @@ export class UploadsComponent implements OnInit {
   }
 
   changeDropdownItem($event: any) {
-    if ($event.value === 'names') {
-      this.editItemNameModal();
+    switch ($event.value) {
+      case 'name':
+        this.showModal(this.editProductNameModalComponent);
+        break;
+      case 'description':
+        this.showModal(this.editProductDescriptionModalComponent);
+        break;
+      case 'tags':
+        this.showModal(this.editProductTagsModalComponent);
+        break;
+      case 'category':
+        this.showModal(this.editProductCategoriesModalComponent);
+        break;
+
     }
   }
 }

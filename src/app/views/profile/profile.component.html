@@ -1,4 +1,5 @@
 <div [ngClass]="{'landing-page light-mode public-pages': true,'show-mobile-menu': showMobileMenu}">
+
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -21,7 +22,7 @@
     </ul>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="home">
 
     <ngx-headroom class="landing-page-nav">
       <nav class="navbar">
@@ -58,7 +59,6 @@
         </div>
       </nav>
     </ngx-headroom>
-
 
     <div class="content-container">
 
@@ -185,6 +185,7 @@
         </a>
       </div>
     </div>
+
   </div>
 
   <app-lb-footer></app-lb-footer>

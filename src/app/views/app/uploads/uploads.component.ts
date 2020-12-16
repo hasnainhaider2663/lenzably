@@ -64,14 +64,14 @@ export class UploadsComponent implements OnInit {
 
     this.assetService.watchUserAssets().subscribe(assetsArray => {
       assetsArray.forEach(async asset => {
-       try {
-         if (!(this.assets.find(x => x.md5Hash === asset.md5Hash))) {
-           asset['thumbnailURL'] = await this.assetService.getFullURL(asset.fullPath)
-           this.assets.push(asset)
-         }
-       }catch (e) {
+        try {
+          if (!(this.assets.find(x => x.md5Hash === asset.md5Hash))) {
+            asset['thumbnailURL'] = await this.assetService.getFullURL(asset.fullPath);
+            this.assets.push(asset);
+          }
+        } catch (e) {
 
-       }
+        }
       });
     });
 
@@ -156,7 +156,14 @@ export class UploadsComponent implements OnInit {
 
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
-    this.assets = this.originalAssets.sort(x => x.name);
+    this.assets = this.originalAssets.sort((x, y) => {
+      if (x.name.toLowerCase() < y.name.toLowerCase()) {
+        return -1;
+      } else if (x.name.toLowerCase() > y.name.toLowerCase()){
+        return 1;
+      }
+      return 0;
+    });
   }
 
   searchKeyUp(event): void {
@@ -175,6 +182,7 @@ export class UploadsComponent implements OnInit {
     console.log('error event', event);
     alert(event[1]);
   }
+
   // @ts-ignore
   async onUploadSuccess(event): void {
     const data = {

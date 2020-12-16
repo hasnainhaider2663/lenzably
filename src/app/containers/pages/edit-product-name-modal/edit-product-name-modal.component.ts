@@ -1,6 +1,6 @@
-import {Component, TemplateRef, ViewChild} from "@angular/core";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FirebaseAssetService} from '../../../firebase-asset.service';
 
 @Component({
   selector: 'app-edit-product-name-modal',
@@ -59,6 +59,6 @@ export class EditProductNameModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
+    await this.assetService.updateBatch(this.items, {name: 'Le cube'});
   }
 }

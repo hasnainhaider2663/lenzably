@@ -14,7 +14,7 @@ import {FirebaseAssetService} from '../../../firebase-asset.service';
 export class UploadsComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
-  selected: IProduct[] = [];
+  selectedItemsArray = [];
   data: IProduct[] = [];
   currentPage = 1;
   itemsPerPage = 8;
@@ -40,11 +40,11 @@ export class UploadsComponent implements OnInit {
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
-      this.selected = [...this.data];
+      this.selectedItemsArray = [...this.data];
       return false;
     }));
     this.hotkeysService.add(new Hotkey('ctrl+d', (event: KeyboardEvent): boolean => {
-      this.selected = [];
+      this.selectedItemsArray = [];
       return false;
     }));
   }
@@ -118,23 +118,37 @@ export class UploadsComponent implements OnInit {
     this.addNewModalRef.show();
   }
 
-  isSelected(p: IProduct): boolean {
-    return this.selected.findIndex(x => x.id === p.id) > -1;
+  isSelected(p): boolean {
+    return this.selectedItemsArray.findIndex(x => x.md5Hash === p.md5Hash) > -1;
   }
 
-  onSelect(item: IProduct): void {
+  onSelect(item): void {
     if (this.isSelected(item)) {
-      this.selected = this.selected.filter(x => x.id !== item.id);
+      this.selectedItemsArray = this.selectedItemsArray.filter(x => x.md5Hash !== item.md5Hash);
     } else {
-      this.selected.push(item);
+      this.selectedItemsArray.push(item);
     }
     this.setSelectAllState();
+    let intersection = [];
+    this.selectedItemsArray.forEach(myItem => {
+      if (myItem.tags) {
+        myItem.tags.forEach(tag => {
+          if (!intersection.includes(tag)) {
+            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
+            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
+              intersection.push(tag);
+            }
+          }
+          console.log(intersection);
+        });
+      }
+    });
   }
 
   setSelectAllState(): void {
-    if (this.selected.length === this.data.length) {
+    if (this.selectedItemsArray.length === this.data.length) {
       this.selectAllState = 'checked';
-    } else if (this.selected.length !== 0) {
+    } else if (this.selectedItemsArray.length !== 0) {
       this.selectAllState = 'indeterminate';
     } else {
       this.selectAllState = '';
@@ -143,9 +157,9 @@ export class UploadsComponent implements OnInit {
 
   selectAllChange($event): void {
     if ($event.target.checked) {
-      this.selected = [...this.data];
+      this.selectedItemsArray = [...this.data];
     } else {
-      this.selected = [];
+      this.selectedItemsArray = [];
     }
     this.setSelectAllState();
   }

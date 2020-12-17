@@ -1,7 +1,7 @@
 <app-list-page-header (changeDropdownItem)="changeDropdownItem($event)"
                       (changeOrderBy)="changeOrderBy($event)"
                       (itemsPerPageChange)="itemsPerPageChange($event)"
-                      (searchKeyUp)="searchKeyUp($event)"
+                      (searchKeyUp)="searchKeyUp($event)" [showCheckbox]="true"
                       (selectAllChange)="selectAllChange($event)" [displayMode]="displayMode"
                       [dropDownItems]="[{ label: 'Edit names', value: 'name' }, { label: 'Edit descriptions', value: 'description' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
                       [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
@@ -45,7 +45,7 @@
   <div *ngIf="displayMode==='image'" class="col-12 list">
     <div class="row">
       <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p" [contextMenu]="basicMenu"
-           class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" >
+           class="col-xl-2 col-lg-4 col-12 col-sm-6 mb-4" >
         <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 580px;">
           <div class="position-relative">
             <a href="javascript:;"><img [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>

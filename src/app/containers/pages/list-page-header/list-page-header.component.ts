@@ -9,6 +9,7 @@ export class ListPageHeaderComponent {
 
   @Input() showOrderBy = true;
   @Input() showSearch = true;
+  @Input() showCheckbox = false;
   @Input() showItemsPerPage = true;
   @Input() showAddNewButton = false;
   @Input() showDisplayMode = true;

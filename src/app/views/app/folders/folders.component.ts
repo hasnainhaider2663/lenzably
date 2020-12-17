@@ -51,23 +51,28 @@ export class FoldersComponent implements OnInit {
     this.user = this.angularFireService.userObservable;
 
 
-    this.assetService.getUserAssets(x => {
+    this.assetService.getUserCollections(x => {
       this.assets = x;
       this.originalAssets = x;
       console.log(this.assets);
     });
 
-    this.assetService.watchUserAssets().subscribe(assetsArray => {
+    this.assetService.watchUserCollections().subscribe(assetsArray => {
       assetsArray.forEach(async updatedAsset => {
         try {
+          if (updatedAsset.fullPath)
+            {
+              updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
+            }
           const assetInArray = this.assets.find(x => x.md5Hash === updatedAsset.md5Hash);
           if (!(assetInArray)) {
-            updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
+
             this.assets.push(updatedAsset);
           } else {
             Object.keys(updatedAsset).forEach(key => {
               assetInArray[key] = updatedAsset[key];
             });
+
           }
         } catch (e) {
 
@@ -79,13 +84,8 @@ export class FoldersComponent implements OnInit {
 
 
   showAddNewModal(): void {
-    // this.addNewModalRef.show();
-  }
-
-
-  showModal(component) {
-    component.items = this.selectedItemsArray;
-    component.show();
+    this.editFolderNameModalComponent.folder = {};
+    this.editFolderNameModalComponent.show();
   }
 
   isSelected(p): boolean {
@@ -176,21 +176,15 @@ export class FoldersComponent implements OnInit {
   onContextMenuClick(action: string, item): void {
     this.selectedItemsArray = [item];
     switch (action) {
-      case 'name':
-        this.showModal(this.editFolderNameModalComponent);
+      case 'edit':
+        this.editFolderNameModalComponent.folder = item;
+        this.showAddNewModal();
+        break;
+      case 'update':
         break;
     }
   }
 
-  changeDropdownItem($event: any) {
-    switch ($event.value) {
-      case 'name':
-        this.showModal(this.editFolderNameModalComponent);
-        break;
-
-
-    }
-  }
 
   onUploadError(event): void {
     console.log(event[1]);

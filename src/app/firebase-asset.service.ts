@@ -34,6 +34,24 @@ export class FirebaseAssetService {
 
 
   }
+  getUserCollections(cb) {
+    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).valueChanges().subscribe(assets => {
+
+      assets.forEach(async asset => {
+        // @ts-ignore
+        asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
+
+      });
+      cb(assets)
+      sub.unsubscribe()
+    })
+
+
+  }
+
+  watchUserCollections(): Observable<any> {
+    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).valueChanges();
+  }
 
   async getFullURL(url) {
     return await this.storage.ref(url).getDownloadURL().toPromise();

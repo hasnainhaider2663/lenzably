@@ -1,1 +1,58 @@
-<p>edit-folder-name-modal works!</p>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Collection</h4>
+    <button (click)="modalRef.hide()" aria-label="Close" class="close pull-right" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form (ngSubmit)="submit()" [formGroup]="form">
+      <div>
+        <label>  Name </label>
+        <input (input)="onChange($event)" class="form-control" formControlName="name" placeholder="Enter 8 characters or more"
+               type="text">
+      </div>
+
+      <div class="mt-4">
+        <label> Description</label>
+        <textarea (input)="onChange($event)" class="form-control" formControlName="description" placeholder="Enter 10 characters or more"
+                  rows="3"></textarea>
+      </div>
+    </form>
+
+    <div>
+      <label>Taggs</label>
+      <ng-select [(ngModel)]="tags" [addTag]="addTagFn" [hideSelected]="true" [items]="[]" bindLabel="name"
+                 multiple="true">
+      </ng-select>
+    </div>
+    <div class="mt-4">
+      <label>Category</label>
+      <label class="w-100">
+        <ng-select [(ngModel)]="category" [searchable]="false" appearance="outline">
+          <ng-option *ngFor="let item of categories" [value]="item">{{item.label}}
+          </ng-option>
+        </ng-select>
+      </label>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="closeClicked()" class="btn btn-outline-primary"
+            type="button">{{'pages.cancel' | translate }}</button>
+    <button class="btn btn-primary float-right"
+            type="submit">{{ 'pages.submit' | translate}}</button>
+    <div *ngIf="showError" style="margin-top: 20px">
+      <alert [dismissible]="true" type="danger rounded">
+        Please enter 8 or more characters. Alphabets, numbers and # - ( )
+      </alert>
+    </div>
+    <div *ngIf="showSuccess" style="margin-top: 20px">
+      <alert [dismissible]="true" type="success rounded">
+        Your changes have been saved
+      </alert>
+    </div>
+  </div>
+</ng-template>

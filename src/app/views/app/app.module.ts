@@ -25,6 +25,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {AlertModule} from 'ngx-bootstrap/alert';
 import {FoldersComponent} from "./folders/folders.component";
 import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/e
     }),
     DropzoneModule,
     AlertModule.forRoot(),
+    NgSelectModule,
   ]
 })
 export class AppModule {

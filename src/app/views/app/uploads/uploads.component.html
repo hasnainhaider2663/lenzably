@@ -1,21 +1,21 @@
-<app-list-page-header (changeOrderBy)="changeOrderBy($event)"
+<app-list-page-header (changeDropdownItem)="changeDropdownItem($event)"
+                      (changeOrderBy)="changeOrderBy($event)"
                       (itemsPerPageChange)="itemsPerPageChange($event)"
                       (searchKeyUp)="searchKeyUp($event)"
-                      (selectAllChange)="selectAllChange($event)"
-                      [displayMode]="displayMode" [showDisplayMode]="false"
-                      [itemOptionsPerPage]="[4,8,12]"
-                      [itemsPerPage]="itemsPerPage"
-                      [selectAllState]="selectAllState" [showOrderBy]="true"
-                      [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
-                      {label: 'Oldest First' , value : 'oldest'}]" (changeDropdownItem)="changeDropdownItem($event)"
+                      (selectAllChange)="selectAllChange($event)" [displayMode]="displayMode"
                       [dropDownItems]="[{ label: 'Edit names', value: 'name' }, { label: 'Edit descriptions', value: 'description' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
+                      [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
+                      {label: 'Oldest First' , value : 'oldest'}]"
+                      [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage"
+                      [selectAllState]="selectAllState" [showDisplayMode]="false"
+                      [showOrderBy]="true"
 >
 </app-list-page-header>
 <app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
 <app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
 <app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
 <app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
-<div style="margin-bottom: 20px" *ngIf="error">
+<div *ngIf="error" style="margin-bottom: 20px">
   <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
     {{error}}
   </alert>
@@ -34,7 +34,8 @@
   </ng-template>
   <ng-template (execute)="onContextMenuClick('tags',$event.item)" contextMenuItem let-item>
     <i class="simple-icon-tag mr-1"></i><span>Edit tags</span>
-  </ng-template> <ng-template (execute)="onContextMenuClick('category',$event.item)" contextMenuItem let-item>
+  </ng-template>
+  <ng-template (execute)="onContextMenuClick('category',$event.item)" contextMenuItem let-item>
     <i class="simple-icon-list mr-1"></i><span>Edit category</span>
   </ng-template>
 </context-menu>
@@ -43,9 +44,9 @@
 <div class="row">
   <div *ngIf="displayMode==='image'" class="col-12 list">
     <div class="row">
-      <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p"
-           [contextMenu]="basicMenu" class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" >
-        <div [ngClass]="{'card': true, 'active':isSelected(p)}">
+      <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p" [contextMenu]="basicMenu"
+           class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" >
+        <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 580px;">
           <div class="position-relative">
             <a href="javascript:;"><img [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>
             <span
@@ -56,7 +57,8 @@
               <div class="col-1">
                 <div class="custom-control custom-checkbox pl-1">
                   <label class="custom-control custom-checkbox  mb-0">
-                    <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i" class="custom-control-input"
+                    <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i"
+                           class="custom-control-input"
                            type="checkbox">
                     <label [for]="'customCheck'+i" class="custom-control-label"></label>
                   </label>
@@ -70,8 +72,9 @@
                 <p class="text-muted text-small mb-2 font-weight-light">{{p.updated|date}}</p>
                 <footer>
                   <div>
-<!--                    //category-->
-                    <span class="badge badge-pill badge-dark mb-1 mr-1">{{p.category? p.category.label:'no category'}}</span>
+                    <!--                    //category-->
+                    <span *ngIf="p.category"
+                          class="badge badge-pill badge-dark mb-1 mr-1">in: {{p.category.label}}</span>
                     <span *ngFor="let tag of p.tags" class="badge badge-pill badge-light mb-1 mr-1">{{tag}}</span>
                   </div>
                 </footer>
@@ -84,7 +87,8 @@
   </div>
 
   <div class="col-12">
-    <pagination (pageChanged)="pageChanged($event)" [(ngModel)]="currentPage" [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate"
+    <pagination (pageChanged)="pageChanged($event)" [(ngModel)]="currentPage" [customNextTemplate]="nextTemplate"
+                [customPreviousTemplate]="prevTemplate"
                 [itemsPerPage]="itemsPerPage" [maxSize]="5" [rotate]="true"
                 [totalItems]="totalItem" class="justify-content-center">
     </pagination>

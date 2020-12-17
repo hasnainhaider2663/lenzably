@@ -4,10 +4,11 @@ import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AngularFireService} from '../../../angular-fire.service';
 import {FirebaseAssetService} from '../../../firebase-asset.service';
-import {EditProductNameModalComponent} from '../../../containers/pages/edit-product-name-modal/edit-product-name-modal.component';
-import {EditProductDescriptionModalComponent} from '../../../containers/pages/edit-product-description-modal/edit-product-description-modal.component';
-import {EditProductCategoriesModalComponent} from '../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component';
-import {EditProductTagsModalComponent} from '../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component';
+import {EditProductNameModalComponent} from "../../../../containers/pages/edit-product-name-modal/edit-product-name-modal.component";
+import {EditProductDescriptionModalComponent} from "../../../../containers/pages/edit-product-description-modal/edit-product-description-modal.component";
+import {EditProductCategoriesModalComponent} from "../../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component";
+import {EditProductTagsModalComponent} from "../../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component";
+
 
 @Component({
   selector: 'app-folders',

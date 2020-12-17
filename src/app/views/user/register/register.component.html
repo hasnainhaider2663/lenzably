@@ -19,16 +19,9 @@
         <span>Full Name</span>
       </label>
 
-      <div style="margin-top: 20px" *ngIf="error">
-        <alert [dismissible]="true" type="danger rounded">
-          {{error}}
-        </alert>
-      </div>
-
       <label class="form-group has-float-label">
         <input (input)="onChange($event)" class="form-control" formControlName="email" type="email" placeholder="Enter your email"/>
         <span>Email</span>
-
       </label>
       <label class="form-group has-float-label">
         <input (input)="onChange($event)" class="form-control" formControlName="password" type="password" placeholder="Enter your password"/>
@@ -55,7 +48,13 @@
           Your changes have been saved
         </alert>
       </div>
-    </form >
+    </form>
+
+    <div style="margin-top: 20px" *ngIf="error">
+      <alert [dismissible]="true" type="danger rounded">
+        {{error}}
+      </alert>
+    </div>
   </div>
 </div>
 <simple-notifications></simple-notifications>

@@ -30,7 +30,7 @@
            class="col-xl-2 col-lg-4 col-12 col-sm-6 mb-4" >
         <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 400px;">
           <div class="position-relative">
-            <a href="javascript:;">
+            <a [routerLink]="'/app/collection/'+p.payload.doc.id">
               <div class="glyph-icon simple-icon-folder" *ngIf="!p.thumbnailURL"></div>
               <img *ngIf="p.thumbnailURL" [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>
 

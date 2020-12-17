@@ -34,15 +34,16 @@ export class FirebaseAssetService {
 
 
   }
-  getUserCollections(cb) {
-    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).valueChanges().subscribe(assets => {
 
-      assets.forEach(async asset => {
+  getUserCollections(cb) {
+    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges().subscribe(collections => {
+      console.log('collection', collections)
+      collections.forEach(async asset => {
         // @ts-ignore
-        asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
+        // asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).child().getDownloadURL().toPromise();
 
       });
-      cb(assets)
+      cb(collections)
       sub.unsubscribe()
     })
 

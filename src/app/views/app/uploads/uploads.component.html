@@ -8,7 +8,7 @@
                       {label: 'Oldest First' , value : 'oldest'}]"
                       [itemOptionsPerPage]="[50,100,200]" [itemsPerPage]="itemsPerPage"
                       [selectAllState]="selectAllState" [showDisplayMode]="false"
-                      [showOrderBy]="true"
+                      [showOrderBy]="true" [title]="collection.name"
 >
 </app-list-page-header>
 <app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>

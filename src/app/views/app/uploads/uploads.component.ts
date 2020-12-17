@@ -8,6 +8,7 @@ import {EditProductNameModalComponent} from '../../../containers/pages/edit-prod
 import {EditProductDescriptionModalComponent} from '../../../containers/pages/edit-product-description-modal/edit-product-description-modal.component';
 import {EditProductCategoriesModalComponent} from '../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component';
 import {EditProductTagsModalComponent} from '../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-uploads',
@@ -45,7 +46,9 @@ export class UploadsComponent implements OnInit {
   originalAssets;
   error: any;
 
-  constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
+  collection = {name: ''};
+
+  constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private route: ActivatedRoute) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selectedItemsArray = [...this.assets];
       return false;
@@ -58,6 +61,10 @@ export class UploadsComponent implements OnInit {
 
   async ngOnInit() {
 
+    this.assetService.subscribeToDocument(`collections/${this.route.snapshot.params['collectionId']}`).valueChanges().subscribe(x => {
+      this.collection = x;
+      this.collection['id'] = this.route.snapshot['collectionId']
+    });
 
     this.user = this.angularFireService.userObservable;
 

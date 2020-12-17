@@ -32,6 +32,7 @@ export class ListPageHeaderComponent {
   @Output() changeDropdownItem: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('search') search: any;
+  @Input() title: any;
 
   constructor() {
   }

@@ -1,5 +1,6 @@
-import { environment } from 'src/environments/environment';
-import { UserRole } from '../shared/auth.roles';
+import {environment} from 'src/environments/environment';
+import {UserRole} from '../shared/auth.roles';
+
 const adminRoot = environment.adminRoot;
 
 export interface IMenuItem {
@@ -13,16 +14,11 @@ export interface IMenuItem {
 }
 
 const data: IMenuItem[] = [
+
   {
     icon: 'simple-icon-cloud-upload',
-    label: 'menu.uploads',
-    to: `${adminRoot}/uploads`,
-    // roles: [UserRole.Editor],
-  },
-  {
-    icon: 'simple-icon-cloud-upload',
-    label: 'Folders',
-    to: `${adminRoot}/folders`,
+    label: 'Collections',
+    to: `${adminRoot}/collections` || `${adminRoot}/collection`,
     // roles: [UserRole.Editor],
   },
   {

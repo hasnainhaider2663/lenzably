@@ -55,7 +55,7 @@ export class EditProductNameModalComponent {
   show(): void {
     this.showError = false;
     this.form = this.fb.group({
-      name: [this.inputText, [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9 ]*')]]
+      name: [this.inputText, [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9\-\/\#\(\) ]*')]]
     });
     this.modalRef = this.modalService.show(this.template, this.config);
 

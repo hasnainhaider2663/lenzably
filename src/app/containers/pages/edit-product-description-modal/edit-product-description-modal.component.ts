@@ -57,7 +57,7 @@ export class EditProductDescriptionModalComponent {
 
   show(): void {
     this.form = this.fb.group({
-      description: [this.inputText, [Validators.required, Validators.minLength(10), Validators.pattern('[a-zA-Z0-9 ]*')]]
+      description: [this.inputText, [Validators.required, Validators.minLength(10)]]
     });
     this.modalRef = this.modalService.show(this.template, this.config);
   }
@@ -79,7 +79,7 @@ export class EditProductDescriptionModalComponent {
   onChange(event) {
     this.showSuccess =  false;
     const val = event.target.value;
-    if (val.length >= 8) {
+    if (val.length >= 10) {
       this.showError = false;
     }
   }

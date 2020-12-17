@@ -182,7 +182,7 @@
             </div>
           </div>
         </div>
-        <div class="row" *ngFor="let item of data | slice: 0: 1; let i = index">
+        <div class="row" *ngFor="let item of data ; let i = index">
           <div class="col-lg-3 col-md-6 col-12" style="padding-top: 5px;">
             <div class="card mb-4">
               <div class="card-body">
@@ -303,52 +303,6 @@
               <a class="position-relative row-item">
                 <img src="/assets/img/details/3.jpg"/>
               </a>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" *ngFor="let item of data | slice:0:3">
-            <div class="card services p-4  border-0">
-              <div class="icon text-center mb-4">
-                <img [src]="item.thumb" [alt]="item.title" style="height: 120px; width: 120px">
-              </div>
-              <div class="card-body p-0 content">
-                <h5 class="mb-3"><a href="hosting-shared.html" class="title text-dark">Shared Hosting</a></h5>
-                <p class="text-muted mb-3">We provide cloud based enterprise hosting, server and storage solutions of
-                  unmatched quality.</p>
-                <a href="hosting-shared.html" class="text-primary">Read More
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                       class="feather feather-chevron-right fea icon-sm">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" *ngFor="let item of data | slice:0:3">
-            <div class="card services p-4  border-0">
-              <div class="icon text-center mb-4">
-                <img [src]="item.thumb" [alt]="item.title" style="height: 120px; width: 120px">
-              </div>
-              <div class="card-body p-0 content">
-                <h5 class="mb-3"><a href="hosting-shared.html" class="title text-dark">Shared Hosting</a></h5>
-                <p class="text-muted mb-3">We provide cloud based enterprise hosting, server and storage solutions of
-                  unmatched quality.</p>
-                <a href="hosting-shared.html" class="text-primary">Read More
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                       class="feather feather-chevron-right fea icon-sm">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </a>
-              </div>
             </div>
           </div>
         </div>

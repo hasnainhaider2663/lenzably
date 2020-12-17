@@ -1,7 +1,7 @@
 import {Component, TemplateRef, ViewChild} from "@angular/core";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {FirebaseAssetService} from "../../../firebase-asset.service";
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product-description-modal',
@@ -45,6 +45,8 @@ export class EditProductDescriptionModalComponent {
   items;
   inputText = '';
   form;
+  showError;
+  showSuccess;
 
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
@@ -55,7 +57,7 @@ export class EditProductDescriptionModalComponent {
 
   show(): void {
     this.form = this.fb.group({
-      description: [this.inputText]
+      description: [this.inputText, [Validators.required, Validators.minLength(10), Validators.pattern('[a-zA-Z0-9 ]*')]]
     });
     this.modalRef = this.modalService.show(this.template, this.config);
   }
@@ -65,6 +67,21 @@ export class EditProductDescriptionModalComponent {
   }
 
   async submit() {
+    this.showSuccess = false;
+    if (this.form.invalid) {
+      this.showError = true;
+      return;
+    }
+    this.showError = false;
     await this.assetService.updateBatch(this.items, {description: this.form.value.description});
+    this.showSuccess = true;
+  }
+  onChange(event) {
+    this.showSuccess =  false;
+    const val = event.target.value;
+    if (val.length >= 8) {
+      this.showError = false;
+    }
   }
 }
+

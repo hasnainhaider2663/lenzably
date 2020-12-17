@@ -11,7 +11,20 @@
 
       <div class="mt-4">
         <label>{{ 'pages.description' | translate }}</label>
-        <textarea formControlName="description" class="form-control" rows="3" placeholder="Enter 10 characters or more"></textarea>
+        <textarea  (input)="onChange($event)" formControlName="description" class="form-control" rows="3"
+                   placeholder="Enter 10 characters or more"></textarea>
+      </div>
+
+      <div style="margin-top: 20px" *ngIf="showError">
+        <alert [dismissible]="true" type="danger rounded">
+          Please enter 10 or more characters. Alphabets and numbers only.
+        </alert>
+      </div>
+
+      <div style="margin-top: 20px" *ngIf="showSuccess">
+        <alert  [dismissible]="true" type="success rounded">
+          Your changes have been saved
+        </alert>
       </div>
     </div>
     <div class="modal-footer">

@@ -1,6 +1,7 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
 
-  <div class="mobile-menu" (click)="$event.stopPropagation()">
+  <app-lb-nav-mobile></app-lb-nav-mobile>
+<!--  <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
     </a>
@@ -20,12 +21,13 @@
         <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Sign Up</a>
       </li>
     </ul>
-  </div>
+  </div>-->
 
   <div class="main-container" id="home">
 
+    <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
 
-    <ngx-headroom class="landing-page-nav">
+    <!--<ngx-headroom class="landing-page-nav">
       <nav class="navbar">
         <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
           <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;" style="margin-top: 3px; width: 150px;">
@@ -52,7 +54,7 @@
                     </span>
         </div>
       </nav>
-    </ngx-headroom>
+    </ngx-headroom>-->
 
     <div class="content-container" style="padding-top: 80px">
 

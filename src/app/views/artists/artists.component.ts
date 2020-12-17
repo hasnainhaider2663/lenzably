@@ -9,14 +9,20 @@ import {ScrollToService, ScrollToConfigOptions} from '@nicky-lenaers/ngx-scroll-
 import {environment} from 'src/environments/environment';
 import {Observable, Subject} from "rxjs";
 import {Person} from "../../containers/forms/select/select.data.service";
+import {blogData} from "../../data/blog";
+import {carouselData, ICarouselItem} from "../../data/carousels";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-artists',
+  templateUrl: './artists.component.html',
+  styleUrls: ['./artists.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ArtistsComponent implements OnInit {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {
   }
+
+  data = blogData.slice();
+  carouselItems: ICarouselItem[] = carouselData;
 
   showMobileMenu = false;
 
@@ -31,6 +37,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event): void {

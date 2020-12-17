@@ -1,4 +1,5 @@
 <div [ngClass]="{'landing-page light-mode public-pages': true,'show-mobile-menu': showMobileMenu}">
+
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -21,9 +22,8 @@
     </ul>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="home">
 
-    <!--    nav   -->
     <ngx-headroom class="landing-page-nav">
       <nav class="navbar">
         <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
@@ -59,7 +59,6 @@
         </div>
       </nav>
     </ngx-headroom>
-
 
     <div class="product-container d-flex flex-row justify-content-between overflow-hidden">
       <div style="overflow: hidden">
@@ -128,15 +127,17 @@
                   <div class="post-icon mr-3 d-inline-block"><a href="#"><i
                     class="simple-icon-heart mr-1"></i></a> <span>4 People
                   Liked this</span></div>
-       <!--           <div class="post-icon d-inline-block"><i class="simple-icon-bubble mr-1"></i> <span>1
-                  Comment</span></div>-->
+                  <!--           <div class="post-icon d-inline-block"><i class="simple-icon-bubble mr-1"></i> <span>1
+                             Comment</span></div>-->
                 </div>
                 <h4 class="card-title mt-4">Purchase this image</h4>
-                <p class="mt-3 mb-5">All Royalty-Free licenses include global use rights, comprehensive protection, simple pricing with
+                <p class="mt-3 mb-5">All Royalty-Free licenses include global use rights, comprehensive protection,
+                  simple pricing with
                   volume discounts available. <a href="">Read More</a></p>
 
                 <div class="lb-border">
-                  <p style="margin-top: 1rem;"><span><b>Large</b> • <!-- -->3960<!-- --> × <!-- -->2640<!-- --> pixels</span></p>
+                  <p style="margin-top: 1rem;"><span><b>Large</b> • <!-- -->3960<!-- --> × <!-- -->2640
+                    <!-- --> pixels</span></p>
                   <p>33.5 × 22.4 cm • 300 DPI • JPEG<!-- -->&nbsp;</p>
                 </div>
 
@@ -189,13 +190,14 @@
       </div>
     </div>
 
-
-    <div class="content-container" id="home">
+    <div class="content-container">
 
 
       <div>
 
-        <h3 class="card-title mt-4" style="padding: 0 35px">More form this album <a href="" class="ml-2" style="font-size: 14px; text-decoration: underline">view all</a></h3>
+        <h3 class="card-title mt-4" style="padding: 0 35px">More form this album <a href="" class="ml-2"
+                                                                                    style="font-size: 14px; text-decoration: underline">view
+          all</a></h3>
 
         <div class="containerw3 fixed-height row-grid" style="height: 265px; overflow: hidden">
           <a class="position-relative row-item">
@@ -248,7 +250,9 @@
       </div>
       <div>
 
-        <h3 class="card-title mt-4" style="padding: 0 35px">More form this artist <a href="" class="ml-2" style="font-size: 14px; text-decoration: underline">view all</a></h3>
+        <h3 class="card-title mt-4" style="padding: 0 35px">More form this artist <a href="" class="ml-2"
+                                                                                     style="font-size: 14px; text-decoration: underline">view
+          all</a></h3>
 
         <div class="containerw3 fixed-height row-grid" style="height: 265px; overflow: hidden">
           <a class="position-relative row-item">
@@ -398,6 +402,9 @@
 
 
     </div>
+
   </div>
+
   <app-lb-footer></app-lb-footer>
+
 </div>

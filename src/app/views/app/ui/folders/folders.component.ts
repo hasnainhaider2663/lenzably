@@ -10,11 +10,11 @@ import {EditProductCategoriesModalComponent} from '../../../containers/pages/edi
 import {EditProductTagsModalComponent} from '../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component';
 
 @Component({
-  selector: 'app-uploads',
-  templateUrl: './uploads.component.html',
-  styleUrls: ['./uploads.component.scss']
+  selector: 'app-folders',
+  templateUrl: './folders.component.html',
+  styleUrls: ['./folders.component.scss']
 })
-export class UploadsComponent implements OnInit {
+export class FoldersComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
   selectedItemsArray = [];

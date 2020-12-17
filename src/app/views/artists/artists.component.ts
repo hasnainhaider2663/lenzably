@@ -21,7 +21,71 @@ export class ArtistsComponent implements OnInit {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {
   }
 
-  data = blogData.slice();
+  data = [{
+    name: 'Mayra Sibley',
+    status: 'Lack of Humility',
+    details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+    thumb: '/assets/img/profiles/l-5.jpg',
+    large: '/assets/img/profiles/5.jpg',
+    id: 1
+  },
+    {
+      name: 'Philip Nelms',
+      status: 'Lead Developer',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-2.jpg',
+      large: '/assets/img/profiles/2.jpg',
+      id: 2
+    },
+    {
+      name: 'Kathryn Mengel',
+      status: 'Dog & Cat Person',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-10.jpg',
+      large: '/assets/img/profiles/10.jpg',
+      id: 3
+    },
+    {
+      name: 'Esperanza Lodge',
+      status: 'Now giving divorce advices!',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-4.jpg',
+      large: '/assets/img/profiles/4.jpg',
+      id: 4
+    },
+    {
+      name: 'Ken Ballweg',
+      status: 'Hi there, I am using Vien!',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-3.jpg',
+      large: '/assets/img/profiles/3.jpg',
+      id: 5
+    },
+    {
+      name: 'Rasheeda Vaquera',
+      status: '...',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-6.jpg',
+      large: '/assets/img/profiles/6.jpg',
+      id: 6
+    },
+    {
+      name: 'Linn Ronning',
+      status: 'What goes around comes around',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-7.jpg',
+      large: '/assets/img/profiles/7.jpg',
+      id: 7
+    },
+    {
+      name: 'Marty Otte',
+      status: 'Big city life',
+      details: 'I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; dabbling with Python and Ruby; and inhaling a wide variety of potentially useless information through a few hundred RSS feeds. I build websites that delight and inform. I do it well.',
+      thumb: '/assets/img/profiles/l-9.jpg',
+      large: '/assets/img/profiles/9.jpg',
+      id: 8
+    }
+  ];
   carouselItems: ICarouselItem[] = carouselData;
 
   showMobileMenu = false;

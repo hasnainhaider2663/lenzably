@@ -1,6 +1,6 @@
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">{{'pages.add-new-modal-title' | translate}}</h4>
+    <h4 class="modal-title pull-left">Edit Description</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -11,7 +11,7 @@
 
       <div class="mt-4">
         <label>{{ 'pages.description' | translate }}</label>
-        <textarea formControlName="description" class="form-control" rows="3" placeholder="10 characters or more"></textarea>
+        <textarea formControlName="description" class="form-control" rows="3" placeholder="Enter 10 characters or more"></textarea>
       </div>
     </div>
     <div class="modal-footer">

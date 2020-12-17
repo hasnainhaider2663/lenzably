@@ -1,6 +1,6 @@
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">{{'pages.add-new-modal-title' | translate}}</h4>
+    <h4 class="modal-title pull-left">Edit Name</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -10,8 +10,20 @@
     <div class="modal-body">
         <div>
           <label>{{ 'pages.product-name' | translate }}</label>
-          <input formControlName="name" type="text" class="form-control" placeholder="Enter 8 characters or more">
+          <input  (input)="onChange($event)" formControlName="name"  type="text" class="form-control" placeholder="Enter 8 characters or more">
         </div>
+
+      <div style="margin-top: 20px" *ngIf="showError">
+        <alert [dismissible]="true" type="danger rounded">
+          Please enter 8 or more characters. Alphabets and numbers only.
+        </alert>
+      </div>
+
+      <div style="margin-top: 20px" *ngIf="showSuccess">
+        <alert  [dismissible]="true" type="success rounded">
+          Your changes have been saved
+        </alert>
+      </div>
 
     </div>
     <div class="modal-footer">

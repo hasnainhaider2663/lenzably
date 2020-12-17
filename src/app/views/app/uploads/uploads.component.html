@@ -53,7 +53,7 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-2">
+              <div class="col-1">
                 <div class="custom-control custom-checkbox pl-1">
                   <label class="custom-control custom-checkbox  mb-0">
                     <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i" class="custom-control-input"
@@ -62,9 +62,9 @@
                   </label>
                 </div>
               </div>
-              <div class="col-10">
+              <div class="col-11">
                 <a href="javascript:;">
-                  <p class="list-item-heading mb-4 pt-1">{{p.name}}</p>
+                  <p class="list-item-heading mb-1 pt-1">{{p.name}}</p>
                 </a>
                 <footer>
                   <p class="text-muted text-small mb-0 font-weight-light">{{p.updated|date}}</p>

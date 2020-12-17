@@ -6,7 +6,7 @@ import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {environment} from 'src/environments/environment';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {FirebaseAssetService} from '../../../firebase-asset.service';
-import {register} from 'ts-node';
+
 
 @Component({
   selector: 'app-register',

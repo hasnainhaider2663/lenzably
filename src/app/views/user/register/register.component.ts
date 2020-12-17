@@ -44,15 +44,15 @@ export class RegisterComponent implements OnInit {
       return;
     }
     if (this.registerForm.controls.email.status === 'INVALID') {
-      this.error = 'email not valid';
+      this.error = 'Email not valid';
       return;
     }
     if (this.registerForm.controls.password.status === 'INVALID') {
-      this.error = 'password is not valid';
+      this.error = 'Password is not valid';
       return;
     }
     if (this.registerForm.controls.confirmPassword.status === 'INVALID') {
-      this.error = 'confirm password does not match';
+      this.error = 'Confirm password does not match';
       return;
     }
     if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {

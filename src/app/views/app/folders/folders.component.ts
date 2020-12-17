@@ -1,13 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Hotkey, HotkeysService} from 'angular2-hotkeys';
+import {HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
-import {EditProductNameModalComponent} from '../../../../containers/pages/edit-product-name-modal/edit-product-name-modal.component';
-import {EditProductDescriptionModalComponent} from '../../../../containers/pages/edit-product-description-modal/edit-product-description-modal.component';
-import {EditProductCategoriesModalComponent} from '../../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component';
-import {EditProductTagsModalComponent} from '../../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component';
-import {AngularFireService} from '../../../../angular-fire.service';
-import {FirebaseAssetService} from '../../../../firebase-asset.service';
+import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {AngularFireService} from '../../../angular-fire.service';
+import {EditFolderNameModalComponent} from './edit-folder-name-modal/edit-folder-name-modal.component';
 
 
 @Component({
@@ -37,24 +34,15 @@ export class FoldersComponent implements OnInit {
 
 
   @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
-  @ViewChild('editProductNameModalComponent', {static: true}) editProductNameModalComponent: EditProductNameModalComponent;
-  @ViewChild('editProductDescriptionModalComponent', {static: true}) editProductDescriptionModalComponent: EditProductDescriptionModalComponent;
-  @ViewChild('editProductCategoriesModalComponent', {static: true}) editProductCategoriesModalComponent: EditProductCategoriesModalComponent;
-  @ViewChild('editProductTagsModalComponent', {static: true}) editProductTagsModalComponent: EditProductTagsModalComponent;
+  @ViewChild('editFolderNameModalComponent', {static: true}) editFolderNameModalComponent: EditFolderNameModalComponent;
+
   user;
   assets;
   originalAssets;
   error: any;
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
-    this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
-      this.selectedItemsArray = [...this.assets];
-      return false;
-    }));
-    this.hotkeysService.add(new Hotkey('ctrl+d', (event: KeyboardEvent): boolean => {
-      this.selectedItemsArray = [];
-      return false;
-    }));
+
   }
 
   async ngOnInit() {
@@ -89,9 +77,6 @@ export class FoldersComponent implements OnInit {
 
   }
 
-  changeDisplayMode(mode): void {
-    this.displayMode = mode;
-  }
 
   showAddNewModal(): void {
     // this.addNewModalRef.show();
@@ -192,76 +177,20 @@ export class FoldersComponent implements OnInit {
     this.selectedItemsArray = [item];
     switch (action) {
       case 'name':
-        this.editProductNameModalComponent.inputText = item.name;
-        this.showModal(this.editProductNameModalComponent);
+        this.showModal(this.editFolderNameModalComponent);
         break;
-      case 'description':
-        this.editProductDescriptionModalComponent.inputText = item.description;
-        this.showModal(this.editProductDescriptionModalComponent);
-        break;
-      case 'tags':
-        this.editProductTagsModalComponent.replaceTags = 'replace';
-        this.editProductTagsModalComponent.tags = item.tags;
-        this.showModal(this.editProductTagsModalComponent);
-        break;
-      case 'category':
-        this.editProductCategoriesModalComponent.category = item.category;
-        this.showModal(this.editProductCategoriesModalComponent);
-        break;
-
     }
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
   }
 
   changeDropdownItem($event: any) {
     switch ($event.value) {
       case 'name':
-        this.showModal(this.editProductNameModalComponent);
+        this.showModal(this.editFolderNameModalComponent);
         break;
-      case 'description':
-        this.showModal(this.editProductDescriptionModalComponent);
-        break;
-      case 'tags':
-        this.editProductTagsModalComponent.replaceTags = 'append';
-        this.editProductTagsModalComponent.tags = this.findTagIntersection();
-        this.showModal(this.editProductTagsModalComponent);
-        break;
-      case 'category':
-        this.editProductCategoriesModalComponent.category = this.findcategoryIntersection();
-        this.showModal(this.editProductCategoriesModalComponent);
-        break;
+
 
     }
   }
-
-  findTagIntersection() {
-    const intersection = [];
-    this.selectedItemsArray.forEach(myItem => {
-      if (myItem.tags) {
-        myItem.tags.forEach(tag => {
-          if (!intersection.includes(tag)) {
-            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
-            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
-              intersection.push(tag);
-            }
-          }
-          console.log(intersection);
-        });
-      }
-    });
-    return intersection;
-  }
-
-  findcategoryIntersection() {
-    let intersection;
-    if (this.selectedItemsArray.filter(z => z.category && this.selectedItemsArray[0].category && (z.category.value === this.selectedItemsArray[0].category.value)).length === this.selectedItemsArray.length) {
-      intersection = this.selectedItemsArray[0].category;
-    }
-    console.log(intersection);
-
-    return intersection;
-  }
-
 
   onUploadError(event): void {
     console.log(event[1]);

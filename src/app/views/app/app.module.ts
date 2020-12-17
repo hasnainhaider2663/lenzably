@@ -23,11 +23,12 @@ import {SharedModule} from '../../shared/shared.module';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
 import {ProfileComponent} from './profile/profile.component';
 import {AlertModule} from 'ngx-bootstrap/alert';
-import {FoldersComponent} from './ui/folders/folders.component';
+import {FoldersComponent} from "./folders/folders.component";
+import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
 
 
 @NgModule({
-  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent],
+  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

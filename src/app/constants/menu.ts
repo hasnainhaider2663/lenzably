@@ -20,6 +20,12 @@ const data: IMenuItem[] = [
     // roles: [UserRole.Editor],
   },
   {
+    icon: 'simple-icon-cloud-upload',
+    label: 'Folders',
+    to: `${adminRoot}/folders`,
+    // roles: [UserRole.Editor],
+  },
+  {
     icon: 'simple-icon-user',
     label: 'menu.profile',
     to: `${adminRoot}/profile`,

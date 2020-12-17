@@ -11,10 +11,7 @@
                       [showOrderBy]="true"
 >
 </app-list-page-header>
-<app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
-<app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
-<app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
-<app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
+<app-edit-folder-name-modal #editFolderNameModalComponent></app-edit-folder-name-modal>
 <div *ngIf="error" style="margin-bottom: 20px">
   <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
     {{error}}

@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {BlankPageComponent} from './blank-page/blank-page.component';
 import {UploadsComponent} from "./uploads/uploads.component";
 import {ProfileComponent} from "./profile/profile.component";
-import {FoldersComponent} from "./ui/folders/folders.component";
+import {FoldersComponent} from "./folders/folders.component";
 
 const routes: Routes = [
   {

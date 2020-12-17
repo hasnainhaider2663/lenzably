@@ -47,7 +47,7 @@ export class EditProductTagsModalComponent {
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
   error: any;
   success: any;
-  replaceTags: 'replace' | 'append' ;
+  replaceTags: 'replace' | 'append';
 
   constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
   }
@@ -67,6 +67,7 @@ export class EditProductTagsModalComponent {
   }
 
   async submit() {
+    this.success = false
     if (this.replaceTags === 'append') {
       this.items.forEach(async x => {
         await this.assetService.updateDocument(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});

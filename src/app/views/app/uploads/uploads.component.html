@@ -1,5 +1,4 @@
-<app-list-page-header (addNewItem)="showAddNewModal()" (changeDisplayMode)="changeDisplayMode($event)"
-                      (changeOrderBy)="changeOrderBy($event)"
+<app-list-page-header (changeOrderBy)="changeOrderBy($event)"
                       (itemsPerPageChange)="itemsPerPageChange($event)"
                       (searchKeyUp)="searchKeyUp($event)"
                       (selectAllChange)="selectAllChange($event)"
@@ -9,18 +8,16 @@
                       [selectAllState]="selectAllState" [showOrderBy]="true"
                       [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
                       {label: 'Oldest First' , value : 'oldest'}]" (changeDropdownItem)="changeDropdownItem($event)"
-                      [dropDownItems]="[{ label: 'Edit names', value: 'names' }, { label: 'Edit descriptions', value: 'descriptions' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
+                      [dropDownItems]="[{ label: 'Edit names', value: 'name' }, { label: 'Edit descriptions', value: 'description' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
 >
 </app-list-page-header>
-<!--<app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>-->
 <app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
 <app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
 <app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
 <app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
-<!--{{(user | async ).name}}-->
-<div style="margin-bottom: 20px">
+<div style="margin-bottom: 20px" *ngIf="error">
   <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
-    {{'alert.dismissing-without-animate-text' | translate}} (10 seconds)
+    {{error}}
   </alert>
 </div>
 <div style="margin-bottom: 20px">
@@ -56,7 +53,7 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-2">
+              <div class="col-1">
                 <div class="custom-control custom-checkbox pl-1">
                   <label class="custom-control custom-checkbox  mb-0">
                     <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i" class="custom-control-input"
@@ -65,12 +62,18 @@
                   </label>
                 </div>
               </div>
-              <div class="col-10">
+              <div class="col-11">
                 <a href="javascript:;">
-                  <p class="list-item-heading mb-4 pt-1">{{p.name}}</p>
+                  <p class="list-item-heading mb-1 pt-1">{{p.name}}</p>
                 </a>
+
+                <p class="text-muted text-small mb-2 font-weight-light">{{p.updated|date}}</p>
                 <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{p.updated|date}}</p>
+                  <div>
+<!--                    //category-->
+                    <span class="badge badge-pill badge-dark mb-1 mr-1">{{p.category? p.category.label:'no category'}}</span>
+                    <span *ngFor="let tag of p.tags" class="badge badge-pill badge-light mb-1 mr-1">{{tag}}</span>
+                  </div>
                 </footer>
               </div>
             </div>

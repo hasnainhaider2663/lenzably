@@ -1,6 +1,7 @@
-import {Component, TemplateRef, ViewChild} from "@angular/core";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product-name-modal',
@@ -42,16 +43,22 @@ export class EditProductNameModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-
-
+  inputText = '';
+  form;
+  showError;
+  showSuccess;
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
+  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService, private fb: FormBuilder) {
   }
 
-
   show(): void {
+    this.showError = false;
+    this.form = this.fb.group({
+      name: [this.inputText, [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9\-\/\#\(\) ]*')]]
+    });
     this.modalRef = this.modalService.show(this.template, this.config);
+
   }
 
   closeClicked() {
@@ -59,6 +66,21 @@ export class EditProductNameModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
+    this.showSuccess = false;
+    if (this.form.invalid) {
+      this.showError = true;
+      return;
+    }
+    this.showError = false;
+    await this.assetService.updateBatch(this.items, {name: this.form.value.name});
+    this.showSuccess = true;
+  }
+
+  onChange(event) {
+    this.showSuccess =  false;
+    const val = event.target.value;
+    if (val.length >= 8) {
+      this.showError = false;
+    }
   }
 }

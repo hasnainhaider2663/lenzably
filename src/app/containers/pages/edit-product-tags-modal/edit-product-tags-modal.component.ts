@@ -1,6 +1,6 @@
-import {Component, TemplateRef, ViewChild} from "@angular/core";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FirebaseAssetService} from '../../../firebase-asset.service';
 
 @Component({
   selector: 'app-product-edit-tags-modal',
@@ -42,17 +42,23 @@ export class EditProductTagsModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-  selectedCompanies
+  tags;
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
+  error: any;
+  success: any;
+  replaceTags: 'replace' | 'append';
 
   constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
   }
 
   addTagFn(addedName): { name: any; tag: true } {
-    return { name: addedName, tag: true };
+    return addedName;
   }
+
   show(): void {
+    this.error = undefined;
+    this.success = undefined;
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
@@ -61,6 +67,30 @@ export class EditProductTagsModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
+    this.success = false
+    if (this.replaceTags === 'append') {
+      this.items.forEach(async x => {
+        await this.assetService.updateDocument(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});
+      });
+    } else if (this.replaceTags === 'replace') {
+      this.items.forEach(async x => {
+        await this.assetService.updateDocument(x.md5Hash, {tags: this.tags});
+      });
+    } else {
+      this.error = 'A serious error occurred while saving tags. Please contact support.';
+      return;
+    }
+    if (this.tags.length < 3 || this.tags.filter(x => x.length < 3).length > 0) {
+      this.error = 'Please enter at least 3 tags, each 3 or more characters';
+      return;
+    }
+    this.reset();
+
+  }
+
+  reset() {
+    this.error = undefined;
+    this.success = true;
+    this.replaceTags = undefined;
   }
 }

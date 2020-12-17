@@ -63,8 +63,8 @@ export class FirebaseAssetService {
     return this.firestore.doc(path).delete();
   }
 
-  async updateDocument(path): Promise<any> {
-    await this.firestore.doc(path).update(path);
+  async updateDocument(md5Hash, data): Promise<any> {
+    await this.firestore.doc(`assets/${md5Hash}`).update(data);
   }
 
   async updateBatch(items, data): Promise<any> {

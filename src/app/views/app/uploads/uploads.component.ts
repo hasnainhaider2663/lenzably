@@ -43,6 +43,7 @@ export class UploadsComponent implements OnInit {
   user;
   assets;
   originalAssets;
+  error: any;
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -112,20 +113,6 @@ export class UploadsComponent implements OnInit {
       this.selectedItemsArray.push(item);
     }
     this.setSelectAllState();
-    const intersection = [];
-    this.selectedItemsArray.forEach(myItem => {
-      if (myItem.tags) {
-        myItem.tags.forEach(tag => {
-          if (!intersection.includes(tag)) {
-            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
-            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
-              intersection.push(tag);
-            }
-          }
-          console.log(intersection);
-        });
-      }
-    });
 
   }
 
@@ -204,20 +191,74 @@ export class UploadsComponent implements OnInit {
     this.selectedItemsArray = [item];
     switch (action) {
       case 'name':
+        this.editProductNameModalComponent.inputText = item.name;
+        this.showModal(this.editProductNameModalComponent);
+        break;
+      case 'description':
+        this.editProductDescriptionModalComponent.inputText = item.description;
+        this.showModal(this.editProductDescriptionModalComponent);
+        break;
+      case 'tags':
+        this.editProductTagsModalComponent.replaceTags = 'replace';
+        this.editProductTagsModalComponent.tags = item.tags;
+        this.showModal(this.editProductTagsModalComponent);
+        break;
+      case 'category':
+        this.editProductCategoriesModalComponent.category = item.category;
+        this.showModal(this.editProductCategoriesModalComponent);
+        break;
+
+    }
+    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
+  }
+
+  changeDropdownItem($event: any) {
+    switch ($event.value) {
+      case 'name':
         this.showModal(this.editProductNameModalComponent);
         break;
       case 'description':
         this.showModal(this.editProductDescriptionModalComponent);
         break;
       case 'tags':
+        this.editProductTagsModalComponent.replaceTags = 'append';
+        this.editProductTagsModalComponent.tags = this.findTagIntersection();
         this.showModal(this.editProductTagsModalComponent);
         break;
       case 'category':
+        this.editProductCategoriesModalComponent.category = this.findcategoryIntersection();
         this.showModal(this.editProductCategoriesModalComponent);
         break;
 
     }
-    console.log('onContextMenuClick -> action :  ', action, ', item.title :', item.title);
+  }
+
+  findTagIntersection() {
+    const intersection = [];
+    this.selectedItemsArray.forEach(myItem => {
+      if (myItem.tags) {
+        myItem.tags.forEach(tag => {
+          if (!intersection.includes(tag)) {
+            // console.log(this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)));
+            if (this.selectedItemsArray.filter(z => z.tags && z.tags.includes(tag)).length === this.selectedItemsArray.length) {
+              intersection.push(tag);
+            }
+          }
+          console.log(intersection);
+        });
+      }
+    });
+    return intersection;
+  }
+
+  findcategoryIntersection() {
+    let intersection;
+    if (this.selectedItemsArray.filter(z => z.category && this.selectedItemsArray[0].category && (z.category.value === this.selectedItemsArray[0].category.value)).length === this.selectedItemsArray.length) {
+      intersection = this.selectedItemsArray[0].category;
+    }
+    console.log(intersection);
+
+    return intersection;
   }
 
 
@@ -244,21 +285,4 @@ export class UploadsComponent implements OnInit {
     console.log(result);
   }
 
-  changeDropdownItem($event: any) {
-    switch ($event.value) {
-      case 'name':
-        this.showModal(this.editProductNameModalComponent);
-        break;
-      case 'description':
-        this.showModal(this.editProductDescriptionModalComponent);
-        break;
-      case 'tags':
-        this.showModal(this.editProductTagsModalComponent);
-        break;
-      case 'category':
-        this.showModal(this.editProductCategoriesModalComponent);
-        break;
-
-    }
-  }
 }

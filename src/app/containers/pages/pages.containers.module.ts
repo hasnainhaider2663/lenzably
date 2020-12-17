@@ -42,6 +42,9 @@ import {EditProductCategoriesModalComponent} from './edit-product-categories-mod
 import {EditProductTagsModalComponent} from './edit-product-tags-modal/edit-product-tags-modal.component';
 import { LbFooterComponent } from './lb-footer/lb-footer.component';
 import {AlertModule} from "ngx-bootstrap/alert";
+import { LbNavComponent } from './lb-nav/lb-nav.component';
+import {HeadroomModule} from "@ctrl/ngx-headroom";
+import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
 
 
 
@@ -73,7 +76,9 @@ import {AlertModule} from "ngx-bootstrap/alert";
     ProductDetailInfoComponent,
     ProductDetailTabsComponent,
     SectionArtistAboutComponent,
-    LbFooterComponent
+    LbFooterComponent,
+    LbNavComponent,
+    LbNavMobileComponent
   ],
   imports: [
     CommonModule,
@@ -92,7 +97,8 @@ import {AlertModule} from "ngx-bootstrap/alert";
     AccordionModule.forRoot(),
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
-    AlertModule
+    AlertModule,
+    HeadroomModule
   ],
   exports: [
     AddNewProductModalComponent,
@@ -121,7 +127,9 @@ import {AlertModule} from "ngx-bootstrap/alert";
     ProductDetailInfoComponent,
     ProductDetailTabsComponent,
     SectionArtistAboutComponent,
-    LbFooterComponent
+    LbFooterComponent,
+    LbNavComponent,
+    LbNavMobileComponent
   ]
 })
 export class PagesContainersModule {

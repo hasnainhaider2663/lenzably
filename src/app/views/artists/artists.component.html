@@ -1,6 +1,7 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
 
-  <div class="mobile-menu" (click)="$event.stopPropagation()">
+  <app-lb-nav-mobile></app-lb-nav-mobile>
+<!--  <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
     </a>
@@ -20,12 +21,13 @@
         <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Sign Up</a>
       </li>
     </ul>
-  </div>
+  </div>-->
 
   <div class="main-container" id="home">
 
+    <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
 
-    <ngx-headroom class="landing-page-nav">
+    <!--<ngx-headroom class="landing-page-nav">
       <nav class="navbar">
         <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
           <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;" style="margin-top: 3px; width: 150px;">
@@ -52,7 +54,7 @@
                     </span>
         </div>
       </nav>
-    </ngx-headroom>
+    </ngx-headroom>-->
 
     <div class="content-container" style="padding-top: 80px">
 
@@ -76,132 +78,134 @@
 
       <div style="padding: 30px 35px 20px">
 
-        <div class="row" *ngFor="let item of data ; let i = index">
-          <div class="col-lg-3 col-md-6 col-12" style="padding-top: 5px;">
-            <div class="card mb-4">
-              <div class="card-body">
+        <div *ngFor="let item of data ; let i = index" style="border-bottom: 1px solid #eee">
+          <div class="row" style="padding: 20px 0">
+            <div class="col-lg-3 col-md-6 col-12" style="padding-top: 5px;">
+              <div class="card" style="min-height: 500px">
+                <div class="card-body">
 
-                <div class="d-flex flex-row mb-3">
-                  <a href="javascript:;">
-                    <img [src]="'/assets/img/profiles/l-'+(i+1)+'.jpg'" [alt]="item.name"
-                         class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center"/>
-                  </a>
-                  <div class="pl-3">
+                  <div class="d-flex flex-row mb-3">
                     <a href="javascript:;">
-                      <p class="list-item-heading font-weight-medium " style="color: #3a3a3a;    margin-bottom: 5px;
+                      <img [src]="'/assets/img/profiles/l-'+(i+1)+'.jpg'" [alt]="item.name"
+                           class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center"/>
+                    </a>
+                    <div class="pl-3">
+                      <a href="javascript:;">
+                        <p class="list-item-heading font-weight-medium " style="color: #3a3a3a;    margin-bottom: 5px;
     margin-top: 10px;
     font-size: 18px;">{{item.name}}</p>
-                      <p class="text-muted mb-0 text-small">{{item.status}}</p>
-                    </a>
+                        <p class="text-muted mb-0 text-small">{{item.status}}</p>
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <p class="mb-3" style="    color: #3a3a3a; font-size: 0.85rem;
+                  <p class="mb-3" style="    color: #3a3a3a; font-size: 0.85rem;
     line-height: 1.3rem;
     font-family: 'Nunito', sans-serif;">
-                  I’m a web developer. I spend my whole day, practically every day,
-                  experimenting with HTML, CSS, and JavaScript; dabbling with Python and
-                  Ruby; and inhaling a wide variety of potentially useless information
-                  through a few hundred RSS feeds. I build websites that delight and
-                  inform. I do it well.
-                </p>
+                    I’m a web developer. I spend my whole day, practically every day,
+                    experimenting with HTML, CSS, and JavaScript; dabbling with Python and
+                    Ruby; and inhaling a wide variety of potentially useless information
+                    through a few hundred RSS feeds. I build websites that delight and
+                    inform. I do it well.
+                  </p>
 
-                <p class="text-muted text-small mb-2">{{'pages.location' | translate}}</p>
-                <p class="mb-3" style="    color: #3a3a3a; font-size: 0.85rem;
+                  <p class="text-muted text-small mb-2">{{'pages.location' | translate}}</p>
+                  <p class="mb-3" style="    color: #3a3a3a; font-size: 0.85rem;
     line-height: 1.3rem;
     font-family: 'Nunito', sans-serif;">Nairobi, Kenya</p>
 
-                <p class="text-muted text-small mb-2">{{'pages.responsibilities' | translate}}</p>
-                <p class="mb-3">
-                  <a href="#">
-                    <span class="badge badge-pill badge-outline-theme-2 mb-1">FRONTEND</span>
-                  </a>{{" "}}
-                  <a href="#">
-                    <span class="badge badge-pill badge-outline-theme-2 mb-1">JAVASCRIPT</span>
-                  </a>{{" "}}
-                  <a href="#">
-                    <span class="badge badge-pill badge-outline-theme-2 mb-1">SECURITY</span>
-                  </a>{{" "}}
-                  <a href="#">
-                    <span class="badge badge-pill badge-outline-theme-2 mb-1">DESIGN</span>
-                  </a>
-                </p>
+                  <p class="text-muted text-small mb-2">{{'pages.responsibilities' | translate}}</p>
+                  <p class="mb-3">
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">FRONTEND</span>
+                    </a>{{" "}}
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">JAVASCRIPT</span>
+                    </a>{{" "}}
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">SECURITY</span>
+                    </a>{{" "}}
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">DESIGN</span>
+                    </a>
+                  </p>
 
-                <p class="text-muted text-small mb-2">{{'pages.contact' | translate}}</p>
-                <div class="social-icons">
-                  <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item">
-                      <a href="javascript:;"><i class="simple-icon-social-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript:;"><i class="simple-icon-social-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript:;"><i class="simple-icon-social-instagram"></i></a>
-                    </li>
-                  </ul>
+                  <p class="text-muted text-small mb-2">{{'pages.contact' | translate}}</p>
+                  <div class="social-icons">
+                    <ul class="list-unstyled list-inline">
+                      <li class="list-inline-item">
+                        <a href="javascript:;"><i class="simple-icon-social-facebook"></i></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:;"><i class="simple-icon-social-twitter"></i></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:;"><i class="simple-icon-social-instagram"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <button type="button" class="btn btn-outline-dark default mb-1"
+                          style="width: 100%; border: 1px solid rgba(58, 58, 58, 0.3);    margin-top: 10px;">View profile
+                  </button>
+
                 </div>
-
-                <button type="button" class="btn btn-outline-dark default mb-1"
-                        style="width: 100%; border: 1px solid rgba(58, 58, 58, 0.3);    margin-top: 10px;">View profile
-                </button>
-
               </div>
-            </div>
 
-          </div>
-          <div class="col-lg-9">
-            <div class="containerw3 fixed-height row-grid" style="height: 525px; overflow: hidden">
-              <a class="position-relative row-item">
-                <img src="/assets/img/details/1.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/details/2.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-1.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/details/4.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-3.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-4.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-5.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-6.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-7.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-9.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-11.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/cards/thumb-1.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/profiles/l-2.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/cards/thumb-2.jpg"/>
-              </a>
-              <a class="position-relative row-item">
-                <img src="/assets/img/details/3.jpg"/>
-              </a>
+            </div>
+            <div class="col-lg-9">
+              <div class="containerw3 fixed-height row-grid" style="height: 520px; overflow: hidden">
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/1.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/2.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-1.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/4.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-3.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-4.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-5.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-6.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-7.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-9.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-11.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/cards/thumb-1.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-2.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/cards/thumb-2.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/3.jpg"/>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 mt-4">
           <pagination class="justify-content-center" [totalItems]="30"
                       [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
           </pagination>

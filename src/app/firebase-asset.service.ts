@@ -16,12 +16,12 @@ export class FirebaseAssetService {
   }
 
 
-  watchUserAssets(): Observable<any> {
-    return this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges();
+  watchAssetsInCollection(collectionId): Observable<any> {
+    return this.firestore.collection(`assets`, x => x.where('collectionId', '==', collectionId)).valueChanges();
   }
 
-  getUserAssets(cb) {
-    const sub = this.firestore.collection(`assets`, x => x.where('userId', '==', this.user.id)).valueChanges().subscribe(assets => {
+  getAssetsInCollection(collectionId, cb) {
+    const sub = this.firestore.collection(`assets`, x => x.where('collectionId', '==', collectionId)).valueChanges().subscribe(assets => {
 
       assets.forEach(async asset => {
         // @ts-ignore
@@ -38,9 +38,14 @@ export class FirebaseAssetService {
   getUserCollections(cb) {
     const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges().subscribe(collections => {
       console.log('collection', collections)
-      collections.forEach(async asset => {
+      collections.forEach(async iterator => {
         // @ts-ignore
-        // asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).child().getDownloadURL().toPromise();
+        const asset = iterator
+        const data = iterator.payload.doc.data()
+        Object.keys(data).forEach(k => {
+          asset[k] = data[k]
+        })
+        asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
 
       });
       cb(collections)
@@ -51,14 +56,14 @@ export class FirebaseAssetService {
   }
 
   watchUserCollections(): Observable<any> {
-    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).valueChanges();
+    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges();
   }
 
   async getFullURL(url) {
     return await this.storage.ref(url).getDownloadURL().toPromise();
   }
 
-  async uploadAsset(file): Promise<any> {
+  async uploadAsset(file, data?): Promise<any> {
     const filePath = this.storage.ref(`assets/${this.user.id}`).child(`${file.name}`);
     // use the Blob or File API
     const result = await filePath.put(file);
@@ -71,6 +76,9 @@ export class FirebaseAssetService {
     //   await this.storage.ref(`assets/${this.user.id}/${file.name}`).delete().toPromise()
     //   return true
     // }
+    Object.keys(data).forEach(z => {
+      fileInfo[z] = data[z]
+    })
     return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
   }
 

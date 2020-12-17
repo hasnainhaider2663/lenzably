@@ -43,8 +43,8 @@
                   <p class="list-item-heading mb-1 pt-1">{{p.name}}</p>
                 </a>
 
-                <p class="text-muted text-small mb-2 font-weight-light">{{p.updated|date}}</p>
-                <p class="text-muted text-small mb-2 font-weight-light">{{p.description}}</p>
+                <p class="text-muted text-small mb-2 font-weight-light" *ngIf="p.updated">{{p.updated|date}}</p>
+                <p class="text-muted text-small mb-2 font-weight-light" *ngIf="p.description">{{p.description}}</p>
                 <footer>
                   <div>
                     <!--                    //category-->

@@ -58,13 +58,16 @@ export class FoldersComponent implements OnInit {
     });
 
     this.assetService.watchUserCollections().subscribe(assetsArray => {
-      assetsArray.forEach(async updatedAsset => {
+      assetsArray.forEach(async iterator => {
+        const updatedAsset = iterator;
+        Object.keys(iterator.payload.doc.data()).forEach(l => {
+          updatedAsset[l] = iterator.payload.doc.data()[l]
+        });
         try {
-          if (updatedAsset.fullPath)
-            {
-              updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
-            }
-          const assetInArray = this.assets.find(x => x.md5Hash === updatedAsset.md5Hash);
+          if (updatedAsset.fullPath) {
+            updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
+          }
+          const assetInArray = this.assets.find(x => x.payload.doc.id === updatedAsset.payload.doc.id);
           if (!(assetInArray)) {
 
             this.assets.push(updatedAsset);

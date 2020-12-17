@@ -46,7 +46,8 @@ export class UploadsComponent implements OnInit {
   originalAssets;
   error: any;
 
-  collection = {name: ''};
+  collection = {name: '', id: ''};
+  collectionId
 
   constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private route: ActivatedRoute) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
@@ -60,22 +61,23 @@ export class UploadsComponent implements OnInit {
   }
 
   async ngOnInit() {
-
-    this.assetService.subscribeToDocument(`collections/${this.route.snapshot.params['collectionId']}`).valueChanges().subscribe(x => {
+    this.collectionId = this.route.snapshot.params['collectionId']
+    this.assetService.subscribeToDocument(`collections/${this.collectionId}`).valueChanges().subscribe(x => {
       this.collection = x;
-      this.collection['id'] = this.route.snapshot['collectionId']
+      this.collection['id'] = this.collectionId;
+
     });
 
     this.user = this.angularFireService.userObservable;
 
 
-    this.assetService.getUserAssets(x => {
+    this.assetService.getAssetsInCollection(this.collectionId, x => {
       this.assets = x;
       this.originalAssets = x;
       console.log(this.assets);
     });
 
-    this.assetService.watchUserAssets().subscribe(assetsArray => {
+    this.assetService.watchAssetsInCollection(this.collectionId).subscribe(assetsArray => {
       assetsArray.forEach(async updatedAsset => {
         try {
           const assetInArray = this.assets.find(x => x.md5Hash === updatedAsset.md5Hash);
@@ -288,7 +290,7 @@ export class UploadsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.assetService.uploadAsset(event[0]);
+    const result = await this.assetService.uploadAsset(event[0], {collectionId: this.collection.id});
     console.log(result);
   }
 

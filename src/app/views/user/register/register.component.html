@@ -48,13 +48,14 @@
           Your changes have been saved
         </alert>
       </div>
-    </form>
-
-    <div style="margin-top: 20px" *ngIf="error">
-      <alert [dismissible]="true" type="danger rounded">
+      <div style="margin-top: 20px; min-height: 50px" class="{{!error?'hidden':''}}">
+      <alert type="danger rounded">
         {{error}}
       </alert>
     </div>
+    </form>
+
+
   </div>
 </div>
 <simple-notifications></simple-notifications>

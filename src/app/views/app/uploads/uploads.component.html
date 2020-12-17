@@ -66,11 +66,12 @@
                 <a href="javascript:;">
                   <p class="list-item-heading mb-1 pt-1">{{p.name}}</p>
                 </a>
-                <div>
-                  <span *ngFor="let tag of p.tags" class="badge badge-pill badge-outline-secondary mb-1 mr-1">{{tag}}</span>
-                </div>
+                <span class="badge badge-pill badge-dark mb-1 mr-1">{{p.category? p.category.label:'no category'}}</span>
+                <p class="text-muted text-small mb-2 font-weight-light">{{p.updated|date}}</p>
                 <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{p.updated|date}}</p>
+                  <div>
+                    <span *ngFor="let tag of p.tags" class="badge badge-pill badge-light mb-1 mr-1">{{tag}}</span>
+                  </div>
                 </footer>
               </div>
             </div>

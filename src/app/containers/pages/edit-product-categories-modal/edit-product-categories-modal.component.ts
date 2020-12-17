@@ -42,7 +42,7 @@ export class EditProductCategoriesModalComponent {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-  category
+  category;
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
@@ -59,6 +59,6 @@ export class EditProductCategoriesModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {category: this.category})
+    await this.assetService.updateBatch(this.items, {category: this.category});
   }
 }

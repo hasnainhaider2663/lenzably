@@ -1,4 +1,5 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -21,7 +22,7 @@
     </ul>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="home">
 
 
     <ngx-headroom class="landing-page-nav">
@@ -54,7 +55,7 @@
       </nav>
     </ngx-headroom>
 
-    <div class="content-container" id="home" style="padding-top: 80px">
+    <div class="content-container" style="padding-top: 80px">
 
       <div class="main-banner position-relative" [style.background-image]="'url(/assets/img//details/5.jpg)'">
         <div class="home-text">
@@ -201,6 +202,7 @@
 
     </div>
   </div>
+
 </div>
 
 

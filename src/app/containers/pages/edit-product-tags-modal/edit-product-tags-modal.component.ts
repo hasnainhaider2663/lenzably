@@ -70,11 +70,11 @@ export class EditProductTagsModalComponent {
     this.success = false;
     if (this.replaceTags === 'append') {
       this.items.forEach(async x => {
-        await this.assetService.updateDocument(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});
+        await this.assetService.updateAsset(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});
       });
     } else if (this.replaceTags === 'replace') {
       this.items.forEach(async x => {
-        await this.assetService.updateDocument(x.md5Hash, {tags: this.tags});
+        await this.assetService.updateAsset(x.md5Hash, {tags: this.tags});
       });
     } else {
       this.error = 'A serious error occurred while saving tags. Please contact support.';

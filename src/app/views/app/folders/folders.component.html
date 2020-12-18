@@ -17,7 +17,7 @@
   </alert>
 </div>
 <context-menu #basicMenu>
-  <ng-template (execute)="onContextMenuClick('name',$event.item)" contextMenuItem let-item>
+  <ng-template (execute)="onContextMenuClick('edit',$event.item)" contextMenuItem let-item>
     <i class="simple-icon-pencil mr-1"></i> <span>Edit folder</span>
   </ng-template>
 </context-menu>

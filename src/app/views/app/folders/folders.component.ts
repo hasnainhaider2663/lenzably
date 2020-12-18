@@ -87,7 +87,7 @@ export class FoldersComponent implements OnInit {
 
 
   showAddNewModal(): void {
-    this.editFolderNameModalComponent.folder = {};
+    this.editFolderNameModalComponent.resetCollection();
     this.editFolderNameModalComponent.show();
   }
 
@@ -177,11 +177,11 @@ export class FoldersComponent implements OnInit {
   }
 
   onContextMenuClick(action: string, item): void {
-    this.selectedItemsArray = [item];
+
     switch (action) {
       case 'edit':
-        this.editFolderNameModalComponent.folder = item;
-        this.showAddNewModal();
+        this.editFolderNameModalComponent.collection = item;
+        this.editFolderNameModalComponent.show()
         break;
       case 'update':
         break;

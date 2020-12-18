@@ -62,7 +62,7 @@ export class EditFolderNameModalComponent {
     });
 
     this.tags = this.collection.tags;
-    this.category = this.collection.category
+    this.category = this.collection.category;
 
     this.modalRef = this.modalService.show(this.template, this.config);
 
@@ -100,16 +100,21 @@ export class EditFolderNameModalComponent {
       this.error = 'Invalid data';
       return;
     }
-    this.collection.name = this.form.value.name
-    this.collection.description = this.form.value.description
-    this.collection.tags = this.tags
-    this.collection.category = this.category
+    this.collection.name = this.form.value.name;
+    this.collection.description = this.form.value.description;
+    this.collection.tags = this.tags;
+    this.collection.category = this.category;
     this.error = undefined;
 
-    const myCollection = Object.assign({}, this.collection)
-    const ref = JSON.parse(JSON.stringify(this.collection.payload.doc.id))
-    delete myCollection.payload
-    await this.assetService.updateCollection(ref, myCollection);
+    const myCollection = Object.assign({}, this.collection);
+    const ref = JSON.parse(JSON.stringify(this.collection.payload.doc.id));
+    delete myCollection.payload;
+    if (this.collection.payload) {
+      await this.assetService.updateCollection(ref, myCollection);
+    } else {
+      await this.assetService.createCollection(myCollection);
+
+    }
     this.showSuccess = true;
   }
 

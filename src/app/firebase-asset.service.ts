@@ -28,7 +28,7 @@ export class FirebaseAssetService {
         asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
 
       });
-      cb(assets)
+      cb(assets);
       sub.unsubscribe()
     })
 
@@ -37,18 +37,18 @@ export class FirebaseAssetService {
 
   getUserCollections(cb) {
     const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges().subscribe(collections => {
-      console.log('collection', collections)
+      console.log('collection', collections);
       collections.forEach(async iterator => {
         // @ts-ignore
-        const asset = iterator
-        const data = iterator.payload.doc.data()
+        const asset = iterator;
+        const data = iterator.payload.doc.data();
         Object.keys(data).forEach(k => {
           asset[k] = data[k]
-        })
+        });
         asset['thumbnailURL'] = await this.storage.ref(asset['fullPath']).getDownloadURL().toPromise();
 
       });
-      cb(collections)
+      cb(collections);
       sub.unsubscribe()
     })
 
@@ -69,7 +69,7 @@ export class FirebaseAssetService {
     const result = await filePath.put(file);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
     fileInfo['userId'] = this.user.id;
-    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*')
+    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
     // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
     // if (docRef) {
     //   console.log('already exists')
@@ -78,7 +78,7 @@ export class FirebaseAssetService {
     // }
     Object.keys(data).forEach(z => {
       fileInfo[z] = data[z]
-    })
+    });
     return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
   }
 
@@ -93,14 +93,19 @@ export class FirebaseAssetService {
   async updateAsset(md5Hash, data): Promise<any> {
     await this.firestore.doc(`assets/${md5Hash}`).update(data);
   }
+
   async updateCollection(ref, data): Promise<any> {
     await this.firestore.doc(`collections/${ref}`).update(data);
+  }
+
+  async createCollection(data): Promise<any> {
+    await this.firestore.collection(`collections`).add(data);
   }
 
   async updateBatch(items, data): Promise<any> {
     items.forEach(async x => {
       await this.firestore.doc(`assets/${x.md5Hash}`).update(data);
-    })
+    });
   }
 
   async createDocumentInCollection(path, document): Promise<any> {

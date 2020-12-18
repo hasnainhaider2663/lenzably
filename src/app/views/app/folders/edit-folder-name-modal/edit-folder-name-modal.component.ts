@@ -107,9 +107,10 @@ export class EditFolderNameModalComponent {
     this.error = undefined;
 
     const myCollection = Object.assign({}, this.collection);
-    const ref = JSON.parse(JSON.stringify(this.collection.payload.doc.id));
-    delete myCollection.payload;
+
     if (this.collection.payload) {
+      const ref = JSON.parse(JSON.stringify(this.collection.payload.doc.id));
+      delete myCollection.payload;
       await this.assetService.updateCollection(ref, myCollection);
     } else {
       await this.assetService.createCollection(myCollection);

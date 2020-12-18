@@ -8,10 +8,9 @@
 
   <div class="modal-body">
     <form  [formGroup]="form" *ngIf="form">
-        <label class="form-group has-float-label">
+        <label>Name</label>
           <input (input)="onChange($event)" class="form-control" type="text" formControlName="name" placeholder="Four or more letters"/>
-          <span>Name</span>
-        </label>
+
 
       <div class="mt-4">
         <label>Description</label>

@@ -45,7 +45,7 @@ export class FirebaseAssetService {
         Object.keys(data).forEach(k => {
           asset[k] = data[k]
         })
-        asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
+        asset['thumbnailURL'] = await this.storage.ref(asset['fullPath']).getDownloadURL().toPromise();
 
       });
       cb(collections)

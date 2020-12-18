@@ -7,26 +7,26 @@
   </div>
 
   <div class="modal-body">
-    <form (ngSubmit)="submit()" [formGroup]="form">
-      <div>
-        <label>  Name </label>
-        <input (input)="onChange($event)" class="form-control" formControlName="name" placeholder="Enter 8 characters or more"
-               type="text">
-      </div>
+    <form  [formGroup]="form" *ngIf="form">
+        <label class="form-group has-float-label">
+          <input (input)="onChange($event)" class="form-control" type="text" formControlName="name" placeholder="Four or more letters"/>
+          <span>Name</span>
+        </label>
 
       <div class="mt-4">
-        <label> Description</label>
-        <textarea (input)="onChange($event)" class="form-control" formControlName="description" placeholder="Enter 10 characters or more"
-                  rows="3"></textarea>
+        <label>Description</label>
+        <textarea  (input)="onChange($event)" formControlName="description" class="form-control" rows="3"
+                   placeholder="Enter 10 characters or more"></textarea>
       </div>
     </form>
 
     <div>
-      <label>Taggs</label>
+      <label>Tags</label>
       <ng-select [(ngModel)]="tags" [addTag]="addTagFn" [hideSelected]="true" [items]="[]" bindLabel="name"
                  multiple="true">
       </ng-select>
     </div>
+
     <div class="mt-4">
       <label>Category</label>
       <label class="w-100">
@@ -36,22 +36,33 @@
         </ng-select>
       </label>
     </div>
-
   </div>
 
   <div class="modal-footer">
     <button (click)="closeClicked()" class="btn btn-outline-primary"
             type="button">{{'pages.cancel' | translate }}</button>
-    <button class="btn btn-primary float-right"
-            type="submit">{{ 'pages.submit' | translate}}</button>
-    <div *ngIf="showError" style="margin-top: 20px">
-      <alert [dismissible]="true" type="danger rounded">
-        Please enter 8 or more characters. Alphabets, numbers and # - ( )
+    <button (click)="submit()" class="btn btn-primary float-right"
+            type="button">{{ 'pages.submit' | translate}}</button>
+<!--    <div *ngIf="showError" style="margin-top: 20px">-->
+<!--      <alert [dismissible]="true" type="danger rounded">-->
+<!--        Please enter 8 or more characters. Alphabets, numbers and # - ( )-->
+<!--      </alert>-->
+<!--    </div>-->
+
+<!--    <div *ngIf="showSuccess" style="margin-top: 20px">-->
+<!--      <alert [dismissible]="true" type="success rounded">-->
+<!--        Your changes have been saved-->
+<!--      </alert>-->
+<!--    </div>-->
+
+    <div style="margin-top: 20px" *ngIf="showSuccess">
+      <alert  [dismissible]="true" type="success rounded">
+        Your changes have been saved
       </alert>
     </div>
-    <div *ngIf="showSuccess" style="margin-top: 20px">
-      <alert [dismissible]="true" type="success rounded">
-        Your changes have been saved
+    <div style="margin-top: 20px; min-height: 50px" class="{{!error?'hidden':''}}">
+      <alert type="danger rounded">
+        {{error}}
       </alert>
     </div>
   </div>

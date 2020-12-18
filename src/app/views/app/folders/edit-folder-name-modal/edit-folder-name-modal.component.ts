@@ -45,8 +45,8 @@ export class EditFolderNameModalComponent {
   items;
   inputText = '';
   form;
-  showError;
   showSuccess;
+  error;
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
   folder = {};
   tags;
@@ -56,9 +56,9 @@ export class EditFolderNameModalComponent {
   }
 
   show(): void {
-    this.showError = false;
+    this.error = false;
     this.form = this.fb.group({
-      name: [this.inputText, [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z0-9\-\/\#\(\) ]*')]],
+       name: [this.inputText, [Validators.required, Validators.minLength(6), Validators.pattern('[a-zA-Z ]*')]],
       description: [this.inputText, [Validators.required, Validators.minLength(10)]]
     });
     this.modalRef = this.modalService.show(this.template, this.config);
@@ -74,22 +74,36 @@ export class EditFolderNameModalComponent {
   }
 
   async submit() {
-    this.showSuccess = false;
-    if (this.form.invalid) {
-      this.showError = true;
+    if (this.form.controls.name.status === 'INVALID') {
+      this.error = 'Name is not valid';
       return;
     }
-    this.showError = false;
+    if (this.form.controls.description.status === 'INVALID') {
+      this.error = 'Description is not valid';
+      return;
+    }
+    this.items.forEach(async x => {
+      await this.assetService.updateDocument(x.md5Hash, {tags: this.tags});
+    });
+    if (this.tags.length < 3 || this.tags.filter(x => x.length < 3).length > 0) {
+      this.error = 'Please enter at least 3 tags, each 3 or more characters';
+      return;
+    }
+    if (!this.category){
+      this.error = 'Category is required';
+    }
+    if (this.form.invalid) {
+      this.error = true;
+      return;
+    }
+    this.error = false;
     await this.assetService.updateBatch(this.items, {name: this.form.value.name});
     this.showSuccess = true;
   }
 
   onChange(event) {
     this.showSuccess = false;
-    const val = event.target.value;
-    if (val.length >= 8) {
-      this.showError = false;
-    }
+    this.error = undefined;
   }
 }
 

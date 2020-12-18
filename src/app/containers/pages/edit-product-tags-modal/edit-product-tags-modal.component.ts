@@ -67,7 +67,7 @@ export class EditProductTagsModalComponent {
   }
 
   async submit() {
-    this.success = false
+    this.success = false;
     if (this.replaceTags === 'append') {
       this.items.forEach(async x => {
         await this.assetService.updateDocument(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});

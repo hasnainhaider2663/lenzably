@@ -99,6 +99,7 @@ export class FirebaseAssetService {
   }
 
   async createCollection(data): Promise<any> {
+    data.userId = this.user.id;
     await this.firestore.collection(`collections`).add(data);
   }
 

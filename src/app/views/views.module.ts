@@ -18,8 +18,12 @@ import {PagesContainersModule} from "../containers/pages/pages.containers.module
 import {FormsModule} from "@angular/forms";
 import { HomeCopyComponent } from './home-copy/home-copy.component';
 import { ProfileComponent } from './profile/profile.component';
+import {DashboardsContainersModule} from "../containers/dashboards/dashboards.containers.module";
+import {NgSelectModule} from "@ng-select/ng-select";
+import { ArtistsComponent } from './artists/artists.component';
+import {PaginationModule} from "ngx-bootstrap/pagination";
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,
@@ -34,6 +38,9 @@ import { ProfileComponent } from './profile/profile.component';
     LayoutContainersModule,
     PagesContainersModule,
     FormsModule,
+    DashboardsContainersModule,
+    NgSelectModule,
+    PaginationModule.forRoot()
   ],
   providers: [AuthGuard],
 })

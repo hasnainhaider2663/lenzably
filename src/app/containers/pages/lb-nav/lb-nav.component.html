@@ -1,0 +1,27 @@
+
+<ngx-headroom class="landing-page-nav">
+  <nav class="navbar">
+    <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
+      <a class="navbar-logo pull-left" style="margin-top: 3px; width: 150px;">
+        <img src="/assets/logos/black.svg" alt="" style=" width: 150px;">
+      </a>
+      <ul class="navbar-nav d-none d-lg-flex flex-row">
+        <li class="nav-item"><a>FEATURES</a></li>
+        <li class="nav-item"><a>LAYOUTS</a></li>
+        <li class="nav-item"><a>COMPONENTS</a>
+        </li>
+        <li class="nav-item"><a>APPS</a></li>
+        <li class="nav-item"><a>THEMES</a></li>
+        <li class="nav-item pl-3 pr-2">
+          <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank">Login</a>
+        </li>
+        <li class="nav-item pl-2 pr-0">
+          <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank">Sign Up</a>
+        </li>
+      </ul>
+      <span class="mobile-menu-button" (click)="mobileMenuButton(); $event.stopPropagation()">
+        <i class="simple-icon-menu"></i>
+      </span>
+    </div>
+  </nav>
+</ngx-headroom>

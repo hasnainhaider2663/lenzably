@@ -1,13 +1,23 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AngularFireService {
 
-  user: Observable<any>;
+  userObservable: Observable<any>;
+  userDocument: AngularFirestoreDocument;
+  userTable: AngularFirestoreCollection
+
   constructor(firestore: AngularFirestore) {
-    this.user = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB').valueChanges();
+    // firestore
+    // firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB')
+    this.userDocument = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB');
+    this.userObservable = firestore.doc('/users/VgbSx1fiEpfuwGMNrqaB').valueChanges();
+    this.userTable = firestore.collection('users')
   }
 }
+
+

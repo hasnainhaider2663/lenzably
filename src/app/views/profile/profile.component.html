@@ -1,4 +1,5 @@
 <div [ngClass]="{'landing-page light-mode public-pages': true,'show-mobile-menu': showMobileMenu}">
+
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -21,7 +22,7 @@
     </ul>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="home">
 
     <ngx-headroom class="landing-page-nav">
       <nav class="navbar">
@@ -59,28 +60,134 @@
       </nav>
     </ngx-headroom>
 
+    <div class="content-container">
 
-    <div class="content-container" id="home">
-      <div class="row">
-        <div class="col-12 mb-5">
-          <img class="social-header card-img" src="/assets/img/social/header.jpg" />
-        </div>
+      <app-section-artist-about></app-section-artist-about>
+
+      <div class="text-center" style="margin: 30px 35px 20px">
+        <p class="d-sm-inline-block mb-0">
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">All</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Milk</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Milk</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+          <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+          <a href="javascript:;" class="badge badge-lg badge-dark mr-2 mb-2">View all</a>
+        </p>
       </div>
-      <div style="padding: 0 10px">
-        <div class="row">
-          <div class="col-12 col-lg-5 col-xl-4 col-left">
-            <app-profile-user-social></app-profile-user-social>
-            <app-profile-photos></app-profile-photos>
-            <app-profile-who-to-follow></app-profile-who-to-follow>
-            <app-profile-recent-posts></app-profile-recent-posts>
-          </div>
-          <div class="col-12 col-lg-7 col-xl-8 col-right">
-            <app-profile-posts></app-profile-posts>
-          </div>
-        </div>
+
+      <div class="containerw3 row-grid">
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-5.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-6.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-7.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-9.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-11.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/details/3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/cards/thumb-4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/1.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/2.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-8.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/3.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/4.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/5.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/6.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/profiles/l-10.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/7.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/8.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/9.jpg"/>
+        </a>
+        <a class="position-relative row-item">
+          <img src="/assets/img/grid/10.jpg"/>
+        </a>
       </div>
-
-
     </div>
+
   </div>
+
+  <app-lb-footer></app-lb-footer>
+
 </div>

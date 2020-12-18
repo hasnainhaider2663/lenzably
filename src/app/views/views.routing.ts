@@ -8,6 +8,8 @@ import { AuthGuard } from '../shared/auth.guard';
 import { UserRole } from '../shared/auth.roles';
 import {ProductComponent} from "./product/product.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {HomeCopyComponent} from "./home-copy/home-copy.component";
+import {ArtistsComponent} from "./artists/artists.component";
 
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
@@ -46,6 +48,11 @@ if (!environment.isAuthGuardActive) {
       pathMatch: 'full',
     },
     {
+      path: 'home-copy',
+      component: HomeCopyComponent,
+      pathMatch: 'full',
+    },
+    {
       path: 'product',
       component: ProductComponent,
       pathMatch: 'full',
@@ -53,6 +60,11 @@ if (!environment.isAuthGuardActive) {
     {
       path: 'profile',
       component: ProfileComponent,
+      pathMatch: 'full',
+    },
+    {
+      path: 'artists',
+      component: ArtistsComponent,
       pathMatch: 'full',
     },
     {

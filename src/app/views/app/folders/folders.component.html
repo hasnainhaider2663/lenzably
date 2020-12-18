@@ -1,0 +1,78 @@
+<app-list-page-header [showAddNewButton]="true" (addNewItem)="showAddNewModal()"
+                      (changeOrderBy)="changeOrderBy($event)"
+                      (itemsPerPageChange)="itemsPerPageChange($event)"
+                      (searchKeyUp)="searchKeyUp($event)"
+                      (selectAllChange)="selectAllChange($event)" [displayMode]="displayMode"
+                      [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
+                      {label: 'Oldest First' , value : 'oldest'}]"
+                      [itemsPerPage]="itemsPerPage"
+                      [showDisplayMode]="false"
+                      [showOrderBy]="true"
+>
+</app-list-page-header>
+<app-edit-folder-name-modal #editFolderNameModalComponent></app-edit-folder-name-modal>
+<div *ngIf="error" style="margin-bottom: 20px">
+  <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
+    {{error}}
+  </alert>
+</div>
+<context-menu #basicMenu>
+  <ng-template (execute)="onContextMenuClick('edit',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-pencil mr-1"></i> <span>Edit folder</span>
+  </ng-template>
+</context-menu>
+
+
+<div class="row">
+  <div *ngIf="displayMode==='image'" class="col-12 list">
+    <div class="row">
+      <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p" [contextMenu]="basicMenu"
+           class="col-xxl-2 col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" >
+        <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 400px;">
+          <div class="position-relative">
+            <a [routerLink]="'/app/collection/'+p.payload.doc.id">
+              <div class="glyph-icon simple-icon-folder" *ngIf="!p.thumbnailURL"></div>
+              <img *ngIf="p.thumbnailURL" [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-12">
+                <a href="javascript:;">
+                  <p class="list-item-heading mb-1 pt-1">{{p.name}}</p>
+                </a>
+
+                <p class="text-muted text-small mb-2 font-weight-light" *ngIf="p.updated">{{p.updated|date}}</p>
+                <p class="text-muted text-small mb-2 font-weight-light" *ngIf="p.description">{{p.description}}</p>
+                <footer>
+                  <div>
+                    <!--                    //category-->
+                    <span *ngIf="p.category"
+                          class="badge badge-pill badge-dark mb-1 mr-1">in: {{p.category.label}}</span>
+                    <span *ngFor="let tag of p.tags" class="badge badge-pill badge-light mb-1 mr-1">{{tag}}</span>
+                  </div>
+                </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <pagination (pageChanged)="pageChanged($event)" [(ngModel)]="currentPage" [customNextTemplate]="nextTemplate"
+                [customPreviousTemplate]="prevTemplate"
+                [itemsPerPage]="itemsPerPage" [maxSize]="5" [rotate]="true"
+                [totalItems]="totalItem" class="justify-content-center">
+    </pagination>
+  </div>
+</div>
+
+<ng-template #nextTemplate let-currentPage="currentPage" let-disabled="disabled">
+  <i class='simple-icon-arrow-right'></i>
+</ng-template>
+<ng-template #prevTemplate let-currentPage="currentPage" let-disabled="disabled">
+  <i class='simple-icon-arrow-left'></i>
+</ng-template>

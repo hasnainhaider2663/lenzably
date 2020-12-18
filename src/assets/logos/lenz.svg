@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="191" height="187" viewBox="0 0 191 187">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #000;
+      }
+
+      .cls-1 {
+        stroke-width: 10.2px;
+      }
+
+      .cls-2 {
+        stroke-width: 3.15px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-4, .cls-5 {
+        stroke: #fff;
+      }
+
+      .cls-4 {
+        stroke-width: 0.95px;
+      }
+
+      .cls-5 {
+        stroke-width: 1px;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_1_copy_2" data-name="Ellipse 1 copy 2" class="cls-1" cx="96" cy="93" r="82"/>
+  <circle id="Ellipse_1_copy_2-2" data-name="Ellipse 1 copy 2" class="cls-2" cx="96.484" cy="93.484" r="54.984"/>
+  <circle id="Ellipse_2_copy" data-name="Ellipse 2 copy" cx="96.469" cy="93.469" r="47.406"/>
+  <path id="Shape_2_copy" data-name="Shape 2 copy" class="cls-3" d="M65.191,71.67l10.428,5.688s8.083-9.681,15.168-8.532L89.838,55.555S70.879,58.4,65.191,71.67Z"/>
+  <path id="Shape_3_copy" data-name="Shape 3 copy" class="cls-4" d="M61.445,78.425l12.289,6.9-1.888,5.448L57.827,88.387Z"/>
+  <path id="Shape_1_copy" data-name="Shape 1 copy" class="cls-5" d="M139.727,93.011s6.154,35.665-38.714,45.985"/>
+  <path class="cls-5" d="M114.2,53.9s9.625,1.806,12.765,9.9"/>
+  <path id="new_Shape_2" data-name="new Shape 2" class="cls-5" d="M135,107s-3.25,19.083-23,23"/>
+  <path id="new_Shape_3" data-name="new Shape 3" class="cls-5" d="M91.66,49.633s-34.984.587-40.335,41.75"/>
+</svg>

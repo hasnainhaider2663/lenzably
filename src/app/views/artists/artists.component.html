@@ -1,0 +1,231 @@
+<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+
+  <app-lb-nav-mobile></app-lb-nav-mobile>
+<!--  <div class="mobile-menu" (click)="$event.stopPropagation()">
+    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
+      <span></span>
+    </a>
+    <ul class="">
+      <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
+      <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
+      <li class="nav-item">
+        <div class="separator"></div>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Login</a>
+      </li>
+      <li class="nav-item text-center">
+        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" [href]="buyUrl">Sign Up</a>
+      </li>
+    </ul>
+  </div>-->
+
+  <div class="main-container" id="home">
+
+    <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
+
+    <!--<ngx-headroom class="landing-page-nav">
+      <nav class="navbar">
+        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
+          <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;" style="margin-top: 3px; width: 150px;">
+            <img src="/assets/logos/black.svg" alt="" style=" width: 150px;">
+          </a>
+          <ul class="navbar-nav d-none d-lg-flex flex-row">
+            <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a>
+            </li>
+            <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
+            <li class="nav-item pl-3 pr-2">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Login</a>
+            </li>
+            <li class="nav-item pl-2 pr-0">
+              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
+                 [href]="buyUrl">Sign Up</a>
+            </li>
+          </ul>
+          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
+                        <i class="simple-icon-menu"></i>
+                    </span>
+        </div>
+      </nav>
+    </ngx-headroom>-->
+
+    <div class="content-container" style="padding-top: 80px">
+
+      <div class="artists-banner position-relative">
+        <div class="home-text">
+          <h2>World's most affordable <br/>Images and Videos</h2>
+
+          <div class="home-page-search">
+            <i class="iconsminds-magnifi-glass"></i>
+            <ng-select [items]="peopleAsyncSearch | async" bindLabel="name" [addTag]="true" [multiple]="true"
+                       [hideSelected]="true" [trackByFn]="trackByFn" [minTermLength]="2"
+                       [loading]="peopleLoadingAsyncSearch" placeholder="Search the perfect creative images and videos"
+                       typeToSearchText="Please enter 2 or more characters" [typeahead]="peopleInputAsyncSearch"
+                       [(ngModel)]="selectedPersonsAsyncSearch">
+            </ng-select>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div style="padding: 30px 35px 20px">
+
+        <div *ngFor="let item of data ; let i = index" style="border-bottom: 1px solid #eee">
+          <div class="row" style="padding: 20px 0">
+            <div class="col-lg-3 col-md-6 col-12" style="padding-top: 5px;">
+              <div class="card" style="min-height: 500px">
+                <div class="card-body">
+
+                  <div class="d-flex flex-row mb-3">
+                    <a href="javascript:;">
+                      <img [src]="'/assets/img/profiles/l-'+(i+1)+'.jpg'" [alt]="item.name"
+                           class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center"/>
+                    </a>
+                    <div class="pl-3">
+                      <a href="javascript:;">
+                        <p class="list-item-heading font-weight-medium " style="color: #3a3a3a;    margin-bottom: 5px;
+    margin-top: 10px;
+    font-size: 18px;">{{item.name}}</p>
+                        <p class="text-muted mb-0 text-small">{{item.status}}</p>
+                      </a>
+                    </div>
+                  </div>
+
+                  <p class="mb-3" style="    color: #3a3a3a; font-size: 0.85rem;
+    line-height: 1.3rem;
+    font-family: 'Nunito', sans-serif;">
+                    I’m a web developer. I spend my whole day, practically every day,
+                    experimenting with HTML, CSS, and JavaScript; dabbling with Python and
+                    Ruby; and inhaling a wide variety of potentially useless information
+                    through a few hundred RSS feeds. I build websites that delight and
+                    inform. I do it well.
+                  </p>
+
+                  <p class="text-muted text-small mb-2">{{'pages.location' | translate}}</p>
+                  <p class="mb-3" style="    color: #3a3a3a; font-size: 0.85rem;
+    line-height: 1.3rem;
+    font-family: 'Nunito', sans-serif;">Nairobi, Kenya</p>
+
+                  <p class="text-muted text-small mb-2">{{'pages.responsibilities' | translate}}</p>
+                  <p class="mb-3">
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">FRONTEND</span>
+                    </a>{{" "}}
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">JAVASCRIPT</span>
+                    </a>{{" "}}
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">SECURITY</span>
+                    </a>{{" "}}
+                    <a href="#">
+                      <span class="badge badge-pill badge-outline-theme-2 mb-1">DESIGN</span>
+                    </a>
+                  </p>
+
+                  <p class="text-muted text-small mb-2">{{'pages.contact' | translate}}</p>
+                  <div class="social-icons">
+                    <ul class="list-unstyled list-inline">
+                      <li class="list-inline-item">
+                        <a href="javascript:;"><i class="simple-icon-social-facebook"></i></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:;"><i class="simple-icon-social-twitter"></i></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:;"><i class="simple-icon-social-instagram"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <button type="button" class="btn btn-outline-dark default mb-1"
+                          style="width: 100%; border: 1px solid rgba(58, 58, 58, 0.3);    margin-top: 10px;">View profile
+                  </button>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-9">
+              <div class="containerw3 fixed-height row-grid" style="height: 520px; overflow: hidden">
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/1.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/2.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-1.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/4.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-3.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-4.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-5.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-6.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-7.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-9.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-11.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/cards/thumb-1.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/profiles/l-2.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/cards/thumb-2.jpg"/>
+                </a>
+                <a class="position-relative row-item">
+                  <img src="/assets/img/details/3.jpg"/>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mt-4">
+          <pagination class="justify-content-center" [totalItems]="30"
+                      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+          </pagination>
+        </div>
+      </div>
+      <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+        <i class='simple-icon-arrow-right'></i>
+      </ng-template>
+      <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+        <i class='simple-icon-arrow-left'></i>
+      </ng-template>
+
+
+      <app-lb-footer></app-lb-footer>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+

@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BlankPageComponent } from './blank-page/blank-page.component';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
-import { UploadsComponent } from './uploads/uploads.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BlankPageComponent} from './blank-page/blank-page.component';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app.routing';
+import {UploadsComponent} from './uploads/uploads.component';
 import {PagesContainersModule} from '../../containers/pages/pages.containers.module';
 import {ContextMenuModule} from 'ngx-contextmenu';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
@@ -21,12 +21,15 @@ import {AccordionModule} from 'ngx-bootstrap/accordion';
 import {LayoutContainersModule} from '../../containers/layout/layout.containers.module';
 import {SharedModule} from '../../shared/shared.module';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
-import { ProfileComponent } from './profile/profile.component';
-import {AlertModule} from "ngx-bootstrap/alert";
+import {ProfileComponent} from './profile/profile.component';
+import {AlertModule} from 'ngx-bootstrap/alert';
+import {FoldersComponent} from "./folders/folders.component";
+import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
-  declarations: [BlankPageComponent, AppComponent, UploadsComponent, ProfileComponent],
+  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -53,7 +56,9 @@ import {AlertModule} from "ngx-bootstrap/alert";
     }),
     DropzoneModule,
     AlertModule.forRoot(),
+    NgSelectModule,
   ]
 })
-export class AppModule { }
+export class AppModule {
+}
 

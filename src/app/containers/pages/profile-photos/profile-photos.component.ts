@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Lightbox } from 'ngx-lightbox';
 
 @Component({
@@ -6,6 +6,8 @@ import { Lightbox } from 'ngx-lightbox';
   templateUrl: './profile-photos.component.html'
 })
 export class ProfilePhotosComponent {
+  @Input() title = 'Photos';
+  @Input() colSplit = 'col-6';
   album = [
     {
       src: '/assets/img/products/marble-cake.jpg',

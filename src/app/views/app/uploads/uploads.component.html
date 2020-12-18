@@ -1,113 +1,82 @@
-<app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
-                      (changeDisplayMode)="changeDisplayMode($event)"
-                      (addNewItem)="showAddNewModal()"
-                      (selectAllChange)="selectAllChange($event)"
-                      (itemsPerPageChange)="itemsPerPageChange($event)"
+<app-list-page-header (changeDropdownItem)="changeDropdownItem($event)"
                       (changeOrderBy)="changeOrderBy($event)"
-                      (searchKeyUp)="searchKeyUp($event)"
+                      (itemsPerPageChange)="itemsPerPageChange($event)"
+                      (searchKeyUp)="searchKeyUp($event)" [showCheckbox]="true"
+                      (selectAllChange)="selectAllChange($event)" [displayMode]="displayMode"
+                      [dropDownItems]="[{ label: 'Edit names', value: 'name' }, { label: 'Edit descriptions', value: 'description' }, { label: 'Edit tags', value: 'tags' }, { label: 'Edit category', value: 'category' } ]"
+                      [itemOptionsOrders]="[{ label: 'File Name', value: 'name' }, {label: 'Latest First' , value: 'latest'},
+                      {label: 'Oldest First' , value : 'oldest'}]"
+                      [itemOptionsPerPage]="[50,100,200]" [itemsPerPage]="itemsPerPage"
+                      [selectAllState]="selectAllState" [showDisplayMode]="false"
+                      [showOrderBy]="true" [title]="collection.name"
 >
 </app-list-page-header>
-<app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>
-
-<div style="margin-bottom: 20px">
-  <alert type="danger rounded" [dismissible]="true" [dismissOnTimeout]="10000">
-  {{'alert.dismissing-without-animate-text' | translate}} (10 seconds)</alert>
+<app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
+<app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
+<app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
+<app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
+<div *ngIf="error" style="margin-bottom: 20px">
+  <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
+    {{error}}
+  </alert>
 </div>
 <div style="margin-bottom: 20px">
-  <dropzone [config]="config" [message]="'form-components.dropzone-message' | translate" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+  <dropzone (error)="onUploadError($event)" (success)="onUploadSuccess($event)" [config]="config"
+            [message]="'form-components.dropzone-message' | translate"></dropzone>
 </div>
 
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('copy',$event.item)">
-    <i class="simple-icon-docs mr-1"></i> <span>Copy</span>
+  <ng-template (execute)="onContextMenuClick('name',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-pencil mr-1"></i> <span>Edit name</span>
   </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('move-to-archive',$event.item)">
-    <i class="simple-icon-drawer mr-1"></i> <span>Move to archive</span>
+  <ng-template (execute)="onContextMenuClick('description',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-paper-clip mr-1"></i> <span>Edit description</span>
   </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
-    <i class="simple-icon-trash mr-1"></i><span>Delete</span>
+  <ng-template (execute)="onContextMenuClick('tags',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-tag mr-1"></i><span>Edit tags</span>
+  </ng-template>
+  <ng-template (execute)="onContextMenuClick('category',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-list mr-1"></i><span>Edit category</span>
   </ng-template>
 </context-menu>
 
 
 <div class="row">
-  <div class="col-12 list" *ngIf="displayMode==='list'">
-    <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
-         [contextMenu]="basicMenu" [contextMenuSubject]="p">
-      <div class="d-flex flex-grow-1 min-width-zero">
-        <div
-          class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-          <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
-            {{p.title}}
-          </a>
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.category}}</p>
-          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
-          <div class="w-15 w-xs-100">
-            <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
-          </div>
-        </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-                 (change)="onSelect(p)">
-          <label class="custom-control-label" [for]="'customCheck'+i"></label>
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-12 list" *ngIf="displayMode==='thumb'">
-    <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
-         [contextMenu]="basicMenu" [contextMenuSubject]="p">
-      <a class="d-flex" href="javascript:;">
-        <img [src]="p.img" [alt]="p.title" class="list-thumbnail responsive border-0 card-img-left" />
-      </a>
-      <div class="pl-2 d-flex flex-grow-1 min-width-zero">
-        <div
-          class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-          <a href="javascript:;" class="w-40 w-sm-100">
-            <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
-          </a>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.category}}</p>
-          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
-          <div class="w-15 w-sm-100">
-            <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
-          </div>
-        </div>
-        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
-          <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-                 (change)="onSelect(p)">
-          <label class="custom-control-label" [for]="'customCheck'+i"></label>
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-12 list" *ngIf="displayMode==='image'">
+  <div *ngIf="displayMode==='image'" class="col-12 list">
     <div class="row">
-      <div class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" *ngFor="let p of data; let i=index"
-           [contextMenu]="basicMenu" [contextMenuSubject]="p">
-        <div [ngClass]="{'card': true, 'active':isSelected(p)}">
+      <div *ngFor="let p of assets; let i=index" [contextMenuSubject]="p" [contextMenu]="basicMenu"
+           class="col-xl-2 col-lg-4 col-12 col-sm-6 mb-4" >
+        <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 580px;">
           <div class="position-relative">
-            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
-            <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.statusColor">{{p.status}}</span>
+            <a href="javascript:;"><img [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>
+            <span
+              [class]="'badge badge-pill position-absolute badge-top-left badge-secondary'">{{i}}</span>
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-2">
+              <div class="col-1">
                 <div class="custom-control custom-checkbox pl-1">
                   <label class="custom-control custom-checkbox  mb-0">
-                    <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
-                           (change)="onSelect(p)">
-                    <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                    <input (change)="onSelect(p)" [checked]="isSelected(p)" [id]="'customCheck'+i"
+                           class="custom-control-input"
+                           type="checkbox">
+                    <label [for]="'customCheck'+i" class="custom-control-label"></label>
                   </label>
                 </div>
               </div>
-              <div class="col-10">
+              <div class="col-11">
                 <a href="javascript:;">
-                  <p class="list-item-heading mb-4 pt-1">{{p.title}}</p>
+                  <p class="list-item-heading mb-1 pt-1">{{p.name}}</p>
                 </a>
+
+                <p class="text-muted text-small mb-2 font-weight-light">{{p.updated|date}}</p>
                 <footer>
-                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                  <div>
+                    <!--                    //category-->
+                    <span *ngIf="p.category"
+                          class="badge badge-pill badge-dark mb-1 mr-1">in: {{p.category.label}}</span>
+                    <span *ngFor="let tag of p.tags" class="badge badge-pill badge-light mb-1 mr-1">{{tag}}</span>
+                  </div>
                 </footer>
               </div>
             </div>
@@ -118,16 +87,17 @@
   </div>
 
   <div class="col-12">
-    <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
-                [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
-                [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+    <pagination (pageChanged)="pageChanged($event)" [(ngModel)]="currentPage" [customNextTemplate]="nextTemplate"
+                [customPreviousTemplate]="prevTemplate"
+                [itemsPerPage]="itemsPerPage" [maxSize]="5" [rotate]="true"
+                [totalItems]="totalItem" class="justify-content-center">
     </pagination>
   </div>
 </div>
 
-<ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+<ng-template #nextTemplate let-currentPage="currentPage" let-disabled="disabled">
   <i class='simple-icon-arrow-right'></i>
 </ng-template>
-<ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+<ng-template #prevTemplate let-currentPage="currentPage" let-disabled="disabled">
   <i class='simple-icon-arrow-left'></i>
 </ng-template>

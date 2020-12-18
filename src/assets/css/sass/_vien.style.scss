@@ -1344,6 +1344,10 @@ a.btn-secondary:not([href]):not([tabindex]) {
 }
 
 /* 04.Borders */
+.lb-border {
+  border: 1px solid $separator-color !important;
+}
+
 .border {
   border: 1px solid $separator-color-light !important;
 }
@@ -9124,6 +9128,9 @@ body {
       display: none;
     }
   }
+  &.no-padding-bottom {
+    padding-bottom: 0;
+  }
 }
 
 footer.page-footer {
@@ -9478,7 +9485,7 @@ footer.page-footer {
 
   h1 {
     font-size: 3rem;
-    color: $theme-color-1;
+    color: $primary-color;
     margin-bottom: 2rem;
 
     @include respond-below(sm) {
@@ -9488,7 +9495,7 @@ footer.page-footer {
 
   h2 {
     font-size: 1.8rem;
-    color: $theme-color-1;
+    color: $primary-color;
     margin-bottom: 2rem;
 
     @include respond-below(md) {
@@ -9503,7 +9510,7 @@ footer.page-footer {
   h3 {
     font-size: 1.4rem;
     line-height: 1.4;
-    color: $theme-color-1;
+    color: $primary-color;
 
     @include respond-below(sm) {
       font-size: 1.1rem;
@@ -9519,12 +9526,13 @@ footer.page-footer {
   }
 
   .btn-outline-semi-light {
-    border: 1px solid rgba($button-text-color, 0.3);
+    border: 1px solid rgba($primary-color, 0.3);
     color: $button-text-color;
     background: transparent;
 
     &:hover,
     &:active {
+      color: $button-text-color !important;
       border: 1px solid darken($theme-color-1, 10%);
       background: darken($theme-color-1, 10%);
     }
@@ -9582,7 +9590,8 @@ footer.page-footer {
       height: 40px;
 
       .white {
-        display: inline-block;
+        //display: inline-block;
+        display: none;
         width: 120px;
         height: 40px;
         background: url($lp-logo-path);
@@ -9594,7 +9603,8 @@ footer.page-footer {
         height: 40px;
         background: url($lp-logo-path-pinned);
         background-repeat: no-repeat;
-        display: none;
+        //display: none;
+        display: inline-block;
       }
     }
 
@@ -9649,7 +9659,7 @@ footer.page-footer {
 
       .nav-item > a,
       .nav-item > .dropdown > a {
-        color: $button-text-color;
+        color: $primary-color;
         font-family: Nunito, sans-serif;
         font-size: 1rem;
         display: inline-block;
@@ -9692,6 +9702,7 @@ footer.page-footer {
           }
         }
       }
+
     }
   }
 
@@ -9750,7 +9761,7 @@ footer.page-footer {
 
   .landing-page-nav .headroom--unfixed {
     .mobile-menu-button {
-      color: $button-text-color;
+      color: $primary-color;
     }
   }
 

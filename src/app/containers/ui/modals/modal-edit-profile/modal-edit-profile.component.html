@@ -1,0 +1,116 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form [formGroup]="basicForm" #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
+    <div class="form-group error-l-50">
+      <label>{{ 'forms.avatar' | translate }}</label>
+      <dropzone [config]="config" [message]="'form-components.dropzone-message' | translate" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <div *ngIf="basicForm.get('avatar').errors?.required && form.submitted" class="invalid-tooltip">Avatar is required!</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group error-l-50">
+          <label>{{ 'forms.name' | translate }}</label>
+          <input type="text" class="form-control" name="name" formControlName="name">
+          <div *ngIf="basicForm.get('name').errors?.required && form.submitted" class="invalid-tooltip">Name is required!</div>
+          <div *ngIf="basicForm.get('name').errors?.minlength && form.submitted" class="invalid-tooltip">Name must contain at least 2 characters!</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>{{ 'forms.email' | translate }}</label>
+          <input type="email" class="form-control" formControlName="email">
+          <div *ngIf="basicForm.get('email').errors?.required && form.submitted" class="invalid-tooltip">Email is required</div>
+          <div *ngIf="basicForm.get('email').errors?.email && form.submitted" class="invalid-tooltip">Email must be a valid address</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>{{ 'forms.location' | translate }}</label>
+          <input type="text" class="form-control" formControlName="location">
+          <div *ngIf="basicForm.get('location').errors?.required && form.submitted" class="invalid-tooltip">Location is required</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>{{ 'forms.interests' | translate }}</label>
+          <ng-select [items]="peopleAsyncSearch | async" bindLabel="name" [addTag]="true" [multiple]="true"
+                     [hideSelected]="true" [trackByFn]="trackByFn" [minTermLength]="2" [loading]="peopleLoadingAsyncSearch"
+                     typeToSearchText="Please enter 2 or more characters" [typeahead]="peopleInputAsyncSearch"
+                     formControlName="interests">
+          </ng-select>
+          <div *ngIf="basicForm.get('interests').errors?.required && form.submitted" class="invalid-tooltip">Interests are required!</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label>{{ 'forms.details' | translate }}</label>
+      <textarea class="form-control" rows="3" formControlName="details"></textarea>
+      <div *ngIf="basicForm.get('details').errors?.required && form.submitted" class="invalid-tooltip">Details are required!</div>
+    </div>
+
+
+    <h5 class="mb-3">{{'input-groups.social-links' | translate}}</h5>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">https://www.facebook/</span>
+          </div>
+          <input type="text" class="form-control" formControlName="facebook" id="basic-url1" aria-describedby="basic-addon1">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon11">.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">https://www.twitter/</span>
+          </div>
+          <input type="text" class="form-control" formControlName="twitter" id="basic-url2" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon12">.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">https://www.instagram/</span>
+          </div>
+          <input type="text" class="form-control" formControlName="instagram" id="basic-url3" aria-describedby="basic-addon3">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon13">.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon4">https://www.pinterest/</span>
+          </div>
+          <input type="text" class="form-control" formControlName="pinterest" id="basic-url4" aria-describedby="basic-addon4">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon14">.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <button class="btn btn-primary mr-2" type="submit">{{ 'forms.submit' | translate }}</button>
+    <button class="btn btn-outline-primary" type="button" (click)="this.basicForm.reset()">{{ 'forms.clear' | translate }}</button>
+  </form>
+</div>

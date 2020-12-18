@@ -178,6 +178,7 @@
     "top-rated-items": "Top Rated Items"
   },
   "pages": {
+    "interests": "Interests",
     "add-new": "ADD NEW",
     "add-new-modal-title": "Add New Item",
     "display-options": "Display Options",
@@ -347,6 +348,7 @@
     "new": "New"
   },
   "button": {
+    "purchase-now": "Purchase Now",
     "default": "Bootstrap Default",
     "colors": "Colors",
     "rounded": "Rounded",
@@ -476,6 +478,9 @@
     "quill-bubble": "Quill Bubble"
   },
   "forms": {
+    "avatar": "Avatar",
+    "interests": "Interests",
+    "location": "Location",
     "basic": "Basic",
     "email": "E-mail",
     "email-muted": "We'll never share your email with anyone else.",
@@ -483,6 +488,7 @@
     "custom-checkbox": "Check this custom checkbox",
     "age": "Age",
     "submit": "Submit",
+    "clear": "Clear",
     "horizontal": "Horizontal",
     "radios": "Radios",
     "first-radio": "First radio",
@@ -575,6 +581,7 @@
     "iconsmind": "Iconsmind Icons"
   },
   "input-groups": {
+    "social-links": "Social links",
     "basic": "Basic",
     "sizing": "Sizing",
     "small": "Small",
@@ -607,6 +614,7 @@
     "learn-more": "Learn more"
   },
   "modal": {
+    "edit-profile": "Edit profile",
     "basic": "Basic",
     "modal-title": "Modal Title",
     "modal-content": "Modal Content",

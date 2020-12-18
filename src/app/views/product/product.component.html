@@ -1,4 +1,5 @@
 <div [ngClass]="{'landing-page light-mode public-pages': true,'show-mobile-menu': showMobileMenu}">
+
   <div class="mobile-menu" (click)="$event.stopPropagation()">
     <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
       <span></span>
@@ -21,7 +22,7 @@
     </ul>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="home">
 
     <ngx-headroom class="landing-page-nav">
       <nav class="navbar">
@@ -59,70 +60,351 @@
       </nav>
     </ngx-headroom>
 
-
-    <div class="content-container" id="home" style="padding: 10px">
-
-      <div class="row">
-        <div class="col-12 col-md-12 col-xl-8 col-left">
-          <div class="card mb-4">
-            <div class="card-body">
-              <app-glide-thumbs [images]="detailImages" [settingsImages]="{
-              bound: true,
-              rewind: false,
-              focusAt: 0,
-              startAt: 0,
-              gap: 5,
-              perView: 1
-            }" [thumbs]="detailThumbs" [settingsThumbs]="{
-              bound: true,
-              rewind: false,
-              focusAt: 0,
-              startAt: 0,
-              gap: 10,
-              perView: 5,
-              breakpoints: {
-                '2640' : { perView: 5 },
-                '576' : { perView: 4 },
-                '420' : { perView: 3 }
-              }
-            }"></app-glide-thumbs>
-            </div>
+    <div class="product-container d-flex flex-row justify-content-between overflow-hidden">
+      <div style="overflow: hidden">
+        <div class="separator" style="width: calc(100vw - 400px); height: 100%; overflow: hidden">
+          <div class="blur-bg-wrap" style="height: calc(100vh - 400px); overflow: hidden">
+            <div class="blur-bg" [style.background-image]="'url(/assets/img//details/5.jpg)'"></div>
+            <figure>
+              <img src="/assets/img/details/5.jpg" alt="">
+            </figure>
           </div>
 
-          <app-product-detail-tabs></app-product-detail-tabs>
-        </div>
+          <div class="" style="padding: 25px 35px 1rem;">
 
-        <div class="col-12 col-md-12 col-xl-4 col-right">
-          <app-product-detail-info></app-product-detail-info>
-          <app-profile-photos></app-profile-photos>
+            <h4 class="card-title">Game Changing Features</h4>
+            <p>
+              commitment because sustainable. Rubric when vibrant black lives matter benefit
+              corporation human-centered. Save the world, problem-solvers support silo mass
+              incarceration. Accessibility empower communities changemaker, low-hanging fruit
+              accessibility. commitment because sustainable. Rubric when vibrant black lives matter benefit
+              corporation human-centered.
+            </p>
+
+            <div class="separator"></div>
+            <!--            <hr style="border-color: #707070">-->
+
+            <h5 class="card-title mt-3">Keywords</h5>
+            <p class="d-sm-inline-block mb-0">
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">All</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Flour</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Chocolate</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Milk</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Caster Sugar</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Baking Powder</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Milk</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Eggs</a>
+              <a href="javascript:;" class="badge badge-lg badge-outline-dark mr-2 mb-2">Vegetable Oil</a>
+              <a href="javascript:;" class="badge badge-lg badge-dark mr-2 mb-2">View all</a>
+            </p>
+          </div>
+
         </div>
       </div>
+      <div>
+        <div class="" style="width: 400px">
+          <div style="height: calc(100vh - 400px); overflow: hidden; position:relative;">
+            <div style="position:absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%">
 
-      <div class="section footer mb-0">
-        <div class="container">
-          <div class="row footer-row">
-            <div class="col-12 text-right">
-              <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
-                 (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
-            </div>
-            <div class="col-12 text-center footer-content">
-              <a (click)="scrollTo('#home')" href="javascript:;">
-                <img class="footer-logo" alt="footer logo"
-                     src="/assets/logos/white-full.svg"/>
-              </a>
+              <div class="card-body text-center">
+                <div class="mb-3">
+                  <div class="post-icon mr-3 d-inline-block"><a href="#"><i
+                    class="simple-icon-heart mr-1"></i></a> <span>4 People
+                  Liked this</span></div>
+                  <!--           <div class="post-icon d-inline-block"><i class="simple-icon-bubble mr-1"></i> <span>1
+                             Comment</span></div>-->
+                </div>
+                <h4 class="card-title mt-4">Purchase this image</h4>
+                <p class="mt-3 mb-5">All Royalty-Free licenses include global use rights, comprehensive protection,
+                  simple pricing with
+                  volume discounts available. <a href="">Read More</a></p>
+
+                <div class="lb-border">
+                  <p style="margin-top: 1rem;"><span><b>Large</b> • <!-- -->3960<!-- --> × <!-- -->2640
+                    <!-- --> pixels</span></p>
+                  <p>33.5 × 22.4 cm • 300 DPI • JPEG<!-- -->&nbsp;</p>
+                </div>
+
+                <div class="item-pricing mt-5 mb-4">
+                  <span class="item-price" style="font-size: 26px">$499.00</span>
+                  <span class="item-currency ml-1">USD</span>
+                </div>
+
+                <button type="button"
+                        class="btn btn-dark btn-lg mb-1"
+                        style="border-radius: .3rem; width: 100%">{{'button.purchase-now' | translate}}</button>
+
+
+              </div>
             </div>
           </div>
         </div>
-        <div class="container copyright pt-5 pb-5">
-          <div class="row">
-            <div class="col-12"></div>
-            <div class="col-12 text-center">
-              <p class="mb-0">2020 © ColoredStrategies</p>
+
+        <!--        artist card-->
+        <div style="background: #000000; height: 100%">
+          <div>
+
+            <div class="card flex-row listing-card-container" style="padding: 20px">
+              <div class="position-relative" style="width: 100px">
+                <a [routerLink]="adminRoot + '/pages/blog/blog-detail'">
+                  <img class="card-img-left" src="https://c.stocksy.com/i/L60000b1?m=20200814094835"
+                       alt="Card image cap" style="height: 100px; border-radius: 50%">
+                </a>
+              </div>
+              <div class="w-70 d-flex align-items-center">
+                <div class="card-body" style="    padding: 1rem 1.75rem;">
+                  <a [routerLink]="adminRoot + '/pages/blog/blog-detail'" style="color: #cecece">
+                    <h5 class="mb-3" ellipsis>Alamour
+                      studio</h5>
+                  </a>
+                  <p class="text-muted" style="margin-bottom: 0" ellipsis>Austin Texas
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="image-details" style="padding: 20px">
+              <div><p>Image <a href="" style="color: #cecece">#3404490</a> <br>
+                Uploaded September 9, 6:19 PM <br>
+                Camera: Canon EOS 5D Mark III</p></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="content-container">
+
+
+      <div>
+
+        <h3 class="card-title mt-4" style="padding: 0 35px">More form this album <a href="" class="ml-2"
+                                                                                    style="font-size: 14px; text-decoration: underline">view
+          all</a></h3>
+
+        <div class="containerw3 fixed-height row-grid" style="height: 265px; overflow: hidden">
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-5.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-6.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-7.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-9.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-11.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/3.jpg"/>
+          </a>
+        </div>
+
+      </div>
+      <div>
+
+        <h3 class="card-title mt-4" style="padding: 0 35px">More form this artist <a href="" class="ml-2"
+                                                                                     style="font-size: 14px; text-decoration: underline">view
+          all</a></h3>
+
+        <div class="containerw3 fixed-height row-grid" style="height: 265px; overflow: hidden">
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-8.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/5.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/6.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-10.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/7.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/8.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/9.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/10.jpg"/>
+          </a>
+        </div>
+
+      </div>
+
+      <div>
+
+        <h3 class="card-title mt-4" style="padding: 0 35px">Similar looking</h3>
+
+        <div class="containerw3 row-grid">
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-5.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-6.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-7.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-9.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-11.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/details/3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/cards/thumb-4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/1.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/2.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-8.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/3.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/4.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/5.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/6.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/profiles/l-10.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/7.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/8.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/9.jpg"/>
+          </a>
+          <a class="position-relative row-item">
+            <img src="/assets/img/grid/10.jpg"/>
+          </a>
+        </div>
+
+      </div>
+
 
     </div>
+
   </div>
+
+  <app-lb-footer></app-lb-footer>
+
 </div>

@@ -1,11 +1,13 @@
-import { Component, TemplateRef,  ViewChild } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {FirebaseAssetService} from "../../../firebase-asset.service";
+
 @Component({
   selector: 'app-add-new-product-modal',
   templateUrl: './add-new-product-modal.component.html',
   styles: []
 })
-export class AddNewProductModalComponent  {
+export class AddNewProductModalComponent {
   modalRef: BsModalRef;
   config = {
     backdrop: true,
@@ -13,19 +15,50 @@ export class AddNewProductModalComponent  {
     class: 'modal-right'
   };
   categories = [
-    { label: 'Cakes', value: 'chocolate' },
-    { label: 'Cupcakes', value: 'vanilla' },
-    { label: 'Desserts', value: 'strawberry' }
+    {label: 'Wallpapers', value: 'wallpapers'},
+    {label: 'Nature', value: 'nature'},
+    {label: 'People', value: 'people'},
+    {label: 'Architecture', value: 'architecture'},
+    {label: 'Current Events', value: 'current events'},
+    {label: 'Experimental', value: 'experimental'},
+    {label: 'Fashion', value: 'fashion'},
+    {label: 'Film', value: 'film'},
+    {label: 'Health and wellness', value: 'healthandwellness'},
+    {label: 'Interiors', value: 'interiors'},
+    {label: 'Street Photography', value: 'streetphotography'},
+    {label: 'Work From Home', value: 'work from home'},
+    {label: 'Technology', value: 'technology'},
+    {label: 'Travel', value: 'travel'},
+    {label: 'Textures and Patterns', value: 'texturesandpatterns'},
+    {label: 'Business and Work', value: 'businessandwork'},
+    {label: 'COVID-19', value: 'covid19'},
+    {label: 'Animals', value: 'animals'},
+    {label: 'Food and Drinks', value: 'foodanddrinks'},
+    {label: 'Athletics', value: 'athletics'},
+    {label: 'Spirituality', value: 'spirituality'},
+    {label: 'Food and Drinks', value: 'foodanddrinks'},
+    {label: 'Arts and Culture', value: 'artsandculture'},
+    {label: 'History', value: 'history'},
+    {label: 'Sustainability', value: 'sustainability'},
   ];
+  items;
 
 
-  @ViewChild('template', { static: true }) template: TemplateRef<any>;
+  @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
+  }
 
 
   show(): void {
     this.modalRef = this.modalService.show(this.template, this.config);
   }
 
+  closeClicked() {
+    this.modalRef.hide();
+  }
+
+  async submit() {
+    await this.assetService.updateBatch(this.items, {name: 'Le cube'})
+  }
 }

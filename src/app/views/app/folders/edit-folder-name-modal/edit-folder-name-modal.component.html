@@ -8,10 +8,9 @@
 
   <div class="modal-body">
     <form  [formGroup]="form" *ngIf="form">
-        <label class="form-group has-float-label">
+        <label>Name</label>
           <input (input)="onChange($event)" class="form-control" type="text" formControlName="name" placeholder="Four or more letters"/>
-          <span>Name</span>
-        </label>
+
 
       <div class="mt-4">
         <label>Description</label>
@@ -20,7 +19,7 @@
       </div>
     </form>
 
-    <div>
+    <div class="mt-4">
       <label>Tags</label>
       <ng-select [(ngModel)]="tags" [addTag]="addTagFn" [hideSelected]="true" [items]="[]" bindLabel="name"
                  multiple="true">
@@ -36,24 +35,6 @@
         </ng-select>
       </label>
     </div>
-  </div>
-
-  <div class="modal-footer">
-    <button (click)="closeClicked()" class="btn btn-outline-primary"
-            type="button">{{'pages.cancel' | translate }}</button>
-    <button (click)="submit()" class="btn btn-primary float-right"
-            type="button">{{ 'pages.submit' | translate}}</button>
-<!--    <div *ngIf="showError" style="margin-top: 20px">-->
-<!--      <alert [dismissible]="true" type="danger rounded">-->
-<!--        Please enter 8 or more characters. Alphabets, numbers and # - ( )-->
-<!--      </alert>-->
-<!--    </div>-->
-
-<!--    <div *ngIf="showSuccess" style="margin-top: 20px">-->
-<!--      <alert [dismissible]="true" type="success rounded">-->
-<!--        Your changes have been saved-->
-<!--      </alert>-->
-<!--    </div>-->
 
     <div style="margin-top: 20px" *ngIf="showSuccess">
       <alert  [dismissible]="true" type="success rounded">
@@ -65,5 +46,12 @@
         {{error}}
       </alert>
     </div>
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="closeClicked()" class="btn btn-outline-primary"
+            type="button">{{'pages.cancel' | translate }}</button>
+    <button (click)="submit()" class="btn btn-primary float-right"
+            type="button">{{ 'pages.submit' | translate}}</button>
   </div>
 </ng-template>

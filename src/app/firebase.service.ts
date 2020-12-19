@@ -85,7 +85,7 @@ export class FirebaseService {
   }
 
   subscribeToDocument(tableName: TableTypes, documentReference): Observable<Action<DocumentSnapshot<any>>> {
-    return this.firestore.doc(documentReference).snapshotChanges();
+    return this.firestore.doc(`${tableName}/${documentReference}`).snapshotChanges();
   }
 
   findAndSubscribeToDocument(tableName: TableTypes, condition: QueryFn): Observable<DocumentChangeAction<any>[]> {

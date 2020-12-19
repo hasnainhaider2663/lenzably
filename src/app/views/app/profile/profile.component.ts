@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from '../../../firebase.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,22 +9,20 @@ import {FirebaseService} from '../../../firebase.service';
 })
 export class ProfileComponent implements OnInit {
   username;
-  user
+  user;
 
-  constructor(private firebaseService: FirebaseService) {
+  constructor(private route: ActivatedRoute, private firebaseService: FirebaseService) {
   }
 
   ngOnInit(): void {
+    this.username = this.route.snapshot.paramMap.get('username');
     // read username
     //
-    this.firebaseService.findAndSubscribeToDocument("users",
-      x => x.where('username', '==', 'hasnain2663')).subscribe(
+    this.firebaseService.findAndSubscribeToDocument('users',
+      x => x.where('username', '==', this.username)).subscribe(
       result => {
-        const user = result[0].payload.doc.data()
-        this.user = user;
-        console.log(user['name'])
+        this.user = result[0].payload.doc.data();
+        console.log(this.user);
       });
-
   }
-
 }

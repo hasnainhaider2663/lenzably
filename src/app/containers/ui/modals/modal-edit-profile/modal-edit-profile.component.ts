@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {concat, Observable, of, Subject} from "rxjs";
-import {Person, SelectDataService} from "../../../forms/select/select.data.service";
-import {catchError, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
-import {FirebaseService} from "../../../../firebase.service";
+import {concat, Observable, of, Subject} from 'rxjs';
+import {Person, SelectDataService} from '../../../forms/select/select.data.service';
+import {catchError, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
+import {FirebaseService} from '../../../../firebase.service';
 
 @Component({
   selector: 'app-modal-edit-profile',
@@ -29,12 +29,19 @@ export class ModalEditProfileComponent implements OnInit {
   };
 
   @ViewChild('form') form: NgForm;
-  user = {id: 'VgbSx1fiEpfuwGMNrqaB'}
+  user: any;
+  userId = 'VgbSx1fiEpfuwGMNrqaB';
 
   constructor(public bsModalRef: BsModalRef, private selectDataService: SelectDataService, private firebaseService: FirebaseService) {
   }
 
   ngOnInit(): void {
+    this.firebaseService.subscribeToDocument('users', this.userId).subscribe(y => {
+      this.user = y.payload.data;
+      console.log(y);
+      console.log(this.user);
+    });
+
 
     this.basicForm = new FormGroup({
       avatar: new FormControl(null, [Validators.required]),

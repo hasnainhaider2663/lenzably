@@ -83,13 +83,13 @@ export class ModalEditProfileComponent implements OnInit {
     this.error = event[1];
   }
 
-  async onUploadSuccess(event): void {
+  async onUploadSuccess(event) {
     console.log(event);
     this.error = undefined;
     await this.firebaseService.uploadFile('users', this.userId, event[0], 'avatarFile');
   }
 
-  async onSubmit(): void {
+  async onSubmit() {
     console.log(this.basicForm);
     await this.firebaseService.updateDocument('users', this.userId, this.basicForm.value);
   }

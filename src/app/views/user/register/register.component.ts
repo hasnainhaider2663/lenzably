@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  onSubmit(): void {
+  async onSubmit()  {
     console.log(this.registerForm);
     if (this.registerForm.controls.fullName.status === 'INVALID') {
       this.error = 'Full name is not valid';
@@ -62,22 +62,23 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.error = undefined;
 
     if (this.registerForm.valid && !this.buttonDisabled) {
       this.buttonDisabled = true;
       this.buttonState = 'show-spinner';
-
-      this.authService.register(this.registerForm.value).then((user) => {
-        this.router.navigate([environment.adminRoot]);
-      }).catch((error) => {
-        this.notifications.create('Error', error.message, NotificationType.Bare,
+      try {
+        await this.firebaseService.createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.password);
+        this.error = undefined;
+        this.showSuccess = true;
+      } catch (e) {
+        this.notifications.create('Error', e.message, NotificationType.Bare,
           {theClass: 'outline primary', timeOut: 6000, showProgressBar: false});
-        this.buttonDisabled = false;
-        this.buttonState = '';
-      });
+        this.error = e.message;
+        console.log(e);
+      }
     }
-    this.showSuccess = true;
+    this.buttonDisabled = false;
+    this.buttonState = '';
   }
 
   onChange(event) {

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  onSubmit(): void {
+  async onSubmit() {
     console.log(this.loginForm);
     if (this.loginForm.controls.email.status === 'INVALID') {
       this.error = 'Email is not valid';
@@ -41,27 +41,26 @@ export class LoginComponent implements OnInit {
       this.error = 'Password is not valid';
       return;
     }
-    if (this.loginForm.valid) {
-      if (this.buttonDisabled) {
-
-        this.buttonDisabled = true;
-        this.buttonState = 'show-spinner';
-        this.authService.signIn(this.loginForm.value).then(() => {
-          this.router.navigate([environment.adminRoot]);
-        }).catch((error) => {
-          this.buttonDisabled = false;
-          this.buttonState = '';
-          this.notifications.create('Error', error.message, NotificationType.Bare, {
-            theClass: 'outline primary',
-            timeOut: 6000,
-            showProgressBar: false
-          });
-        });
+    if (this.loginForm.valid && !this.buttonDisabled) {
+      this.buttonDisabled = true;
+      this.buttonState = 'show-spinner';
+      try {
+        await this.firebaseService.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
+        this.error = undefined;
+        this.showSuccess = true;
+      } catch (e) {
+        this.notifications.create('Error', e.message, NotificationType.Bare,
+          {theClass: 'outline primary', timeOut: 6000, showProgressBar: false});
+        this.error = e.message;
+        console.log(e);
       }
+      this.buttonDisabled = false;
+      this.buttonState = '';
     }
   }
+
   onChange(event) {
-  this.showSuccess = false;
-  this.error = undefined;
-}
+    this.showSuccess = false;
+    this.error = undefined;
+  }
 }

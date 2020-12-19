@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryFn} from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {Observable} from "rxjs";
+import {AngularFireAuth} from "@angular/fire/auth";
 
 type  TableTypes = 'users' | 'assets' | 'collections';
 
@@ -12,7 +13,7 @@ type  TableTypes = 'users' | 'assets' | 'collections';
 export class FirebaseService {
   user = {id: undefined};
 
-  constructor(private firestore: AngularFirestore, public storage: AngularFireStorage) {
+  constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
     this.user.id = 'VgbSx1fiEpfuwGMNrqaB';
 
   }
@@ -129,5 +130,47 @@ export class FirebaseService {
   async createDocumentInCollection(path, document): Promise<any> {
     await this.firestore.doc(path).set(document);
   }
+
+  async createUserWithEmailAndPassword(email: string, password: string) {
+    try {
+      return await this.firebaseAuth
+        .createUserWithEmailAndPassword(email, password);
+    } catch (e) {
+      throw e;
+    }
+
+  }
+
+  async signInWithEmailAndPassword(email: string, password: string) {
+    try {
+      return await this.firebaseAuth.signInWithEmailAndPassword(email, password);
+    } catch (e) {
+      throw e;
+    }
+
+  }
+
+  async sendPasswordResetEmail(email: string, password: string) {
+    try {
+      return await this.firebaseAuth.sendPasswordResetEmail(email);
+    } catch (e) {
+      throw e;
+    }
+
+  }
+
+  async verifyPasswordResetCode(code) {
+    try {
+      return await this.firebaseAuth.verifyPasswordResetCode(code);
+    } catch (e) {
+      throw e;
+    }
+
+  }
+
+  async signOut() {
+    await this.firebaseAuth.signOut();
+  }
+
 
 }

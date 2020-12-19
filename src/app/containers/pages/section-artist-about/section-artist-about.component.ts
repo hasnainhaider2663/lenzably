@@ -13,9 +13,11 @@ import {FirebaseService} from "../../../firebase.service";
 export class SectionArtistAboutComponent implements OnInit {
 
   @Input() editMode = false;
+  @Input() user;
   bsModalRef: BsModalRef;
 
-  constructor(private lightbox: Lightbox, private modalService: BsModalService, private translateService: TranslateService,private firebaseService:FirebaseService) { }
+  constructor(private lightbox: Lightbox, private modalService: BsModalService, private translateService: TranslateService,
+              private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
   }

@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
       result => {
         const user = result[0].payload.doc.data()
         this.user = user;
-        console.log(user.name)
+        console.log(user['name'])
       });
 
   }

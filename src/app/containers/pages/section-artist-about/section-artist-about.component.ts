@@ -3,6 +3,7 @@ import {Lightbox} from 'ngx-lightbox';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {TranslateService} from '@ngx-translate/core';
 import {ModalEditProfileComponent} from '../../ui/modals/modal-edit-profile/modal-edit-profile.component';
+import {FirebaseService} from "../../../firebase.service";
 
 @Component({
   selector: 'app-section-artist-about',
@@ -14,7 +15,7 @@ export class SectionArtistAboutComponent implements OnInit {
   @Input() editMode = false;
   bsModalRef: BsModalRef;
 
-  constructor(private lightbox: Lightbox, private modalService: BsModalService, private translateService: TranslateService) { }
+  constructor(private lightbox: Lightbox, private modalService: BsModalService, private translateService: TranslateService,private firebaseService:FirebaseService) { }
 
   ngOnInit(): void {
   }

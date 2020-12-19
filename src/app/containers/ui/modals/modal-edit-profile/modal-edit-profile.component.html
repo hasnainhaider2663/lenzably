@@ -9,8 +9,10 @@
   <form *ngIf="basicForm" [formGroup]="basicForm" #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
     <div class="form-group error-l-50">
       <label>{{ 'forms.avatar' | translate }}</label>
-      <dropzone [config]="config" [message]="'form-components.dropzone-message' | translate" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <dropzone [config]="config" [message]="'form-components.dropzone-message' | translate" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"  ></dropzone>
+      <img _ngcontent-pus-c77="" alt="Profile" [src]="user.avatar" class="mt-2 img-thumbnail card-img social-profile-img social-profile-unset c-pointer">
       <div *ngIf="basicForm.get('avatar').errors?.required && form.submitted" class="invalid-tooltip">Avatar is required!</div>
+
     </div>
     <div class="row">
       <div class="col-md-6">

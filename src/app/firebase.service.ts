@@ -79,9 +79,21 @@ export class FirebaseService {
     //   return true
     // }
     Object.keys(data).forEach(z => {
-      fileInfo[z] = data[z]
+      fileInfo[z] = data[z];
     });
     return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
+  }
+
+  async uploadFile(tableName: TableTypes, documentReference, file, paramToAssignTo): Promise<any> {
+    const filePath = this.storage.ref(`${tableName}/${documentReference}`).child(`${file.name}`);
+    // use the Blob or File API
+    const result = await filePath.put(file);
+    const fileInfo = JSON.parse(JSON.stringify(result.metadata));
+
+    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
+    const data = {};
+    data[paramToAssignTo] = fileInfo;
+    return await this.firestore.doc(`${tableName}/${documentReference}`).update(data);
   }
 
   subscribeToDocument(tableName: TableTypes, documentReference): Observable<Action<DocumentSnapshot<any>>> {
@@ -95,6 +107,7 @@ export class FirebaseService {
   async updateAsset(md5Hash, data): Promise<any> {
     await this.firestore.doc(`assets/${md5Hash}`).update(data);
   }
+
   async updateDocument(tableName: TableTypes, documentReference, data): Promise<any> {
     await this.firestore.doc(`${tableName}/${documentReference}`).update(data);
   }

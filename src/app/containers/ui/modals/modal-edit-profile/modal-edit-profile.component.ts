@@ -37,25 +37,21 @@ export class ModalEditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.firebaseService.subscribeToDocument('users', this.userId).subscribe(y => {
-      this.user = y.payload.data;
-      console.log(y);
+      this.user = y.payload.data();
       console.log(this.user);
+      this.basicForm = new FormGroup({
+        avatar: new FormControl(this.user.avatar, [Validators.required]),
+        name: new FormControl(this.user.name, [Validators.required, Validators.minLength(2)]),
+        email: new FormControl(this.user.email, [Validators.required, Validators.email]),
+        location: new FormControl(this.user.location, [Validators.required]),
+        interests: new FormControl(this.user.interests, [Validators.required]),
+        details: new FormControl(this.user.details, [Validators.required]),
+        facebook: new FormControl(this.user.facebook, [Validators.required]),
+        twitter: new FormControl(this.user.twitter, [Validators.required]),
+        instagram: new FormControl(this.user.instagram, [Validators.required]),
+        pinterest: new FormControl(this.user.pinterest, [Validators.required]),
+      });
     });
-
-
-    this.basicForm = new FormGroup({
-      avatar: new FormControl(null, [Validators.required]),
-      name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      location: new FormControl(null, [Validators.required]),
-      interests: new FormControl(null, [Validators.required]),
-      details: new FormControl(null, [Validators.required]),
-      facebook: new FormControl(null, [Validators.required]),
-      twitter: new FormControl(null, [Validators.required]),
-      instagram: new FormControl(null, [Validators.required]),
-      pinterest: new FormControl(null, [Validators.required]),
-    });
-
 
     this.peopleAsyncSearch = concat(
       of([]), // default items
@@ -84,8 +80,9 @@ export class ModalEditProfileComponent implements OnInit {
     console.log(event);
   }
 
-  onSubmit(): void {
+  async onSubmit(): void {
     console.log(this.basicForm);
+    await this.firebaseService.updateDocument('users', this.userId, this.basicForm.value);
   }
 
 }

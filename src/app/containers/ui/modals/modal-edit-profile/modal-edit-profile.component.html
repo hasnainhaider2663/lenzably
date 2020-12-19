@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
 
-  <form [formGroup]="basicForm" #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
+  <form *ngIf="basicForm" [formGroup]="basicForm" #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
     <div class="form-group error-l-50">
       <label>{{ 'forms.avatar' | translate }}</label>
       <dropzone [config]="config" [message]="'form-components.dropzone-message' | translate" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>

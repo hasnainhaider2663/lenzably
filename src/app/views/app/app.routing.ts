@@ -43,7 +43,7 @@ const routes: Routes = [
       {path: 'blank-page', component: BlankPageComponent},
       {path: 'collections', component: FoldersComponent},
       {path: 'collection/:collectionId', component: UploadsComponent},
-      {path: 'profile', component: ProfileComponent},
+      {path: 'profile/:username', component: ProfileComponent},
     ],
   },
 ];

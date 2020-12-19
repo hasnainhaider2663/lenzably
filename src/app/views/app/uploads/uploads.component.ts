@@ -3,7 +3,7 @@ import {Hotkey, HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
 import {AngularFireService} from '../../../angular-fire.service';
-import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FirebaseService} from '../../../firebase.service';
 import {EditProductNameModalComponent} from '../../../containers/pages/edit-product-name-modal/edit-product-name-modal.component';
 import {EditProductDescriptionModalComponent} from '../../../containers/pages/edit-product-description-modal/edit-product-description-modal.component';
 import {EditProductCategoriesModalComponent} from '../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component';
@@ -49,7 +49,7 @@ export class UploadsComponent implements OnInit {
   collection = {name: '', id: ''};
   collectionId
 
-  constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private route: ActivatedRoute) {
+  constructor(private firebaseService: FirebaseService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private route: ActivatedRoute) {
     this.hotkeysService.add(new Hotkey('ctrl+a', (event: KeyboardEvent): boolean => {
       this.selectedItemsArray = [...this.assets];
       return false;
@@ -62,7 +62,7 @@ export class UploadsComponent implements OnInit {
 
   async ngOnInit() {
     this.collectionId = this.route.snapshot.params['collectionId']
-    this.assetService.subscribeToDocument(`collections/${this.collectionId}`).valueChanges().subscribe(x => {
+    this.firebaseService.subscribeToDocument(`collections/${this.collectionId}`).valueChanges().subscribe(x => {
       this.collection = x;
       this.collection['id'] = this.collectionId;
 
@@ -71,18 +71,18 @@ export class UploadsComponent implements OnInit {
     this.user = this.angularFireService.userObservable;
 
 
-    this.assetService.getAssetsInCollection(this.collectionId, x => {
+    this.firebaseService.getAssetsInCollection(this.collectionId, x => {
       this.assets = x;
       this.originalAssets = x;
       console.log(this.assets);
     });
 
-    this.assetService.watchAssetsInCollection(this.collectionId).subscribe(assetsArray => {
+    this.firebaseService.watchAssetsInCollection(this.collectionId).subscribe(assetsArray => {
       assetsArray.forEach(async updatedAsset => {
         try {
           const assetInArray = this.assets.find(x => x.md5Hash === updatedAsset.md5Hash);
           if (!(assetInArray)) {
-            updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
+            updatedAsset.thumbnailURL = await this.firebaseService.getFullURL(updatedAsset.fullPath);
             this.assets.push(updatedAsset);
           } else {
             Object.keys(updatedAsset).forEach(key => {
@@ -290,7 +290,7 @@ export class UploadsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.assetService.uploadAsset(event[0], {collectionId: this.collection.id});
+    const result = await this.firebaseService.uploadAsset(event[0], {collectionId: this.collection.id});
     console.log(result);
   }
 

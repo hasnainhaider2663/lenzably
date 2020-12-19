@@ -1,13 +1,13 @@
 /* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreDocument, QueryFn} from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseAssetService {
+export class FirebaseService {
   user = {id: undefined};
 
   constructor(private firestore: AngularFirestore, public storage: AngularFireStorage) {
@@ -28,7 +28,7 @@ export class FirebaseAssetService {
         asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
 
       });
-      cb(assets)
+      cb(assets);
       sub.unsubscribe()
     })
 
@@ -37,18 +37,18 @@ export class FirebaseAssetService {
 
   getUserCollections(cb) {
     const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges().subscribe(collections => {
-      console.log('collection', collections)
+      console.log('collection', collections);
       collections.forEach(async iterator => {
         // @ts-ignore
-        const asset = iterator
-        const data = iterator.payload.doc.data()
+        const asset = iterator;
+        const data = iterator.payload.doc.data();
         Object.keys(data).forEach(k => {
           asset[k] = data[k]
-        })
+        });
         asset['thumbnailURL'] = await this.storage.ref(asset['fullPath']).getDownloadURL().toPromise();
 
       });
-      cb(collections)
+      cb(collections);
       sub.unsubscribe()
     })
 
@@ -69,7 +69,7 @@ export class FirebaseAssetService {
     const result = await filePath.put(file);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
     fileInfo['userId'] = this.user.id;
-    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*')
+    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
     // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
     // if (docRef) {
     //   console.log('already exists')
@@ -78,7 +78,7 @@ export class FirebaseAssetService {
     // }
     Object.keys(data).forEach(z => {
       fileInfo[z] = data[z]
-    })
+    });
     return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
   }
 
@@ -86,13 +86,18 @@ export class FirebaseAssetService {
     return this.firestore.doc(path);
   }
 
-  deleteDocument(path): Promise<any> {
-    return this.firestore.doc(path).delete();
+  findAndSubscribeToDocument(tableName: 'users' | 'assets' | 'collections', condition: QueryFn) {
+    return this.firestore.collection(tableName, condition).snapshotChanges();
   }
 
   async updateAsset(md5Hash, data): Promise<any> {
     await this.firestore.doc(`assets/${md5Hash}`).update(data);
   }
+
+  async updateUser(ref, data): Promise<any> {
+    await this.firestore.doc(`user/${ref}`).update(data);
+  }
+
   async updateCollection(ref, data): Promise<any> {
     await this.firestore.doc(`collections/${ref}`).update(data);
   }
@@ -100,7 +105,7 @@ export class FirebaseAssetService {
   async updateBatch(items, data): Promise<any> {
     items.forEach(async x => {
       await this.firestore.doc(`assets/${x.md5Hash}`).update(data);
-    })
+    });
   }
 
   async createDocumentInCollection(path, document): Promise<any> {

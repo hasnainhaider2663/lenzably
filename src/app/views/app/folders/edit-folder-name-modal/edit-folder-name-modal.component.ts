@@ -1,7 +1,7 @@
 import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FirebaseAssetService} from '../../../../firebase-asset.service';
+import {FirebaseService} from '../../../../firebase.service';
 
 @Component({
   selector: 'app-edit-folder-name-modal',
@@ -51,7 +51,7 @@ export class EditFolderNameModalComponent {
   tags;
   category;
 
-  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService, private fb: FormBuilder) {
+  constructor(private modalService: BsModalService, private firebaseService: FirebaseService, private fb: FormBuilder) {
   }
 
   show(): void {
@@ -109,7 +109,7 @@ export class EditFolderNameModalComponent {
     const myCollection = Object.assign({}, this.collection)
     const ref = JSON.parse(JSON.stringify(this.collection.payload.doc.id))
     delete myCollection.payload
-    await this.assetService.updateCollection(ref, myCollection);
+    await this.firebaseService.updateCollection(ref, myCollection);
     this.showSuccess = true;
   }
 

@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {environment} from 'src/environments/environment';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FirebaseService} from '../../../firebase.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService,
               private notifications: NotificationsService,
               private router: Router,
-              private modalService: BsModalService, private assetService: FirebaseAssetService, private fb: FormBuilder) {
+              private modalService: BsModalService, private firebaseService: FirebaseService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {

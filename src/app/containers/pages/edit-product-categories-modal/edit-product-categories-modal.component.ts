@@ -1,6 +1,6 @@
 import {Component, TemplateRef, ViewChild} from "@angular/core";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {FirebaseService} from "../../../firebase.service";
 
 @Component({
   selector: 'app-edit-product-categories-modal',
@@ -46,7 +46,7 @@ export class EditProductCategoriesModalComponent {
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
+  constructor(private modalService: BsModalService, private firebaseService: FirebaseService) {
   }
 
 
@@ -59,6 +59,6 @@ export class EditProductCategoriesModalComponent {
   }
 
   async submit() {
-    await this.assetService.updateBatch(this.items, {category: this.category});
+    await this.firebaseService.updateBatch(this.items, {category: this.category});
   }
 }

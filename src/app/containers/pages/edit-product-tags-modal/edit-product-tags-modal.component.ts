@@ -1,6 +1,6 @@
 import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FirebaseService} from '../../../firebase.service';
 
 @Component({
   selector: 'app-product-edit-tags-modal',
@@ -49,7 +49,7 @@ export class EditProductTagsModalComponent {
   success: any;
   replaceTags: 'replace' | 'append';
 
-  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService) {
+  constructor(private modalService: BsModalService, private firebaseService: FirebaseService) {
   }
 
   addTagFn(addedName): { name: any; tag: true } {
@@ -70,11 +70,11 @@ export class EditProductTagsModalComponent {
     this.success = false;
     if (this.replaceTags === 'append') {
       this.items.forEach(async x => {
-        await this.assetService.updateAsset(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});
+        await this.firebaseService.updateAsset(x.md5Hash, {tags: [...new Set([...x.tags, ...this.tags])]});
       });
     } else if (this.replaceTags === 'replace') {
       this.items.forEach(async x => {
-        await this.assetService.updateAsset(x.md5Hash, {tags: this.tags});
+        await this.firebaseService.updateAsset(x.md5Hash, {tags: this.tags});
       });
     } else {
       this.error = 'A serious error occurred while saving tags. Please contact support.';

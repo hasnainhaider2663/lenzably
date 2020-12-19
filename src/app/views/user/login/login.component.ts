@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {AuthService} from 'src/app/shared/auth.service';
 import {environment} from 'src/environments/environment';
 import {BsModalService} from 'ngx-bootstrap/modal';
-import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FirebaseService} from '../../../firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   inputText = '';
 
   constructor(private authService: AuthService, private notifications: NotificationsService, private router: Router,
-              private modalService: BsModalService, private assetService: FirebaseAssetService, private fb: FormBuilder) {
+              private modalService: BsModalService, private firebaseService: FirebaseService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {

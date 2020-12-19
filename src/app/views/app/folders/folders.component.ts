@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HotkeysService} from 'angular2-hotkeys';
 import {ApiService, IProduct} from 'src/app/data/api.service';
 import {ContextMenuComponent} from 'ngx-contextmenu';
-import {FirebaseAssetService} from '../../../firebase-asset.service';
+import {FirebaseService} from '../../../firebase.service';
 import {AngularFireService} from '../../../angular-fire.service';
 import {EditFolderNameModalComponent} from './edit-folder-name-modal/edit-folder-name-modal.component';
 
@@ -41,7 +41,7 @@ export class FoldersComponent implements OnInit {
   originalAssets;
   error: any;
 
-  constructor(private assetService: FirebaseAssetService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
+  constructor(private firebaseService: FirebaseService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService) {
 
   }
 
@@ -51,13 +51,13 @@ export class FoldersComponent implements OnInit {
     this.user = this.angularFireService.userObservable;
 
 
-    this.assetService.getUserCollections(x => {
+    this.firebaseService.getUserCollections(x => {
       this.assets = x;
       this.originalAssets = x;
       console.log(this.assets);
     });
 
-    this.assetService.watchUserCollections().subscribe(assetsArray => {
+    this.firebaseService.watchUserCollections().subscribe(assetsArray => {
       assetsArray.forEach(async iterator => {
         const updatedAsset = iterator;
         Object.keys(iterator.payload.doc.data()).forEach(l => {
@@ -65,7 +65,7 @@ export class FoldersComponent implements OnInit {
         });
         try {
           if (updatedAsset.fullPath) {
-            updatedAsset.thumbnailURL = await this.assetService.getFullURL(updatedAsset.fullPath);
+            updatedAsset.thumbnailURL = await this.firebaseService.getFullURL(updatedAsset.fullPath);
           }
           const assetInArray = this.assets.find(x => x.payload.doc.id === updatedAsset.payload.doc.id);
           if (!(assetInArray)) {
@@ -208,7 +208,7 @@ export class FoldersComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.assetService.uploadAsset(event[0]);
+    const result = await this.firebaseService.uploadAsset(event[0]);
     console.log(result);
   }
 

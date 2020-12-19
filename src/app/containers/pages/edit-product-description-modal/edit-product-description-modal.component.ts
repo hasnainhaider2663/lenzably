@@ -1,6 +1,6 @@
 import {Component, TemplateRef, ViewChild} from "@angular/core";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {FirebaseAssetService} from "../../../firebase-asset.service";
+import {FirebaseService} from "../../../firebase.service";
 import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
@@ -51,7 +51,7 @@ export class EditProductDescriptionModalComponent {
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
 
-  constructor(private modalService: BsModalService, private assetService: FirebaseAssetService, private fb: FormBuilder ) {
+  constructor(private modalService: BsModalService, private firebaseService: FirebaseService, private fb: FormBuilder ) {
   }
 
 
@@ -73,7 +73,7 @@ export class EditProductDescriptionModalComponent {
       return;
     }
     this.showError = false;
-    await this.assetService.updateBatch(this.items, {description: this.form.value.description});
+    await this.firebaseService.updateBatch(this.items, {description: this.form.value.description});
     this.showSuccess = true;
   }
   onChange(event) {

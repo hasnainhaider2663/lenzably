@@ -95,6 +95,9 @@ export class FirebaseService {
   async updateAsset(md5Hash, data): Promise<any> {
     await this.firestore.doc(`assets/${md5Hash}`).update(data);
   }
+  async updateDocument(tableName: TableTypes, documentReference, data): Promise<any> {
+    await this.firestore.doc(`${tableName}/${documentReference}`).update(data);
+  }
 
   async updateUser(ref, data): Promise<any> {
     await this.firestore.doc(`user/${ref}`).update(data);

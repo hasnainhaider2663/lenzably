@@ -110,7 +110,11 @@
 
 
 
-
+    <div  style=" min-height: 50px" class="{{!error?'hidden':''}} mt-1">
+      <alert type="danger rounded">
+        {{error}}
+      </alert>
+    </div>
 
     <button class="btn btn-primary mr-2" type="submit">{{ 'forms.submit' | translate }}</button>
     <button class="btn btn-outline-primary" type="button" (click)="this.basicForm.reset()">{{ 'forms.clear' | translate }}</button>

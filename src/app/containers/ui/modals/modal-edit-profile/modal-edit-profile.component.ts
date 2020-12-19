@@ -33,6 +33,7 @@ export class ModalEditProfileComponent implements OnInit {
   @ViewChild('form') form: NgForm;
   user: any;
   userId = 'VgbSx1fiEpfuwGMNrqaB';
+  error;
 
   constructor(public bsModalRef: BsModalRef, private selectDataService: SelectDataService, private firebaseService: FirebaseService) {
   }
@@ -79,10 +80,12 @@ export class ModalEditProfileComponent implements OnInit {
 
   onUploadError(event): void {
     console.log(event);
+    this.error = event[1];
   }
 
   async onUploadSuccess(event): void {
     console.log(event);
+    this.error = undefined;
     await this.firebaseService.uploadFile('users', this.userId, event[0], 'avatarFile');
   }
 

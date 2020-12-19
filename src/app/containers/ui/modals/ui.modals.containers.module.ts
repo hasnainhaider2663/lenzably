@@ -23,6 +23,7 @@ import { ModalEditProfileComponent } from './modal-edit-profile/modal-edit-profi
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DropzoneModule} from "ngx-dropzone-wrapper";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {AlertModule} from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -44,16 +45,17 @@ import {NgSelectModule} from "@ng-select/ng-select";
     ModalInnerComponent,
     ModalEditProfileComponent,
   ],
-  imports: [
-    SharedModule,
-    ModalModule.forRoot(),
-    PopoverModule.forRoot(),
-    TooltipModule.forRoot(),
-    ReactiveFormsModule,
-    DropzoneModule,
-    NgSelectModule,
-    FormsModule
-  ],
+    imports: [
+        SharedModule,
+        ModalModule.forRoot(),
+        PopoverModule.forRoot(),
+        TooltipModule.forRoot(),
+        ReactiveFormsModule,
+        DropzoneModule,
+        NgSelectModule,
+        FormsModule,
+        AlertModule
+    ],
   providers: [],
   entryComponents: [ModalInnerComponent],
   exports: [

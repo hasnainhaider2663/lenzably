@@ -4,6 +4,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {concat, Observable, of, Subject} from "rxjs";
 import {Person, SelectDataService} from "../../../forms/select/select.data.service";
 import {catchError, distinctUntilChanged, switchMap, tap} from "rxjs/operators";
+import {FirebaseService} from "../../../../firebase.service";
 
 @Component({
   selector: 'app-modal-edit-profile',
@@ -28,11 +29,13 @@ export class ModalEditProfileComponent implements OnInit {
   };
 
   @ViewChild('form') form: NgForm;
+  user = {id: 'VgbSx1fiEpfuwGMNrqaB'}
 
-  constructor(public bsModalRef: BsModalRef, private selectDataService: SelectDataService) {
+  constructor(public bsModalRef: BsModalRef, private selectDataService: SelectDataService, private firebaseService: FirebaseService) {
   }
 
   ngOnInit(): void {
+
     this.basicForm = new FormGroup({
       avatar: new FormControl(null, [Validators.required]),
       name: new FormControl(null, [Validators.required, Validators.minLength(2)]),

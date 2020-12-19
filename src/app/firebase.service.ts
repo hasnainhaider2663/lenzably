@@ -1,8 +1,10 @@
 /* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument, QueryFn} from '@angular/fire/firestore';
+import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryFn} from '@angular/fire/firestore';
 import {AngularFireStorage} from "@angular/fire/storage";
 import {Observable} from "rxjs";
+
+type  TableTypes = 'users' | 'assets' | 'collections';
 
 @Injectable({
   providedIn: 'root'
@@ -82,11 +84,11 @@ export class FirebaseService {
     return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
   }
 
-  subscribeToDocument(path): AngularFirestoreDocument<any> {
-    return this.firestore.doc(path);
+  subscribeToDocument(tableName: TableTypes, documentReference): Observable<Action<DocumentSnapshot<any>>> {
+    return this.firestore.doc(documentReference).snapshotChanges();
   }
 
-  findAndSubscribeToDocument(tableName: 'users' | 'assets' | 'collections', condition: QueryFn) {
+  findAndSubscribeToDocument(tableName: TableTypes, condition: QueryFn): Observable<DocumentChangeAction<any>[]> {
     return this.firestore.collection(tableName, condition).snapshotChanges();
   }
 

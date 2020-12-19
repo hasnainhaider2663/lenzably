@@ -46,7 +46,7 @@ export class UploadsComponent implements OnInit {
   originalAssets;
   error: any;
 
-  collection = {name: '', id: ''};
+  collection ;
   collectionId
 
   constructor(private firebaseService: FirebaseService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private route: ActivatedRoute) {
@@ -62,8 +62,8 @@ export class UploadsComponent implements OnInit {
 
   async ngOnInit() {
     this.collectionId = this.route.snapshot.params['collectionId']
-    this.firebaseService.subscribeToDocument(`collections/${this.collectionId}`).valueChanges().subscribe(x => {
-      this.collection = x;
+    this.firebaseService.subscribeToDocument("collections", this.collectionId).subscribe(x => {
+      this.collection = x.payload.data;
       this.collection['id'] = this.collectionId;
 
     });

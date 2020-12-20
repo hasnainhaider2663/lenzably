@@ -57,7 +57,7 @@ export class EditFolderNameModalComponent {
   show(): void {
     this.error = false;
     this.form = this.fb.group({
-      name: [this.collection.name || '', [Validators.required, Validators.minLength(6), Validators.pattern('[a-zA-Z ]*')]],
+      name: [this.collection.name || '', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
       description: [this.collection.description || '', [Validators.required, Validators.minLength(10)]]
     });
 

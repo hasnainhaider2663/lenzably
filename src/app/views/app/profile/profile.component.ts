@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ProfileComponent implements OnInit {
   username;
   user;
+  collections;
 
   constructor(private route: ActivatedRoute, private firebaseService: FirebaseService) {
   }
@@ -24,5 +25,13 @@ export class ProfileComponent implements OnInit {
         this.user = result[0].payload.doc.data();
         console.log(this.user);
       });
+
+    this.firebaseService.getUserCollections(x => {
+      this.collections = x;
+    });
+
+  //   this.firebaseService.getAssetsInCollection(this.collectionId, x => {
+  //     this.assets = x;
+  //   });
   }
 }

@@ -5,7 +5,7 @@
 
 
   <div class="section-artist-about__content">
-    <img alt="Profile" src="/assets/img/profiles/l-1.jpg" (click)="openLightbox('/assets/img/profiles/1.jpg')"
+    <img alt="Profile" [src]="user?.avatar" (click)="openLightbox('/assets/img/profiles/1.jpg')"
          class="img-thumbnail card-img social-profile-img c-pointer">
 
     <div class="text-center pt-4">

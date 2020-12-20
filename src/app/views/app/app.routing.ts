@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {BlankPageComponent} from './blank-page/blank-page.component';
-import {UploadsComponent} from "./uploads/uploads.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {FoldersComponent} from "./folders/folders.component";
-import {ProfileCollectionsComponent} from "./profile/profile-collections/profile-collections.component";
-import {ProfileCollectionsItemsComponent} from "./profile/profile-collections-items/profile-collections-items.component";
+import {UploadsComponent} from './uploads/uploads.component';
+import {ProfileComponent} from './profile/profile.component';
+import {FoldersComponent} from './folders/folders.component';
+import {ProfileCollectionsComponent} from './profile/profile-collections/profile-collections.component';
+import {ProfileCollectionsItemsComponent} from './profile/profile-collections-items/profile-collections-items.component';
 
 const routes: Routes = [
   {
@@ -51,7 +51,8 @@ const routes: Routes = [
           {
             path: 'collections', component: ProfileCollectionsComponent
           },
-          {path: 'collections/:collectionId', component: ProfileCollectionsItemsComponent}
+          {path: 'collections/:collectionId', component: ProfileCollectionsItemsComponent},
+          {path: ':/collectionId', redirectTo: '/collections/:collectionId'}
 
         ]
       },

@@ -48,12 +48,11 @@ const routes: Routes = [
       {
         path: 'profile/:username', component: ProfileComponent, children: [
           {path: '', component: ProfileCollectionsComponent},
+          {path: 'collections/:collectionId', component: ProfileCollectionsItemsComponent},
+          {path: ':/collectionId', redirectTo: '/collections/:collectionId'},
           {
             path: 'collections', component: ProfileCollectionsComponent
-          },
-          {path: 'collections/:collectionId', component: ProfileCollectionsItemsComponent},
-          {path: ':/collectionId', redirectTo: '/collections/:collectionId'}
-
+          }
         ]
       },
     ],

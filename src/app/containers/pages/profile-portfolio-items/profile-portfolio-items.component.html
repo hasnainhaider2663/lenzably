@@ -2,7 +2,7 @@
   <div class="col-sm-6 col-lg-6 col-xl-4 col-12 mb-4" *ngFor="let item of items">
     <div class="card">
       <div class="position-relative">
-        <a [routerLink]="item.id"><img class="card-img-top" [src]="item.thumbnailURL" alt="Card image cap"></a>
+        <a [routerLink]="item.payload.doc.id"><img class="card-img-top" [src]="item.thumbnailURL" alt="Card image cap"></a>
 <!--        <span class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{item.status}}</span>-->
       </div>
       <div class="card-body">

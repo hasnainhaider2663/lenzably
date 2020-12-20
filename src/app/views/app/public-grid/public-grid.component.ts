@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-public-grid',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-grid.component.scss']
 })
 export class PublicGridComponent implements OnInit {
+  @Input() assets = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

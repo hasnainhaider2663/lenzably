@@ -28,10 +28,11 @@ import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/e
 import {NgSelectModule} from "@ng-select/ng-select";
 import { ProfileCollectionsComponent } from './profile/profile-collections/profile-collections.component';
 import { ProfileCollectionsItemsComponent } from './profile/profile-collections-items/profile-collections-items.component';
+import {PublicGridComponent} from './public-grid/public-grid.component';
 
 
 @NgModule({
-  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent, ProfileCollectionsComponent, ProfileCollectionsItemsComponent],
+  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent, ProfileCollectionsComponent, ProfileCollectionsItemsComponent, PublicGridComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

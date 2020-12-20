@@ -5,6 +5,8 @@ import {BlankPageComponent} from './blank-page/blank-page.component';
 import {UploadsComponent} from "./uploads/uploads.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {FoldersComponent} from "./folders/folders.component";
+import {ProfileCollectionsComponent} from "./profile/profile-collections/profile-collections.component";
+import {ProfileCollectionsItemsComponent} from "./profile/profile-collections-items/profile-collections-items.component";
 
 const routes: Routes = [
   {
@@ -43,7 +45,16 @@ const routes: Routes = [
       {path: 'blank-page', component: BlankPageComponent},
       {path: 'collections', component: FoldersComponent},
       {path: 'collection/:collectionId', component: UploadsComponent},
-      {path: 'profile/:username', component: ProfileComponent},
+      {
+        path: 'profile/:username', component: ProfileComponent, children: [
+          {path: '', component: ProfileCollectionsComponent},
+          {
+            path: 'collections', component: ProfileCollectionsComponent
+          },
+          {path: 'collections/:collectionId', component: ProfileCollectionsItemsComponent}
+
+        ]
+      },
     ],
   },
 ];

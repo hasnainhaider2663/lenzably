@@ -26,12 +26,11 @@ export class ProfileComponent implements OnInit {
         console.log(this.user);
       });
 
-    this.firebaseService.getUserCollections(x => {
-      this.collections = x;
-    });
 
-  //   this.firebaseService.getAssetsInCollection(this.collectionId, x => {
-  //     this.assets = x;
-  //   });
+    //   this.firebaseService.getAssetsInCollection(this.collectionId, x => {
+    //     this.assets = x;
+    //   });
   }
+
+
 }

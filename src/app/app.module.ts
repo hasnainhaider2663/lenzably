@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { LayoutContainersModule } from './containers/layout/layout.containers.module';
+import { PublicGridComponent } from './components/public-grid/public-grid.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { LayoutContainersModule } from './containers/layout/layout.containers.mo
     AngularFireModule.initializeApp(environment.firebase)
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    PublicGridComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

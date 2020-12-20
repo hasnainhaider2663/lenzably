@@ -26,10 +26,12 @@ import {AlertModule} from 'ngx-bootstrap/alert';
 import {FoldersComponent} from "./folders/folders.component";
 import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { ProfileCollectionsComponent } from './profile/profile-collections/profile-collections.component';
+import { ProfileCollectionsItemsComponent } from './profile/profile-collections-items/profile-collections-items.component';
 
 
 @NgModule({
-  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent],
+  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent, ProfileCollectionsComponent, ProfileCollectionsItemsComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

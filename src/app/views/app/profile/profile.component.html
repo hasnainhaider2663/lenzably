@@ -3,22 +3,23 @@
 
 <app-section-artist-about [editMode]="true" [user]="user"></app-section-artist-about>
 
+<router-outlet></router-outlet>
 
-<div class="row mt-4">
-  <div class="col-12">
-    <div>
-      <tabset class="separator-tabs">
-        <tab heading="{{'pages.profile' | translate | uppercase }}">
-          <div class="row">
-            <div class="col-12">
-              <app-profile-portfolio-items [items]="collections"></app-profile-portfolio-items>
-            </div>
-          </div>
-        </tab>
-        <tab heading="{{'pages.followers' | translate | uppercase }}">
-          <app-profile-friends></app-profile-friends>
-        </tab>
-      </tabset>
-    </div>
-  </div>
-</div>
+<!--<div class="row mt-4">-->
+<!--  <div class="col-12">-->
+<!--    <div>-->
+<!--      <tabset class="separator-tabs">-->
+<!--        <tab heading="{{'pages.profile' | translate | uppercase }}">-->
+<!--          <div class="row">-->
+<!--            <div class="col-12">-->
+<!--              <app-profile-portfolio-items [items]="collections"></app-profile-portfolio-items>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </tab>-->
+<!--        <tab heading="{{'pages.followers' | translate | uppercase }}">-->
+<!--          <app-profile-friends></app-profile-friends>-->
+<!--        </tab>-->
+<!--      </tabset>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

@@ -21,7 +21,8 @@ export class FirebaseService {
   constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
 
     this.userObservable = this.firebaseAuth.authState
-      .pipe(take(1)).pipe(map(user => {
+      .pipe(take(1)).pipe(map(mUser => {
+        const user= JSON.parse(JSON.stringify(mUser))
         if (user) {
           this.currentUser = user;
 
@@ -29,7 +30,7 @@ export class FirebaseService {
 
         }
         user['isArtist'] = true
-        user.uid='VgbSx1fiEpfuwGMNrqaB'
+        // user.uid='VgbSx1fiEpfuwGMNrqaB'
         user.id='VgbSx1fiEpfuwGMNrqaB'
         return user;
       }));

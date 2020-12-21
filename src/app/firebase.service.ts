@@ -4,6 +4,7 @@ import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryF
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
+import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 type  TableTypes = 'users' | 'assets' | 'collections';
 
@@ -173,8 +174,8 @@ export class FirebaseService {
   }
 
   async loginWithGoogle() {
-    // var provider = new this.firebaseAuth.;
-    // return await this.firebaseAuth.signInWithRedirect(provider);
+
+     return await this.firebaseAuth.signInWithRedirect(new GoogleAuthProvider());
   }
 
 }

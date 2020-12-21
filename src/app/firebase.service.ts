@@ -4,8 +4,8 @@ import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryF
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {map, take} from "rxjs/operators";
-import * as firebase from "firebase";
+import {map, take} from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 
 type  TableTypes = 'users' | 'assets' | 'collections';
@@ -24,12 +24,12 @@ export class FirebaseService {
       .pipe(take(1)).pipe(map(user => {
         if (user) {
           this.currentUser = user;
-          this.currentUser.id = 'VgbSx1fiEpfuwGMNrqaB';
-          console.log(this.currentUser)
+
+          console.log(this.currentUser);
 
         }
-        return user
-      }))
+        return user;
+      }));
 
 
   }
@@ -55,7 +55,7 @@ export class FirebaseService {
   }
 
   getUserCollections(cb) {
-    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.currentUser.id)).snapshotChanges().subscribe(collections => {
+    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.currentUser.uid)).snapshotChanges().subscribe(collections => {
       console.log('collection', collections);
       collections.forEach(async iterator => {
         // @ts-ignore
@@ -75,7 +75,7 @@ export class FirebaseService {
   }
 
   watchUserCollections(): Observable<any> {
-    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.currentUser.id)).snapshotChanges();
+    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.currentUser.uid)).snapshotChanges();
   }
 
   async getFullURL(url) {
@@ -83,11 +83,11 @@ export class FirebaseService {
   }
 
   async uploadAsset(file, data?): Promise<any> {
-    const filePath = this.storage.ref(`assets/${this.currentUser.id}`).child(`${file.name}`);
+    const filePath = this.storage.ref(`assets/${this.currentUser.uid}`).child(`${file.name}`);
     // use the Blob or File API
     const result = await filePath.put(file);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
-    fileInfo['userId'] = this.currentUser.id;
+    fileInfo['userId'] = this.currentUser.uid;
     fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
     // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
     // if (docRef) {

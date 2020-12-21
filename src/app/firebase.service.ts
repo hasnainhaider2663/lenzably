@@ -15,7 +15,6 @@ type  TableTypes = 'users' | 'assets' | 'collections';
 })
 export class FirebaseService {
 
-  dbUser;
   userObservable;
 
   constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
@@ -25,14 +24,12 @@ export class FirebaseService {
         const user = JSON.parse(JSON.stringify(mUser));
 
         user['isArtist'] = true;
-        user.uid = 'VgbSx1fiEpfuwGMNrqaB';
-        user.id = 'VgbSx1fiEpfuwGMNrqaB';
-
+        // user.uid = 'VgbSx1fiEpfuwGMNrqaB';
+        // user.id = 'VgbSx1fiEpfuwGMNrqaB';
+        console.log('UU # 987');
         localStorage.setItem('user', JSON.stringify(user));
         return user;
       }));
-//        this.currentUser.id = 'VgbSx1fiEpfuwGMNrqaB';
-
   }
 
   get currentUser() {
@@ -144,6 +141,7 @@ export class FirebaseService {
       delete collection.payload;
       await this.firestore.doc(`collections/${ref}`).update(collection);
     } else {
+      collection.userId = this.currentUser.uid;
       await this.firestore.collection(`collections`).add(collection);
     }
 

@@ -47,7 +47,7 @@ export class EditFolderNameModalComponent {
   showSuccess;
   error;
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
-  collection: any;
+  collection = {name: '', description: '', tags: [], category: {label: '', value: ''}};
   tags;
   category;
 
@@ -69,7 +69,7 @@ export class EditFolderNameModalComponent {
   }
 
   resetCollection() {
-    this.collection = {name: '', description: '', tags: [], category: undefined};
+    this.collection = {name: '', description: '', tags: [], category: {label: '', value: ''}};
   }
 
   addTagFn(addedName): { name: any; tag: true } {
@@ -107,9 +107,14 @@ export class EditFolderNameModalComponent {
     this.error = undefined;
 
     const myCollection = Object.assign({}, this.collection)
-    const ref = JSON.parse(JSON.stringify(this.collection.payload.doc.id))
-    delete myCollection.payload
-    await this.firebaseService.updateCollection(ref, myCollection);
+
+
+    // @todo this is critical code, do not mess
+
+
+
+
+    await this.firebaseService.updateOrCreateCollection(this.collection);
     this.showSuccess = true;
   }
 

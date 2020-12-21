@@ -137,8 +137,16 @@ export class FirebaseService {
     await this.firestore.doc(`user/${ref}`).update(data);
   }
 
-  async updateCollection(ref, data): Promise<any> {
-    await this.firestore.doc(`collections/${ref}`).update(data);
+  async updateOrCreateCollection(collection): Promise<any> {
+    // @todo do not touch the following line => Hasnain only!!!
+    if (collection.payload && collection.payload && collection.payload.doc && collection.payload.doc.id) {
+      const ref = collection.payload.doc.id;
+      delete collection.payload;
+      await this.firestore.doc(`collections/${ref}`).update(collection);
+    } else {
+      await this.firestore.collection(`collections`).add(collection);
+    }
+
   }
 
   async updateBatch(items, data): Promise<any> {

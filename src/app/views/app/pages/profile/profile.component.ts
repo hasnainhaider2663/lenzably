@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FirebaseService} from '../../../firebase.service';
+
 import {ActivatedRoute} from '@angular/router';
+import {FirebaseService} from '../../../../firebase.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: []
 })
 export class ProfileComponent implements OnInit {
   username;

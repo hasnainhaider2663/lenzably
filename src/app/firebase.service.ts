@@ -4,6 +4,7 @@ import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryF
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
+import firebase from 'firebase';
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 type  TableTypes = 'users' | 'assets' | 'collections';

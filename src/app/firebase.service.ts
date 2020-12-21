@@ -14,7 +14,7 @@ type  TableTypes = 'users' | 'assets' | 'collections';
   providedIn: 'root'
 })
 export class FirebaseService {
-  currentUser;
+
   dbUser;
   userObservable;
 
@@ -22,22 +22,22 @@ export class FirebaseService {
 
     this.userObservable = this.firebaseAuth.authState
       .pipe(take(1)).pipe(map(mUser => {
-        const user= JSON.parse(JSON.stringify(mUser))
-        if (user) {
-          this.currentUser = user;
+        const user = JSON.parse(JSON.stringify(mUser));
 
-          console.log(this.currentUser);
+        user['isArtist'] = true;
+        user.uid = 'VgbSx1fiEpfuwGMNrqaB';
+        user.id = 'VgbSx1fiEpfuwGMNrqaB';
 
-        }
-        user['isArtist'] = true
-        user.uid='VgbSx1fiEpfuwGMNrqaB'
-        user.id='VgbSx1fiEpfuwGMNrqaB'
+        localStorage.setItem('user', JSON.stringify(user));
         return user;
       }));
 //        this.currentUser.id = 'VgbSx1fiEpfuwGMNrqaB';
 
   }
 
+  get currentUser() {
+    return JSON.parse(localStorage.getItem('user'))
+  }
 
   watchAssetsInCollection(collectionId): Observable<any> {
     return this.firestore.collection(`assets`, x => x.where('collectionId', '==', collectionId)).valueChanges();

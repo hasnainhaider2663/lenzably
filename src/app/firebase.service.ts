@@ -28,7 +28,7 @@ export class FirebaseService {
           console.log(this.currentUser)
 
         }
-
+        return user
       }))
 
 

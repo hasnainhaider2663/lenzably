@@ -1,9 +1,9 @@
 /* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
 import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryFn} from '@angular/fire/firestore';
-import {AngularFireStorage} from "@angular/fire/storage";
-import {Observable} from "rxjs";
-import {AngularFireAuth} from "@angular/fire/auth";
+import {AngularFireStorage} from '@angular/fire/storage';
+import {Observable} from 'rxjs';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 type  TableTypes = 'users' | 'assets' | 'collections';
 
@@ -32,8 +32,8 @@ export class FirebaseService {
 
       });
       cb(assets);
-      sub.unsubscribe()
-    })
+      sub.unsubscribe();
+    });
 
 
   }
@@ -46,14 +46,14 @@ export class FirebaseService {
         const asset = iterator;
         const data = iterator.payload.doc.data();
         Object.keys(data).forEach(k => {
-          asset[k] = data[k]
+          asset[k] = data[k];
         });
         asset['thumbnailURL'] = await this.storage.ref(asset['fullPath']).getDownloadURL().toPromise();
 
       });
       cb(collections);
-      sub.unsubscribe()
-    })
+      sub.unsubscribe();
+    });
 
 
   }
@@ -172,5 +172,9 @@ export class FirebaseService {
     await this.firebaseAuth.signOut();
   }
 
+  async loginWithGoogle() {
+    // var provider = new this.firebaseAuth.;
+    // return await this.firebaseAuth.signInWithRedirect(provider);
+  }
 
 }

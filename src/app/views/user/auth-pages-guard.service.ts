@@ -12,7 +12,6 @@ export class AuthPagesGuardService implements CanActivate {
     }
 
     canActivate(): Observable<boolean> {
-
         return this.afAuth.authState
             .pipe(take(1)).pipe(map(user => {
                 return !!user;
@@ -21,8 +20,9 @@ export class AuthPagesGuardService implements CanActivate {
                 if (loggedIn) {
                     console.log('Already Logged in ');
                     this.router.navigate(['']);
+                    return false;
                 }
-                return loggedIn;
+                return true;
             }));
     }
 }

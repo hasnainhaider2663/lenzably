@@ -5,10 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {AuthPagesGuardService} from './auth-pages-guard.service';
 
 const routes: Routes = [
     {
-        path: '', component: UserComponent,
+        path: '', component: UserComponent, canActivate: [AuthPagesGuardService],
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'login', component: LoginComponent },

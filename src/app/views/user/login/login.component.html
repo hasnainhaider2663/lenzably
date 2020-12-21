@@ -30,6 +30,7 @@
           {{ 'user.login-button' | translate | uppercase }}
         </app-state-button>
       </div>
+      <button (click)="loginWithGoogle()" class="btn btn-secondary btn-shadow " type="button">Login with Google</button>
 
       <div style="margin-top: 20px" *ngIf="showSuccess">
         <alert  [dismissible]="true" type="success rounded">

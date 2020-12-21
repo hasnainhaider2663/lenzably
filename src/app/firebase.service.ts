@@ -4,8 +4,9 @@ import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryF
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
-import firebase from 'firebase';
-import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+import {map, take} from "rxjs/operators";
+import * as firebase from "firebase";
+
 
 type  TableTypes = 'users' | 'assets' | 'collections';
 
@@ -13,10 +14,23 @@ type  TableTypes = 'users' | 'assets' | 'collections';
   providedIn: 'root'
 })
 export class FirebaseService {
-  user = {id: undefined};
+  currentUser;
+  dbUser;
+  userObservable;
 
   constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
-    this.user.id = 'VgbSx1fiEpfuwGMNrqaB';
+
+    this.userObservable = this.firebaseAuth.authState
+      .pipe(take(1)).pipe(map(user => {
+        if (user) {
+          this.currentUser = user;
+          this.currentUser.id = 'VgbSx1fiEpfuwGMNrqaB';
+          console.log(this.currentUser)
+
+        }
+
+      }))
+
 
   }
 
@@ -41,7 +55,7 @@ export class FirebaseService {
   }
 
   getUserCollections(cb) {
-    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges().subscribe(collections => {
+    const sub = this.firestore.collection(`collections`, x => x.where('userId', '==', this.currentUser.id)).snapshotChanges().subscribe(collections => {
       console.log('collection', collections);
       collections.forEach(async iterator => {
         // @ts-ignore
@@ -61,7 +75,7 @@ export class FirebaseService {
   }
 
   watchUserCollections(): Observable<any> {
-    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.user.id)).snapshotChanges();
+    return this.firestore.collection(`collections`, x => x.where('userId', '==', this.currentUser.id)).snapshotChanges();
   }
 
   async getFullURL(url) {
@@ -69,11 +83,11 @@ export class FirebaseService {
   }
 
   async uploadAsset(file, data?): Promise<any> {
-    const filePath = this.storage.ref(`assets/${this.user.id}`).child(`${file.name}`);
+    const filePath = this.storage.ref(`assets/${this.currentUser.id}`).child(`${file.name}`);
     // use the Blob or File API
     const result = await filePath.put(file);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
-    fileInfo['userId'] = this.user.id;
+    fileInfo['userId'] = this.currentUser.id;
     fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
     // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
     // if (docRef) {
@@ -176,7 +190,7 @@ export class FirebaseService {
 
   async loginWithGoogle() {
 
-     return await this.firebaseAuth.signInWithRedirect(new GoogleAuthProvider());
+    return await this.firebaseAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
 }

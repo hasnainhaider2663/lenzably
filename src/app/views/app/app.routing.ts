@@ -8,11 +8,12 @@ import {FoldersComponent} from './folders/folders.component';
 import {ProfileCollectionsComponent} from './profile/profile-collections/profile-collections.component';
 import {ProfileCollectionsItemsComponent} from './profile/profile-collections-items/profile-collections-items.component';
 import {DashboardGuardService} from './dashboard-guard.service';
+import {DashboardProfileGuardService} from './dashboard-profile-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent, canActivate : [DashboardGuardService],
+    component: AppComponent, canActivate: [DashboardGuardService],
     children: [
       {path: '', pathMatch: 'full', redirectTo: 'dashboards'},
       {
@@ -46,6 +47,7 @@ const routes: Routes = [
       {path: 'blank-page', component: BlankPageComponent},
       {path: 'collections', component: FoldersComponent},
       {path: 'collection/:collectionId', component: UploadsComponent},
+      {path: 'profile', component: ProfileComponent, canActivate: [DashboardProfileGuardService]},
       {
         path: 'profile/:username', component: ProfileComponent, children: [
           {path: 'collections', component: ProfileCollectionsComponent},

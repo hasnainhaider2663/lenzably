@@ -30,7 +30,7 @@ export class FirebaseService {
         }
         return user;
       }));
-
+//        this.currentUser.id = 'VgbSx1fiEpfuwGMNrqaB';
 
   }
 

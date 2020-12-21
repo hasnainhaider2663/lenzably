@@ -7,11 +7,12 @@ import {ProfileComponent} from './profile/profile.component';
 import {FoldersComponent} from './folders/folders.component';
 import {ProfileCollectionsComponent} from './profile/profile-collections/profile-collections.component';
 import {ProfileCollectionsItemsComponent} from './profile/profile-collections-items/profile-collections-items.component';
+import {DashboardGuardService} from './dashboard-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: AppComponent, canActivate : [DashboardGuardService],
     children: [
       {path: '', pathMatch: 'full', redirectTo: 'dashboards'},
       {

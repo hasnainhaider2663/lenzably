@@ -28,6 +28,7 @@ export class FirebaseService {
           console.log(this.currentUser);
 
         }
+        user.isArtist = true
         return user;
       }));
 //        this.currentUser.id = 'VgbSx1fiEpfuwGMNrqaB';

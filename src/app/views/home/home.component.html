@@ -1,59 +1,61 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
 
-  <div class="mobile-menu" (click)="$event.stopPropagation()">
-    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
-      <span></span>
-    </a>
-    <ul class="">
-      <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
-      <li class="nav-item">
-        <div class="separator"></div>
-      </li>
-      <li class="nav-item text-center">
-        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" routerLink="/user/login">Login</a>
-      </li>
-      <li class="nav-item text-center">
-        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" routerLink="/user/signup">Sign Up</a>
-      </li>
-    </ul>
-  </div>
+<!--  <div class="mobile-menu" (click)="$event.stopPropagation()">-->
+<!--    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">-->
+<!--      <span></span>-->
+<!--    </a>-->
+<!--    <ul class="">-->
+<!--      <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>-->
+<!--      <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>-->
+<!--      <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a></li>-->
+<!--      <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>-->
+<!--      <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>-->
+<!--      <li class="nav-item">-->
+<!--        <div class="separator"></div>-->
+<!--      </li>-->
+<!--      <li class="nav-item text-center">-->
+<!--        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" routerLink="/user/login">Login</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item text-center">-->
+<!--        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" routerLink="/user/signup">Sign Up</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+
+  <app-lb-nav></app-lb-nav>
 
   <div class="main-container" id="home">
 
 
-    <ngx-headroom class="landing-page-nav">
-      <nav class="navbar">
-        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
-          <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">
-            <span class="white"></span>
-            <span class="dark"></span>
-          </a>
-          <ul class="navbar-nav d-none d-lg-flex flex-row">
-            <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a>
-            </li>
-            <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
-            <li class="nav-item pl-3 pr-2">
-              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
-                 routerLink="/user/login">Login</a>
-            </li>
-            <li class="nav-item pl-2 pr-0">
-              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
-                 routerLink="/user/signup">Sign Up</a>
-            </li>
-          </ul>
-          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
-                        <i class="simple-icon-menu"></i>
-                    </span>
-        </div>
-      </nav>
-    </ngx-headroom>
+<!--    <ngx-headroom class="landing-page-nav">-->
+<!--      <nav class="navbar">-->
+<!--        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">-->
+<!--          <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">-->
+<!--            <span class="white"></span>-->
+<!--            <span class="dark"></span>-->
+<!--          </a>-->
+<!--          <ul class="navbar-nav d-none d-lg-flex flex-row">-->
+<!--            <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>-->
+<!--            <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>-->
+<!--            <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>-->
+<!--            <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>-->
+<!--            <li class="nav-item pl-3 pr-2">-->
+<!--              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"-->
+<!--                 routerLink="/user/login">Login</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item pl-2 pr-0">-->
+<!--              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"-->
+<!--                 routerLink="/user/signup">Sign Up</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">-->
+<!--                        <i class="simple-icon-menu"></i>-->
+<!--                    </span>-->
+<!--        </div>-->
+<!--      </nav>-->
+<!--    </ngx-headroom>-->
 
     <div class="content-container" style="padding-top: 80px">
 

@@ -30,7 +30,7 @@ export class FirebaseService {
 
         }
         user['isArtist'] = true
-        // user.uid='VgbSx1fiEpfuwGMNrqaB'
+        user.uid='VgbSx1fiEpfuwGMNrqaB'
         user.id='VgbSx1fiEpfuwGMNrqaB'
         return user;
       }));

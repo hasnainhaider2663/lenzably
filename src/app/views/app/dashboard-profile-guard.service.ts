@@ -14,7 +14,8 @@ export class DashboardProfileGuardService implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.afAuth.authState
       .pipe(take(1)).pipe(map(user => {
-        this.router.navigate([`/app/profile/${user.uid}/collections`]);
+        // this.router.navigate([`/app/profile/${user.uid}/collections`]);
+        this.router.navigate([`/app/profile/VgbSx1fiEpfuwGMNrqaB/collections`]);
         return false;
       }));
 

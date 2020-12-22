@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {map, take} from 'rxjs/operators';
 import * as firebase from 'firebase';
+import {Guid} from "guid-typescript";
 
 
 type  TableTypes = 'users' | 'assets' | 'collections';
@@ -16,6 +17,7 @@ type  TableTypes = 'users' | 'assets' | 'collections';
 export class FirebaseService {
 
   userObservable: Observable<any>;
+  assetTableName = 'previews/'
 
   constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
 
@@ -37,11 +39,11 @@ export class FirebaseService {
   }
 
   watchAssetsInCollection(collectionId): Observable<any> {
-    return this.firestore.collection(`assets`, x => x.where('collectionId', '==', collectionId)).valueChanges();
+    return this.firestore.collection(this.assetTableName, x => x.where('collectionId', '==', collectionId)).valueChanges();
   }
 
   getAssetsInCollection(collectionId, cb) {
-    const sub = this.firestore.collection(`assets`, x => x.where('collectionId', '==', collectionId)).valueChanges().subscribe(assets => {
+    const sub = this.firestore.collection(this.assetTableName, x => x.where('collectionId', '==', collectionId)).valueChanges().subscribe(assets => {
 
       assets.forEach(async asset => {
         // @ts-ignore
@@ -84,12 +86,13 @@ export class FirebaseService {
   }
 
   async uploadAsset(file, data?): Promise<any> {
-    const filePath = this.storage.ref(`assets/${this.currentUser.uid}`).child(`${file.name}`);
+
+    const assetRecord = await this.firestore.collection('sourceAssetFiles').add({userId: this.currentUser.uid})
+
+    const filePath = this.storage.ref(`this.assetTableName${this.currentUser.uid}`).child(assetRecord.id);
     // use the Blob or File API
     const result = await filePath.put(file);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
-    fileInfo['userId'] = this.currentUser.uid;
-    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
     // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
     // if (docRef) {
     //   console.log('already exists')
@@ -99,19 +102,21 @@ export class FirebaseService {
     Object.keys(data).forEach(z => {
       fileInfo[z] = data[z];
     });
-    return await this.firestore.doc(`assets/${fileInfo.md5Hash}`).set(fileInfo);
+    return await this.firestore.doc(`this.assetTableName${assetRecord.id}`).update(fileInfo);
   }
 
   async uploadFile(tableName: TableTypes, documentReference, file, paramToAssignTo): Promise<any> {
-    const filePath = this.storage.ref(`${tableName}/${documentReference}`).child(`${file.name}`);
-    // use the Blob or File API
-    const result = await filePath.put(file);
-    const fileInfo = JSON.parse(JSON.stringify(result.metadata));
 
-    fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
-    const data = {};
-    data[paramToAssignTo] = fileInfo;
-    return await this.firestore.doc(`${tableName}/${documentReference}`).update(data);
+    file.uid = Guid.create();
+    const filePath = this.storage.ref(`${tableName}/${documentReference}`).child(`${file.uid}`);
+    // use the Blob or File API
+    // const fileInfo = JSON.parse(JSON.stringify(result.metadata));
+    //
+    // fileInfo.md5Hash = fileInfo.md5Hash.replace('/', '*');
+    // const data = {};
+    // data[paramToAssignTo] = fileInfo;
+    // return await this.firestore.doc(`${tableName}/${documentReference}`).update(data);
+    return await filePath.put(file)
   }
 
   subscribeToDocument(tableName: TableTypes, documentReference): Observable<Action<DocumentSnapshot<any>>> {
@@ -123,7 +128,7 @@ export class FirebaseService {
   }
 
   async updateAsset(md5Hash, data): Promise<any> {
-    await this.firestore.doc(`assets/${md5Hash}`).update(data);
+    await this.firestore.doc(`this.assetTableName${md5Hash}`).update(data);
   }
 
   async updateDocument(tableName: TableTypes, documentReference, data): Promise<any> {
@@ -149,7 +154,7 @@ export class FirebaseService {
 
   async updateBatch(items, data): Promise<any> {
     items.forEach(async x => {
-      await this.firestore.doc(`assets/${x.md5Hash}`).update(data);
+      await this.firestore.doc(`this.assetTableName${x.md5Hash}`).update(data);
     });
   }
 

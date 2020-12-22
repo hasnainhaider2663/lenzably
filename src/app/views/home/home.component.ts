@@ -29,6 +29,10 @@ export class HomeComponent implements OnInit {
   adminRoot = environment.adminRoot;
   tagsList = [
     {
+      name: 'All',
+      link: '/all'
+    },
+    {
       name: 'Flour',
       link: 'Flour'
     },

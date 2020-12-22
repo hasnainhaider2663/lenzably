@@ -3,7 +3,9 @@
   <app-lb-nav-mobile></app-lb-nav-mobile>
 
   <div class="main-container" id="home">
+
     <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
+
     <div class="content-container">
 
       <div class="main-banner position-relative" [style.background-image]="'url(/assets/img//details/5.jpg)'">
@@ -20,7 +22,6 @@
             </ng-select>
           </div>
 
-
         </div>
       </div>
 
@@ -28,101 +29,14 @@
         <app-lb-tags-list [tagsList]="tagsList" [alignCenter]="true"></app-lb-tags-list>
       </div>
 
-      <div class="containerw3 row-grid">
-        <a class="position-relative row-item">
-          <img src="/assets/img/details/1.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/details/2.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-1.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/details/4.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-3.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-4.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-5.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-6.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-7.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-9.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-11.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/cards/thumb-1.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-2.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/cards/thumb-2.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/details/3.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/cards/thumb-3.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/cards/thumb-4.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/1.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/2.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-8.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/3.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/4.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/5.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/6.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/profiles/l-10.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/7.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/8.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/9.jpg"/>
-        </a>
-        <a class="position-relative row-item">
-          <img src="/assets/img/grid/10.jpg"/>
-        </a>
-      </div>
-
+      <app-lb-grid></app-lb-grid>
 
     </div>
+
   </div>
 
   <app-lb-footer></app-lb-footer>
+
 </div>
 
 

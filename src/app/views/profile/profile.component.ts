@@ -22,6 +22,84 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService, private router: Router) {
   }
 
+  tagsList = [
+    {
+      name: 'All',
+      link: '/all'
+    },
+    {
+      name: 'Flour',
+      link: 'Flour'
+    },
+    {
+      name: 'Chocolate',
+      link: 'Chocolate'
+    },
+    {
+      name: 'Caster Sugar',
+      link: 'Caster Sugar'
+    },
+    {
+      name: 'Baking Powder',
+      link: 'Baking Powder'
+    },
+    {
+      name: 'Eggs',
+      link: 'Eggs'
+    },
+    {
+      name: 'Vegetable Oil',
+      link: 'Vegetable Oil'
+    },
+    {
+      name: 'Flour',
+      link: 'Flour'
+    },
+    {
+      name: 'Chocolate',
+      link: 'Chocolate'
+    },
+    {
+      name: 'Caster Sugar',
+      link: 'Caster Sugar'
+    },
+    {
+      name: 'Baking Powder',
+      link: 'Baking Powder'
+    },
+    {
+      name: 'Eggs',
+      link: 'Eggs'
+    },
+    {
+      name: 'Vegetable Oil',
+      link: 'Vegetable Oil'
+    },
+    {
+      name: 'Flour',
+      link: 'Flour'
+    },
+    {
+      name: 'Chocolate',
+      link: 'Chocolate'
+    },
+    {
+      name: 'Caster Sugar',
+      link: 'Caster Sugar'
+    },
+    {
+      name: 'Baking Powder',
+      link: 'Baking Powder'
+    },
+    {
+      name: 'Eggs',
+      link: 'Eggs'
+    },
+    {
+      name: 'Vegetable Oil',
+      link: 'Vegetable Oil'
+    },
+  ];
 
   detailImages: ICarouselImage[] = carouselImages;
   detailThumbs: ICarouselImage[] = carouselThumbs;

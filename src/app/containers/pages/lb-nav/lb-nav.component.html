@@ -1,27 +1,10 @@
-
 <ngx-headroom *ngIf="didCheck" class="landing-page-nav">
-  <nav  class="navbar">
+  <nav class="navbar">
     <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
       <a class="navbar-logo pull-left" style="margin-top: 3px; width: 150px;">
         <img src="/assets/logos/black.svg" alt="" style=" width: 150px;">
       </a>
-      <ul class="navbar-nav d-none d-lg-flex flex-row">
-        <li class="nav-item"><a>FEATURES</a></li>
-        <li class="nav-item"><a>LAYOUTS</a></li>
-        <li class="nav-item"><a>COMPONENTS</a>
-        </li>
-        <li class="nav-item"><a>APPS</a></li>
-        <li class="nav-item"><a>THEMES</a></li>
-        <li *ngIf="didCheck && !user" class="nav-item pl-3 pr-2">
-          <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank" routerLink="/user/login">Login</a>
-        </li>
-        <li *ngIf="didCheck && !user" class="nav-item pl-2 pr-0">
-          <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank" routerLink="/user/signup">Sign Up</a>
-        </li>
-        <li *ngIf="user && user.isArtist" class="nav-item pl-2 pr-0">
-          <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank" routerLink="/app/collections">Dashboard</a>
-        </li>
-      </ul>
+      <app-lb-nav-menu></app-lb-nav-menu>
       <span class="mobile-menu-button" (click)="mobileMenuButton(); $event.stopPropagation()">
         <i class="simple-icon-menu"></i>
       </span>

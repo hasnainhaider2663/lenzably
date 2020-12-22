@@ -45,6 +45,7 @@ import {AlertModule} from "ngx-bootstrap/alert";
 import { LbNavComponent } from './lb-nav/lb-nav.component';
 import {HeadroomModule} from "@ctrl/ngx-headroom";
 import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
+import { LbNavMenuComponent } from './lb-nav-menu/lb-nav-menu.component';
 
 
 
@@ -78,7 +79,8 @@ import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
     SectionArtistAboutComponent,
     LbFooterComponent,
     LbNavComponent,
-    LbNavMobileComponent
+    LbNavMobileComponent,
+    LbNavMenuComponent
   ],
   imports: [
     CommonModule,

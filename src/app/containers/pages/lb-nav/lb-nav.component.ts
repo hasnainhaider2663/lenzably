@@ -18,7 +18,6 @@ export class LbNavComponent implements OnInit {
     this.firebaseService.userObservable.subscribe(value => {
       this.user = value;
       this.didCheck = true;
-
     } );
   }
 

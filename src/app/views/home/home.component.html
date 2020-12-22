@@ -21,11 +21,12 @@
 <!--      </li>-->
 <!--    </ul>-->
 <!--  </div>-->
-
-  <app-lb-nav></app-lb-nav>
+  <app-lb-nav-mobile></app-lb-nav-mobile>
 
   <div class="main-container" id="home">
 
+
+    <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
 
 <!--    <ngx-headroom class="landing-page-nav">-->
 <!--      <nav class="navbar">-->

@@ -30,10 +30,43 @@
            class="col-xxl-2 col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" >
         <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 400px;">
           <div class="position-relative">
-            <a [routerLink]="'/app/collection/'+p.payload.doc.id">
-              <div class="glyph-icon simple-icon-folder" *ngIf="!p.thumbnailURL"></div>
-              <img *ngIf="p.thumbnailURL" [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain"></a>
+            <a class="card-top" [routerLink]="'/app/collection/'+p.payload.doc.id">
+<!--              <div class="folder-icon glyph-icon simple-icon-folder" *ngIf="p.tags.length < 4"></div>-->
 
+              <div class="row social-image-row gallery" *ngIf="p.tags.length < 4">
+                <div class="col-6">
+                  <div class="img-fluid"></div>
+<!--                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/marble-cake.jpg"/>-->
+                </div>
+                <div class="col-6">
+                  <div class="img-fluid"></div>
+<!--                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/parkin.jpg"/>-->
+                </div>
+                <div class="col-6">
+                  <div class="img-fluid"></div>
+                </div>
+                <div class="col-6">
+                  <div class="img-fluid"></div>
+<!--                  <img class="img-fluid border-radius c-pointer" src=""/>-->
+                </div>
+              </div>
+
+              <div class="row social-image-row gallery" *ngIf="p.tags.length >= 4">
+                <div class="col-6">
+                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/marble-cake.jpg"/>
+                </div>
+                <div class="col-6">
+                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/parkin.jpg"/>
+                </div>
+                <div class="col-6">
+                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
+                </div>
+                <div class="col-6">
+                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/napoleonshat.jpg"/>
+                </div>
+              </div>
+<!--              <img *ngIf="p.thumbnailURL" [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain">-->
+            </a>
           </div>
           <div class="card-body">
             <div class="row">

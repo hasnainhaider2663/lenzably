@@ -4,10 +4,10 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './dashboard-profile.component.html',
+  styleUrls: ['./dashboard-profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class DashboardProfileComponent implements OnInit {
   username;
   user;
   collections;

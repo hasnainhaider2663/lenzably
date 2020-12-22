@@ -3,12 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {BlankPageComponent} from './blank-page/blank-page.component';
 import {UploadsComponent} from './uploads/uploads.component';
-import {ProfileComponent} from './profile/profile.component';
+import {DashboardProfileComponent} from './profile/dashboard-profile.component';
 import {DashboardCollectionsComponent} from './folders/dashboard-collections.component';
-import {ProfileCollectionsComponent} from './profile/profile-collections/profile-collections.component';
 import {ProfileCollectionsItemsComponent} from './profile/profile-collections-items/profile-collections-items.component';
 import {DashboardGuardService} from './dashboard-guard.service';
 import {DashboardProfileGuardService} from './dashboard-profile-guard.service';
+import {ProfileCollectionComponent} from '../../containers/pages/profile-collection/profile-collection.component';
 
 const routes: Routes = [
   {
@@ -47,10 +47,10 @@ const routes: Routes = [
       {path: 'blank-page', component: BlankPageComponent},
       {path: 'collections', component: DashboardCollectionsComponent},
       {path: 'collection/:collectionId', component: UploadsComponent},
-      {path: 'profile', component: ProfileComponent, canActivate: [DashboardProfileGuardService]},
+      {path: 'profile', component: DashboardProfileComponent, canActivate: [DashboardProfileGuardService]},
       {
-        path: 'profile/:username', component: ProfileComponent, children: [
-          {path: 'collections', component: ProfileCollectionsComponent},
+        path: 'profile/:username', component: DashboardProfileComponent, children: [
+          {path: 'collections', component: ProfileCollectionComponent},
           {path: 'collections/:collectionId', component: ProfileCollectionsItemsComponent}
         ]
       },

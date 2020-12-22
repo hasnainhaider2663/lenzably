@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService, private router: Router) {
   }
 
+  user;
+
   tagsList = [
     {
       name: 'All',

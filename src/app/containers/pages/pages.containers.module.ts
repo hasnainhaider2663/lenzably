@@ -49,6 +49,8 @@ import { LbNavSearchComponent } from './lb-nav-search/lb-nav-search.component';
 import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
 import { LbTagsListComponent } from './lb-tags-list/lb-tags-list.component';
 import { LbGridComponent } from './lb-grid/lb-grid.component';
+import { ProfileInnerComponent } from './profile-inner/profile-inner.component';
+import { ProfileCollectionComponent } from './profile-collection/profile-collection.component';
 
 
 
@@ -86,7 +88,9 @@ import { LbGridComponent } from './lb-grid/lb-grid.component';
     LbNavSearchComponent,
     LbNavMobileComponent,
     LbTagsListComponent,
-    LbGridComponent
+    LbGridComponent,
+    ProfileInnerComponent,
+    ProfileCollectionComponent
   ],
   imports: [
     CommonModule,
@@ -139,7 +143,8 @@ import { LbGridComponent } from './lb-grid/lb-grid.component';
     LbNavComponent,
     LbNavMobileComponent,
     LbTagsListComponent,
-    LbGridComponent
+    LbGridComponent,
+    ProfileInnerComponent
   ]
 })
 export class PagesContainersModule {

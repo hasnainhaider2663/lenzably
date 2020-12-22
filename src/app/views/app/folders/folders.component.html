@@ -33,7 +33,7 @@
             <a class="card-top" [routerLink]="'/app/collection/'+p.payload.doc.id">
               <!--              <div class="folder-icon glyph-icon simple-icon-folder" *ngIf="p.tags.length < 4"></div>-->
 
-              <div class="gallery clearfix" *ngIf="p.tags.length < 4">
+              <div class="gallery clearfix" *ngIf="!p.previews || p.previews.length < 1">
                 <div class="img-fluid-wrapper">
                   <div class="img-fluid">
                     <div class="folder-icon glyph-icon simple-icon-folder"></div>
@@ -41,20 +41,20 @@
                 </div>
               </div>
 
-              <div class="gallery with-five-images clearfix" *ngIf="p.tags.length >= 4">
-                <div class="img-fluid-wrapper">
+              <div class="gallery with-five-images clearfix" *ngIf="p.previews && p.previews.length >= 1">
+                <div *ngIf="p.previews[0]" class="img-fluid-wrapper">
                   <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
                 </div>
-                <div class="img-fluid-wrapper">
+                <div *ngIf="p.previews[1] && p.previews[2]" class="img-fluid-wrapper">
                   <img class="img-fluid border-radius c-pointer " src="/assets/img/products/marble-cake.jpg"/>
                 </div>
-                <div class="img-fluid-wrapper">
+                <div *ngIf="p.previews[2]" class="img-fluid-wrapper">
                   <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
                 </div>
-                <div class="img-fluid-wrapper">
+                <div *ngIf="p.previews[3] && p.previews[4]" class="img-fluid-wrapper">
                   <img class="img-fluid border-radius c-pointer" src="/assets/img/products/parkin.jpg"/>
                 </div>
-                <div class="img-fluid-wrapper">
+                <div *ngIf="p.previews[4]" class="img-fluid-wrapper">
                   <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
                 </div>
               </div>

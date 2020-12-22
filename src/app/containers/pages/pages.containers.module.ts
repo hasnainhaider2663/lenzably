@@ -46,6 +46,7 @@ import { LbNavComponent } from './lb-nav/lb-nav.component';
 import {HeadroomModule} from "@ctrl/ngx-headroom";
 import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
 import { LbNavMenuComponent } from './lb-nav-menu/lb-nav-menu.component';
+import { LbNavSearchComponent } from './lb-nav-search/lb-nav-search.component';
 
 
 
@@ -80,7 +81,8 @@ import { LbNavMenuComponent } from './lb-nav-menu/lb-nav-menu.component';
     LbFooterComponent,
     LbNavComponent,
     LbNavMobileComponent,
-    LbNavMenuComponent
+    LbNavMenuComponent,
+    LbNavSearchComponent
   ],
   imports: [
     CommonModule,

@@ -41,7 +41,7 @@
                 </div>
               </div>
 
-              <div class="gallery with-five-images clearfix" *ngIf="p.previews && p.previews.length >= 1">
+              <div class="gallery {{p.previews[4]?'with-five-images':''}} clearfix" *ngIf="p.previews && p.previews.length >= 1">
                 <div *ngIf="p.previews[0]" class="img-fluid-wrapper">
                   <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
                 </div>

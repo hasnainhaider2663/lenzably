@@ -30,6 +30,80 @@ export class ProductComponent implements OnInit, OnDestroy {
   buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
 
+  tagsList = [
+    {
+      name: 'Flour',
+      link: 'Flour'
+    },
+    {
+      name: 'Chocolate',
+      link: 'Chocolate'
+    },
+    {
+      name: 'Caster Sugar',
+      link: 'Caster Sugar'
+    },
+    {
+      name: 'Baking Powder',
+      link: 'Baking Powder'
+    },
+    {
+      name: 'Eggs',
+      link: 'Eggs'
+    },
+    {
+      name: 'Vegetable Oil',
+      link: 'Vegetable Oil'
+    },
+    {
+      name: 'Flour',
+      link: 'Flour'
+    },
+    {
+      name: 'Chocolate',
+      link: 'Chocolate'
+    },
+    {
+      name: 'Caster Sugar',
+      link: 'Caster Sugar'
+    },
+    {
+      name: 'Baking Powder',
+      link: 'Baking Powder'
+    },
+    {
+      name: 'Eggs',
+      link: 'Eggs'
+    },
+    {
+      name: 'Vegetable Oil',
+      link: 'Vegetable Oil'
+    },
+    {
+      name: 'Flour',
+      link: 'Flour'
+    },
+    {
+      name: 'Chocolate',
+      link: 'Chocolate'
+    },
+    {
+      name: 'Caster Sugar',
+      link: 'Caster Sugar'
+    },
+    {
+      name: 'Baking Powder',
+      link: 'Baking Powder'
+    },
+    {
+      name: 'Eggs',
+      link: 'Eggs'
+    },
+    {
+      name: 'Vegetable Oil',
+      link: 'Vegetable Oil'
+    },
+  ];
 
   album = [
     {

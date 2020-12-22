@@ -47,6 +47,7 @@ import {HeadroomModule} from '@ctrl/ngx-headroom';
 import { LbNavMenuComponent } from './lb-nav-menu/lb-nav-menu.component';
 import { LbNavSearchComponent } from './lb-nav-search/lb-nav-search.component';
 import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
+import { LbTagsListComponent } from './lb-tags-list/lb-tags-list.component';
 
 
 
@@ -82,7 +83,8 @@ import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
     LbNavComponent,
     LbNavMenuComponent,
     LbNavSearchComponent,
-    LbNavMobileComponent
+    LbNavMobileComponent,
+    LbTagsListComponent
   ],
   imports: [
     CommonModule,
@@ -133,7 +135,8 @@ import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
     SectionArtistAboutComponent,
     LbFooterComponent,
     LbNavComponent,
-    LbNavMobileComponent
+    LbNavMobileComponent,
+    LbTagsListComponent
   ]
 })
 export class PagesContainersModule {

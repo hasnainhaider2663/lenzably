@@ -3,14 +3,20 @@
 
 <app-section-artist-about [editMode]="true" [user]="user"></app-section-artist-about>
 
-<div style="margin: 30px 35px 20px">
-  <app-lb-tags-list [tagsList]="tagsList" [alignCenter]="true"></app-lb-tags-list>
+
+<div class="mt-4">
+  <tabset class="separator-tabs">
+    <tab heading="Collections">
+      <app-profile-collections></app-profile-collections>
+    </tab>
+    <tab heading="Images">
+      <app-lb-grid></app-lb-grid>
+    </tab>
+  </tabset>
 </div>
 
-<app-lb-grid></app-lb-grid>
 
-
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->
 
 <!--<div class="row mt-4">-->
 <!--  <div class="col-12">-->

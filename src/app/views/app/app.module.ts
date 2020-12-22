@@ -23,7 +23,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
 import {ProfileComponent} from './profile/profile.component';
 import {AlertModule} from 'ngx-bootstrap/alert';
-import {FoldersComponent} from "./folders/folders.component";
+import {DashboardCollectionsComponent} from "./folders/dashboard-collections.component";
 import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import { ProfileCollectionsComponent } from './profile/profile-collections/profile-collections.component';
@@ -32,7 +32,7 @@ import {PublicGridComponent} from './public-grid/public-grid.component';
 
 
 @NgModule({
-  declarations: [BlankPageComponent, AppComponent, UploadsComponent, FoldersComponent, ProfileComponent, EditFolderNameModalComponent, ProfileCollectionsComponent, ProfileCollectionsItemsComponent, PublicGridComponent],
+  declarations: [BlankPageComponent, AppComponent, UploadsComponent, DashboardCollectionsComponent, ProfileComponent, EditFolderNameModalComponent, ProfileCollectionsComponent, ProfileCollectionsItemsComponent, PublicGridComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

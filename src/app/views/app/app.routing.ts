@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {BlankPageComponent} from './blank-page/blank-page.component';
 import {UploadsComponent} from './uploads/uploads.component';
 import {ProfileComponent} from './profile/profile.component';
-import {FoldersComponent} from './folders/folders.component';
+import {DashboardCollectionsComponent} from './folders/dashboard-collections.component';
 import {ProfileCollectionsComponent} from './profile/profile-collections/profile-collections.component';
 import {ProfileCollectionsItemsComponent} from './profile/profile-collections-items/profile-collections-items.component';
 import {DashboardGuardService} from './dashboard-guard.service';
@@ -45,7 +45,7 @@ const routes: Routes = [
           import('./menu/menu.module').then((m) => m.MenuModule),
       },
       {path: 'blank-page', component: BlankPageComponent},
-      {path: 'collections', component: FoldersComponent},
+      {path: 'collections', component: DashboardCollectionsComponent},
       {path: 'collection/:collectionId', component: UploadsComponent},
       {path: 'profile', component: ProfileComponent, canActivate: [DashboardProfileGuardService]},
       {

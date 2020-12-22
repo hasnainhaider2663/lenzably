@@ -1,0 +1,20 @@
+.img-contain {
+  object-fit: contain;
+  height: 250px
+
+}
+
+.card-top {
+  position: relative;
+  min-height: 150px;
+  display: block;
+
+  .folder-icon {
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+  }
+}

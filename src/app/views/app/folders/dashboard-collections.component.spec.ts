@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FoldersComponent } from './folders.component';
+import { DashboardCollectionsComponent } from './dashboard-collections.component';
 
 describe('UploadsComponent', () => {
-  let component: FoldersComponent;
-  let fixture: ComponentFixture<FoldersComponent>;
+  let component: DashboardCollectionsComponent;
+  let fixture: ComponentFixture<DashboardCollectionsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FoldersComponent ]
+      declarations: [ DashboardCollectionsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FoldersComponent);
+    fixture = TestBed.createComponent(DashboardCollectionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,11 +8,11 @@ import {EditFolderNameModalComponent} from './edit-folder-name-modal/edit-folder
 
 
 @Component({
-  selector: 'app-folders',
-  templateUrl: './folders.component.html',
-  styleUrls: ['./folders.component.scss']
+  selector: 'app-dashboard-collections',
+  templateUrl: './dashboard-collections.component.html',
+  styleUrls: ['./dashboard-collections.component.scss']
 })
-export class FoldersComponent implements OnInit {
+export class DashboardCollectionsComponent implements OnInit {
   displayMode = 'image';
   selectAllState = '';
   selectedItemsArray = [];

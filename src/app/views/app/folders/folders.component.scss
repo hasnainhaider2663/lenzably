@@ -20,16 +20,22 @@
   }
 
   .gallery {
-    .img-fluid {
+    .img-fluid-wrapper{
       float: left;
-      height: 80px;
       width: 50%;
-      object-fit: cover;
-      background-color: #e2e3e5;
+      height: 80px;
+      padding-bottom: 3px;
       &.full-width{
         width: 100%;
         height: 160px;
       }
+      .img-fluid {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-color: #e2e3e5;
+      }
     }
+
   }
 }

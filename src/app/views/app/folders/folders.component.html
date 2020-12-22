@@ -34,16 +34,21 @@
               <!--              <div class="folder-icon glyph-icon simple-icon-folder" *ngIf="p.tags.length < 4"></div>-->
 
               <div class="social-image-row gallery clearfix" *ngIf="p.tags.length < 4">
-                <div class="img-fluid"></div>
-                <div class="img-fluid"></div>
+                <div class="img-fluid full-width"></div>
                 <div class="img-fluid"></div>
                 <div class="img-fluid"></div>
               </div>
 
               <div class="social-image-row gallery clearfix" *ngIf="p.tags.length >= 4">
-                <img class="img-fluid border-radius c-pointer full-width" src="/assets/img/products/marble-cake.jpg"/>
-                <img class="img-fluid border-radius c-pointer" src="/assets/img/products/parkin.jpg"/>
-                <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
+                <div class="img-fluid-wrapper full-width">
+                  <img class="img-fluid border-radius c-pointer " src="/assets/img/products/marble-cake.jpg"/>
+                </div>
+                <div class="img-fluid-wrapper">
+                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/parkin.jpg"/>
+                </div>
+                <div class="img-fluid-wrapper">
+                  <img class="img-fluid border-radius c-pointer" src="/assets/img/products/fruitcake.jpg"/>
+                </div>
               </div>
               <!--              <img *ngIf="p.thumbnailURL" [alt]="p.name" [src]="p.thumbnailURL" class="card-img-top img-contain">-->
             </a>

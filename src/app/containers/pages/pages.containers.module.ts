@@ -41,12 +41,12 @@ import {EditProductDescriptionModalComponent} from './edit-product-description-m
 import {EditProductCategoriesModalComponent} from './edit-product-categories-modal/edit-product-categories-modal.component';
 import {EditProductTagsModalComponent} from './edit-product-tags-modal/edit-product-tags-modal.component';
 import { LbFooterComponent } from './lb-footer/lb-footer.component';
-import {AlertModule} from "ngx-bootstrap/alert";
+import {AlertModule} from 'ngx-bootstrap/alert';
 import { LbNavComponent } from './lb-nav/lb-nav.component';
-import {HeadroomModule} from "@ctrl/ngx-headroom";
-import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
+import {HeadroomModule} from '@ctrl/ngx-headroom';
 import { LbNavMenuComponent } from './lb-nav-menu/lb-nav-menu.component';
 import { LbNavSearchComponent } from './lb-nav-search/lb-nav-search.component';
+import { LbNavMobileComponent } from './lb-nav-mobile/lb-nav-mobile.component';
 
 
 
@@ -80,9 +80,9 @@ import { LbNavSearchComponent } from './lb-nav-search/lb-nav-search.component';
     SectionArtistAboutComponent,
     LbFooterComponent,
     LbNavComponent,
-    LbNavMobileComponent,
     LbNavMenuComponent,
-    LbNavSearchComponent
+    LbNavSearchComponent,
+    LbNavMobileComponent
   ],
   imports: [
     CommonModule,

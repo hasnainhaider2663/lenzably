@@ -1,62 +1,13 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
 
+
   <app-lb-nav-mobile></app-lb-nav-mobile>
-<!--  <div class="mobile-menu" (click)="$event.stopPropagation()">
-    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
-      <span></span>
-    </a>
-    <ul class="">
-      <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
-      <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
-      <li class="nav-item">
-        <div class="separator"></div>
-      </li>
-      <li class="nav-item text-center">
-        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" routerLink="/user/login">Login</a>
-      </li>
-      <li class="nav-item text-center">
-        <a class="btn btn-outline-primary btn-sm mobile-menu-cta" target="_blank" routerLink="/user/signup">Sign Up</a>
-      </li>
-    </ul>
-  </div>-->
+  <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
 
   <div class="main-container" id="home">
-
     <app-lb-nav (mobileMenuButtonEvent)="showMobileMenu=!showMobileMenu"></app-lb-nav>
 
-    <!--<ngx-headroom class="landing-page-nav">
-      <nav class="navbar">
-        <div class=" d-flex align-items-center justify-content-between" style="width: 100%">
-          <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;" style="margin-top: 3px; width: 150px;">
-            <img src="/assets/logos/black.svg" alt="" style=" width: 150px;">
-          </a>
-          <ul class="navbar-nav d-none d-lg-flex flex-row">
-            <li class="nav-item"><a (click)="scrollTo('#features')" href="javascript:;">FEATURES</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#layouts')" href="javascript:;">LAYOUTS</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#components')" href="javascript:;">COMPONENTS</a>
-            </li>
-            <li class="nav-item"><a (click)="scrollTo('#apps')" href="javascript:;">APPS</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#themes')" href="javascript:;">THEMES</a></li>
-            <li class="nav-item pl-3 pr-2">
-              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
-                 routerLink="/user/login">Login</a>
-            </li>
-            <li class="nav-item pl-2 pr-0">
-              <a class="btn btn-outline-semi-light btn-sm pr-4 pl-4" target="_blank"
-                 routerLink="/user/signup">Sign Up</a>
-            </li>
-          </ul>
-          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
-                        <i class="simple-icon-menu"></i>
-                    </span>
-        </div>
-      </nav>
-    </ngx-headroom>-->
-
-    <div class="content-container" style="padding-top: 80px">
+    <div class="content-container">
 
       <div class="artists-banner position-relative">
         <div class="home-text">
@@ -146,7 +97,8 @@
                   </div>
 
                   <button type="button" class="btn btn-outline-dark default mb-1"
-                          style="width: 100%; border: 1px solid rgba(58, 58, 58, 0.3);    margin-top: 10px;">View profile
+                          style="width: 100%; border: 1px solid rgba(58, 58, 58, 0.3);    margin-top: 10px;">View
+                    profile
                   </button>
 
                 </div>
@@ -219,11 +171,10 @@
       </ng-template>
 
 
-      <app-lb-footer></app-lb-footer>
-
-
     </div>
   </div>
+
+  <app-lb-footer></app-lb-footer>
 
 </div>
 

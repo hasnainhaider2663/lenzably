@@ -15,7 +15,7 @@ type  TableTypes = 'users' | 'assets' | 'collections';
 })
 export class FirebaseService {
 
-  userObservable;
+  userObservable: Observable<any>;
 
   constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
 

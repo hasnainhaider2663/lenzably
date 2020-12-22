@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { SidebarService, ISidebar } from '../sidebar/sidebar.service';
-import { Router } from '@angular/router';
-import { LangService, Language } from 'src/app/shared/lang.service';
-import { AuthService } from 'src/app/shared/auth.service';
-import { environment } from 'src/environments/environment';
-import { getThemeColor, setThemeColor } from 'src/app/utils/util';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {ISidebar, SidebarService} from '../sidebar/sidebar.service';
+import {Router} from '@angular/router';
+import {LangService, Language} from 'src/app/shared/lang.service';
+import {AuthService} from 'src/app/shared/auth.service';
+import {environment} from 'src/environments/environment';
+import {getThemeColor, setThemeColor} from 'src/app/utils/util';
+import {FirebaseService} from "../../../firebase.service";
 
 @Component({
   selector: 'app-topnav',
@@ -23,12 +24,13 @@ export class TopnavComponent implements OnInit, OnDestroy {
   isFullScreen = false;
   isDarkModeActive = false;
   searchKey = '';
+  user: any;
 
   constructor(
     private sidebarService: SidebarService,
     private authService: AuthService,
     private router: Router,
-    private langService: LangService
+    private langService: LangService, public firebaseService: FirebaseService
   ) {
     this.languages = this.langService.supportedLanguages;
     this.currentLanguage = this.langService.languageShorthand;
@@ -72,11 +74,14 @@ export class TopnavComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-    if (await this.authService.getUser()) {
-      this.displayName = await this.authService.getUser().then((user) => {
-        return user.displayName;
-      });
-    }
+    this.firebaseService.userObservable.subscribe(x => {
+      this.user = x
+    });
+    // if (await this.authService.getUser()) {
+    //   this.displayName = await this.authService.getUser().then((user) => {
+    //     return user.displayName;
+    //   });
+    // }
     this.subscription = this.sidebarService.getSidebar().subscribe(
       (res) => {
         this.sidebar = res;
@@ -111,7 +116,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
       containerClassnames,
       this.sidebar.selectedMenuHasSubItems
     );
-  }
+  };
 
   mobileMenuButtonClick = (
     event: { stopPropagation: () => void },
@@ -121,12 +126,11 @@ export class TopnavComponent implements OnInit, OnDestroy {
       event.stopPropagation();
     }
     this.sidebarService.clickOnMobileMenu(containerClassnames);
-  }
+  };
 
-  onSignOut(): void {
-    this.authService.signOut().subscribe(() => {
-      this.router.navigate(['/']);
-    });
+  async onSignOut() {
+    await this.firebaseService.signOut();
+    await this.router.navigate(['/']);
   }
 
   searchKeyUp(event: KeyboardEvent): void {
@@ -144,6 +148,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
   searchAreaClick(event): void {
     event.stopPropagation();
   }
+
   searchClick(event): void {
     if (window.innerWidth < environment.menuHiddenBreakpoint) {
       let elem = event.target;
@@ -172,7 +177,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
   search(): void {
     if (this.searchKey && this.searchKey.length > 1) {
       this.router.navigate([this.adminRoot + '/pages/miscellaneous/search'], {
-        queryParams: { key: this.searchKey.toLowerCase().trim() },
+        queryParams: {key: this.searchKey.toLowerCase().trim()},
       });
       this.searchKey = '';
     }

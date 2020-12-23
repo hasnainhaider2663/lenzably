@@ -290,10 +290,7 @@ export class UploadsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.firebaseService.uploadAsset(event[0], {
-      collectionId: this.collection.id,
-      userId: this.user.uid
-    });
+    const result = await this.firebaseService.uploadAsset(event[0], this.collectionId);
     console.log(result);
   }
 

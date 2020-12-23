@@ -44,6 +44,7 @@ environment = {
     storageBucket: 'freedom-collective.appspot.com',
     messagingSenderId: '277969243612',
     appId: '1:277969243612:web:0013a3bdfc45283db55319',
-    measurementId: 'G-Z9MXSV8KF7'
+    measurementId: 'G-Z9MXSV8KF7',
+    originalAssetBucketName:'lenzably-original-assets'
   }
 };

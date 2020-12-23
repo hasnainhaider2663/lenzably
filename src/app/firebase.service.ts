@@ -6,7 +6,9 @@ import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {map, take} from 'rxjs/operators';
 import * as firebase from 'firebase';
-import {Guid} from "guid-typescript";
+import {Guid} from 'guid-typescript';
+import {environment} from '../environments/environment';
+import {FirebaseApp} from "@angular/fire";
 
 
 type  TableTypes = 'users' | 'assets' | 'collections';
@@ -17,9 +19,9 @@ type  TableTypes = 'users' | 'assets' | 'collections';
 export class FirebaseService {
 
   userObservable: Observable<any>;
-  assetTableName = 'previews/'
+  assetTableName = 'previews/';
 
-  constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage) {
+  constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage, private firebaseApp: FirebaseApp) {
 
     this.userObservable = this.firebaseAuth.authState
       .pipe(take(1)).pipe(map(mUser => {
@@ -35,7 +37,7 @@ export class FirebaseService {
   }
 
   get currentUser() {
-    return JSON.parse(localStorage.getItem('user'))
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   watchAssetsInCollection(collectionId): Observable<any> {
@@ -85,22 +87,26 @@ export class FirebaseService {
     return await this.storage.ref(url).getDownloadURL().toPromise();
   }
 
-  async uploadAsset(file, data): Promise<any> {
+  async uploadAsset(file, collectionId): Promise<any> {
+    try {
+      const originalAssetStorage = this.firebaseApp.storage(environment.firebase.originalAssetBucketName)
+      // const assetRecord = await this.firestore.collection('sourceAssetFiles').add({userId: this.currentUser.uid})
 
-    const assetRecord = await this.firestore.collection('sourceAssetFiles').add({userId: this.currentUser.uid})
-
-    const filePath: AngularFireStorageReference = this.storage.ref(`this.assetTableName${this.currentUser.uid}`).child(assetRecord.id);
-    // use the Blob or File API
-    const result = await filePath.put(file, data);
-    const fileInfo = JSON.parse(JSON.stringify(result.metadata));
-    // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
-    // if (docRef) {
-    //   console.log('already exists')
-    //   await this.storage.ref(`assets/${this.user.id}/${file.name}`).delete().toPromise()
-    //   return true
-    // }
-    console.log('uploaded file', fileInfo)
-    return fileInfo;
+      const filePath = originalAssetStorage.ref(`${this.currentUser.uid}/${collectionId}`).child(file.name);
+      // use the Blob or File API
+      const result = await filePath.put(file, {customMetadata: {collectionId, userId: this.currentUser.uid}});
+      const fileInfo = JSON.parse(JSON.stringify(result.metadata));
+      // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
+      // if (docRef) {
+      //   console.log('already exists')
+      //   await this.storage.ref(`assets/${this.user.id}/${file.name}`).delete().toPromise()
+      //   return true
+      // }
+      console.log('uploaded file', fileInfo);
+      return fileInfo;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async uploadFile(tableName: TableTypes, documentReference, file, paramToAssignTo): Promise<any> {
@@ -114,7 +120,7 @@ export class FirebaseService {
     // const data = {};
     // data[paramToAssignTo] = fileInfo;
     // return await this.firestore.doc(`${tableName}/${documentReference}`).update(data);
-    return await filePath.put(file)
+    return await filePath.put(file);
   }
 
   subscribeToDocument(tableName: TableTypes, documentReference): Observable<Action<DocumentSnapshot<any>>> {

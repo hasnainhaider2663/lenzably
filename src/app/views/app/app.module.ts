@@ -21,18 +21,18 @@ import {AccordionModule} from 'ngx-bootstrap/accordion';
 import {LayoutContainersModule} from '../../containers/layout/layout.containers.module';
 import {SharedModule} from '../../shared/shared.module';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
-import {ProfileComponent} from './profile/profile.component';
+import {DashboardProfileComponent} from './profile/dashboard-profile.component';
 import {AlertModule} from 'ngx-bootstrap/alert';
-import {DashboardCollectionsComponent} from "./folders/dashboard-collections.component";
-import { EditFolderNameModalComponent } from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
-import {NgSelectModule} from "@ng-select/ng-select";
-import { ProfileCollectionsComponent } from './profile/profile-collections/profile-collections.component';
-import { ProfileCollectionsItemsComponent } from './profile/profile-collections-items/profile-collections-items.component';
+import {DashboardCollectionsComponent} from './folders/dashboard-collections.component';
+import {EditFolderNameModalComponent} from './folders/edit-folder-name-modal/edit-folder-name-modal.component';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {ProfileCollectionsItemsComponent} from './profile/profile-collections-items/profile-collections-items.component';
 import {PublicGridComponent} from './public-grid/public-grid.component';
 
 
 @NgModule({
-  declarations: [BlankPageComponent, AppComponent, UploadsComponent, DashboardCollectionsComponent, ProfileComponent, EditFolderNameModalComponent, ProfileCollectionsComponent, ProfileCollectionsItemsComponent, PublicGridComponent],
+  declarations: [BlankPageComponent, AppComponent, UploadsComponent, DashboardCollectionsComponent, DashboardProfileComponent, EditFolderNameModalComponent,
+    ProfileCollectionsItemsComponent, PublicGridComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

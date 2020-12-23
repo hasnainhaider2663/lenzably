@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {FirebaseService} from "../../../../firebase.service";
+import {FirebaseService} from "../../../firebase.service";
 
 @Component({
-  selector: 'app-profile-collections',
-  templateUrl: './profile-collections.component.html',
-  styleUrls: ['./profile-collections.component.scss']
+  selector: 'app-profile-collection',
+  templateUrl: './profile-collection.component.html',
+  styleUrls: ['./profile-collection.component.scss']
 })
-export class ProfileCollectionsComponent implements OnInit {
-  collections
+export class ProfileCollectionComponent implements OnInit {
+  collections;
   constructor(private route: ActivatedRoute, private firebaseService: FirebaseService) {
   }
 
@@ -18,7 +18,7 @@ export class ProfileCollectionsComponent implements OnInit {
     });
     this.firebaseService.watchUserCollections().subscribe(x=>{
 
-    })
+    });
   }
 
 }

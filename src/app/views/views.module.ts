@@ -13,17 +13,18 @@ import { HomeComponent } from './home/home.component';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { AuthGuard } from '../shared/auth.guard';
 import { ProductComponent } from './product/product.component';
-import {LayoutContainersModule} from "../containers/layout/layout.containers.module";
-import {PagesContainersModule} from "../containers/pages/pages.containers.module";
-import {FormsModule} from "@angular/forms";
+import {LayoutContainersModule} from '../containers/layout/layout.containers.module';
+import {PagesContainersModule} from '../containers/pages/pages.containers.module';
+import {FormsModule} from '@angular/forms';
 import { HomeCopyComponent } from './home-copy/home-copy.component';
 import { ProfileComponent } from './profile/profile.component';
-import {DashboardsContainersModule} from "../containers/dashboards/dashboards.containers.module";
-import {NgSelectModule} from "@ng-select/ng-select";
+import {DashboardsContainersModule} from '../containers/dashboards/dashboards.containers.module';
+import {NgSelectModule} from '@ng-select/ng-select';
 import { ArtistsComponent } from './artists/artists.component';
-import {PaginationModule} from "ngx-bootstrap/pagination";
+import {PaginationModule} from 'ngx-bootstrap/pagination';
+import { CollectionItemsComponent } from './collection-items/collection-items.component';
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,

@@ -5,7 +5,6 @@ import {
   HostListener,
   ElementRef,
 } from '@angular/core';
-import {ScrollToService, ScrollToConfigOptions} from '@nicky-lenaers/ngx-scroll-to';
 import {environment} from 'src/environments/environment';
 import {Observable, Subject} from "rxjs";
 import {Person} from "../../containers/forms/select/select.data.service";
@@ -15,7 +14,7 @@ import {Person} from "../../containers/forms/select/select.data.service";
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {
   }
 
   showMobileMenu = false;
@@ -25,7 +24,6 @@ export class HomeComponent implements OnInit {
   peopleInputAsyncSearch = new Subject<string>();
   selectedPersonsAsyncSearch = [];
 
-  buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
   tagsList = [
     {
@@ -143,16 +141,6 @@ export class HomeComponent implements OnInit {
   onScroll(event): void {
     this.showMobileMenu = false;
   }
-
-  scrollTo(target): void {
-    const config: ScrollToConfigOptions = {
-      target,
-      offset: -150
-    };
-
-    this.scrollToService.scrollTo(config);
-  }
-
 
   trackByFn(item: Person): string {
     return item.id;

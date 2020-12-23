@@ -1,7 +1,7 @@
 /* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
 import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryFn} from '@angular/fire/firestore';
-import {AngularFireStorage} from '@angular/fire/storage';
+import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {map, take} from 'rxjs/operators';
@@ -85,13 +85,13 @@ export class FirebaseService {
     return await this.storage.ref(url).getDownloadURL().toPromise();
   }
 
-  async uploadAsset(file, data?): Promise<any> {
+  async uploadAsset(file, data): Promise<any> {
 
     const assetRecord = await this.firestore.collection('sourceAssetFiles').add({userId: this.currentUser.uid})
 
-    const filePath = this.storage.ref(`this.assetTableName${this.currentUser.uid}`).child(assetRecord.id);
+    const filePath: AngularFireStorageReference = this.storage.ref(`this.assetTableName${this.currentUser.uid}`).child(assetRecord.id);
     // use the Blob or File API
-    const result = await filePath.put(file);
+    const result = await filePath.put(file, data);
     const fileInfo = JSON.parse(JSON.stringify(result.metadata));
     // const docRef = this.firestore.doc(`assets/${fileInfo.md5Hash}`)
     // if (docRef) {
@@ -99,10 +99,8 @@ export class FirebaseService {
     //   await this.storage.ref(`assets/${this.user.id}/${file.name}`).delete().toPromise()
     //   return true
     // }
-    Object.keys(data).forEach(z => {
-      fileInfo[z] = data[z];
-    });
-    return await this.firestore.doc(`this.assetTableName${assetRecord.id}`).update(fileInfo);
+    console.log('uploaded file', fileInfo)
+    return fileInfo;
   }
 
   async uploadFile(tableName: TableTypes, documentReference, file, paramToAssignTo): Promise<any> {

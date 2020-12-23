@@ -102,7 +102,6 @@ export class ProfileComponent implements OnInit {
       x => x.where('username', '==', this.username)).subscribe(
       result => {
         this.user = result[0].payload.doc.data();
-        console.log(this.user);
       });
 
 

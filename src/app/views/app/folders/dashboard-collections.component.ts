@@ -208,8 +208,8 @@ export class DashboardCollectionsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.firebaseService.uploadAsset(event[0]);
-    console.log(result);
+    // const result = await this.firebaseService.uploadAsset(event[0]);
+    // console.log(result);
   }
 
 }

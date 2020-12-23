@@ -10,6 +10,7 @@ import {ProductComponent} from "./product/product.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {HomeCopyComponent} from "./home-copy/home-copy.component";
 import {ArtistsComponent} from "./artists/artists.component";
+import {CollectionItemsComponent} from "./collection-items/collection-items.component";
 
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
@@ -60,6 +61,11 @@ if (!environment.isAuthGuardActive) {
     {
       path: 'profile',
       component: ProfileComponent,
+      pathMatch: 'full',
+    },
+    {
+      path: 'profile/collection',
+      component: CollectionItemsComponent,
       pathMatch: 'full',
     },
     {

@@ -1,5 +1,6 @@
 .product-container{
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 80px);
+  max-height: 1370px;
 
   .blur-bg-wrap{
     position: relative;

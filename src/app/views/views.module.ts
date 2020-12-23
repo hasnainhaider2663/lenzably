@@ -22,8 +22,9 @@ import {DashboardsContainersModule} from '../containers/dashboards/dashboards.co
 import {NgSelectModule} from '@ng-select/ng-select';
 import { ArtistsComponent } from './artists/artists.component';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
+import { CollectionItemsComponent } from './collection-items/collection-items.component';
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,

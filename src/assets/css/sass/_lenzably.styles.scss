@@ -8,8 +8,17 @@
 @import "_partials/row-grid";
 @import "_partials/badges";
 @import "_partials/tabs";
+@import "_partials/product-page";
 @import "_partials/collection-card-gallery";
 @import "_partials/footer";
 .hidden{
   opacity: 0;
+}
+
+
+.scroll-no-margin{
+  perfect-scrollbar > .ps{
+    padding: 0;
+    margin: 0;
+  }
 }

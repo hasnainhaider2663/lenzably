@@ -46,7 +46,7 @@ export class UploadsComponent implements OnInit {
   originalAssets;
   error: any;
 
-  collection ;
+  collection;
   collectionId
 
   constructor(private firebaseService: FirebaseService, private hotkeysService: HotkeysService, private apiService: ApiService, private angularFireService: AngularFireService, private route: ActivatedRoute) {
@@ -290,7 +290,7 @@ export class UploadsComponent implements OnInit {
     console.log(data);
     console.log(event);
 
-    const result = await this.firebaseService.uploadAsset(event[0], {collectionId: this.collection.id});
+    const result = await this.firebaseService.uploadAsset(event[0], this.collectionId);
     console.log(result);
   }
 

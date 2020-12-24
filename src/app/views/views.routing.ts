@@ -12,6 +12,7 @@ import {HomeCopyComponent} from "./home-copy/home-copy.component";
 import {ArtistsComponent} from "./artists/artists.component";
 import {CollectionItemsComponent} from "./collection-items/collection-items.component";
 import {LbOrdersComponent} from "./lb-orders/lb-orders.component";
+import {LbOrderDetailsComponent} from "./lb-order-details/lb-order-details.component";
 
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
@@ -77,6 +78,11 @@ if (!environment.isAuthGuardActive) {
     {
       path: 'orders',
       component: LbOrdersComponent,
+      pathMatch: 'full',
+    },
+    {
+      path: 'order-details',
+      component: LbOrderDetailsComponent,
       pathMatch: 'full',
     },
     {

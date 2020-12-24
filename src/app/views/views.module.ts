@@ -25,8 +25,9 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 import { CollectionItemsComponent } from './collection-items/collection-items.component';
 import { LbOrdersComponent } from './lb-orders/lb-orders.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { LbOrderDetailsComponent } from './lb-order-details/lb-order-details.component';
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent, LbOrdersComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent, LbOrdersComponent, LbOrderDetailsComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,

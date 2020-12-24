@@ -23,8 +23,10 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import { ArtistsComponent } from './artists/artists.component';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import { CollectionItemsComponent } from './collection-items/collection-items.component';
+import { LbOrdersComponent } from './lb-orders/lb-orders.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent, LbOrdersComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,
@@ -41,7 +43,8 @@ import { CollectionItemsComponent } from './collection-items/collection-items.co
     FormsModule,
     DashboardsContainersModule,
     NgSelectModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    NgxDatatableModule,
   ],
   providers: [AuthGuard],
 })

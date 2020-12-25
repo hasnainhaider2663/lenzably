@@ -26,8 +26,10 @@ import { CollectionItemsComponent } from './collection-items/collection-items.co
 import { LbOrdersComponent } from './lb-orders/lb-orders.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { LbOrderDetailsComponent } from './lb-order-details/lb-order-details.component';
+import { LbFaqComponent } from './lb-faq/lb-faq.component';
+import {CollapseModule} from "ngx-bootstrap/collapse";
 @NgModule({
-  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent, LbOrdersComponent, LbOrderDetailsComponent],
+  declarations: [HomeComponent, ProductComponent, HomeCopyComponent, ProfileComponent, ArtistsComponent, CollectionItemsComponent, LbOrdersComponent, LbOrderDetailsComponent, LbFaqComponent],
   imports: [
     CommonModule,
     ViewRoutingModule,
@@ -46,6 +48,7 @@ import { LbOrderDetailsComponent } from './lb-order-details/lb-order-details.com
     NgSelectModule,
     PaginationModule.forRoot(),
     NgxDatatableModule,
+    CollapseModule,
   ],
   providers: [AuthGuard],
 })

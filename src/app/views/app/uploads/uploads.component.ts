@@ -80,9 +80,8 @@ export class UploadsComponent implements OnInit {
     this.firebaseService.watchAssetsInCollection(this.collectionId).subscribe(assetsArray => {
       assetsArray.forEach(async updatedAsset => {
         try {
-          const assetInArray = this.assets.find(x => x.md5Hash === updatedAsset.md5Hash);
+          const assetInArray = this.assets.find(x => x.name === updatedAsset.name);
           if (!(assetInArray)) {
-            updatedAsset.thumbnailURL = await this.firebaseService.getFullURL(updatedAsset.fullPath);
             this.assets.push(updatedAsset);
           } else {
             Object.keys(updatedAsset).forEach(key => {

@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 import {Guid} from 'guid-typescript';
 import {environment} from '../environments/environment';
 import {FirebaseApp} from "@angular/fire";
-import MD5 from 'crypto-js/md5';
+
 
 type  TableTypes = 'users' | 'assets' | 'collections';
 
@@ -90,11 +90,6 @@ export class FirebaseService {
   async getFullURL(url) {
     return await this.storage.ref(url).getDownloadURL().toPromise();
   }
-
-  // async doesDocumentExists(path): boolean {
-  //   if (this.firestore.doc(path)) return true;
-  //   return false;
-  // }
 
   async uploadAsset(file, collectionId): Promise<any> {
     try {

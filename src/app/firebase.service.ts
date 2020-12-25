@@ -1,7 +1,7 @@
 /* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
 import {Action, AngularFirestore, DocumentChangeAction, DocumentSnapshot, QueryFn} from '@angular/fire/firestore';
-import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
+import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {map, take} from 'rxjs/operators';
@@ -132,7 +132,7 @@ export class FirebaseService {
   }
 
   async updateAsset(md5Hash, data): Promise<any> {
-    await this.firestore.doc(`this.assetTableName${md5Hash}`).update(data);
+    await this.firestore.doc(`${this.assetTableName}${md5Hash}`).update(data);
   }
 
   async updateDocument(tableName: TableTypes, documentReference, data): Promise<any> {
@@ -157,9 +157,12 @@ export class FirebaseService {
   }
 
   async updateBatch(items, data): Promise<any> {
+    const result = [];
     items.forEach(async x => {
-      await this.firestore.doc(`this.assetTableName${x.md5Hash}`).update(data);
+      const singleRes = await this.firestore.doc(`${this.assetTableName}${x.md5Hash}`).update(data);
+      result.push(singleRes);
     });
+    return result;
   }
 
   async createDocumentInCollection(path, document): Promise<any> {

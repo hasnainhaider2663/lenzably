@@ -65,7 +65,7 @@ export class UploadsComponent implements OnInit {
   async ngOnInit() {
     this.collectionId = this.route.snapshot.params['collectionId']
     this.firebaseService.subscribeToDocument("collections", this.collectionId).subscribe(x => {
-      this.collection = x.payload.data;
+      this.collection = x.payload.data();
       this.collection['id'] = this.collectionId;
 
     });
@@ -280,7 +280,10 @@ export class UploadsComponent implements OnInit {
     console.log(event[1]);
     console.log('error event', event[0].type);
     console.log('error event', event);
-    alert(event[1]);
+    this.error = event[1];
+    setTimeout(() => {
+      this.error = undefined;
+      }, 10000);
   }
 
   // @ts-ignore

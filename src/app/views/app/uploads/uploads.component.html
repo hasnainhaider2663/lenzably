@@ -8,7 +8,7 @@
                       {label: 'Oldest First' , value : 'oldest'}]"
                       [itemOptionsPerPage]="[50,100,200]" [itemsPerPage]="itemsPerPage"
                       [selectAllState]="selectAllState" [showDisplayMode]="false"
-                      [showOrderBy]="true" [title]="collection.name"
+                      [showOrderBy]="true" [title]="collection?collection.name:'Loading...'"
 >
 </app-list-page-header>
 <app-edit-product-name-modal #editProductNameModalComponent></app-edit-product-name-modal>
@@ -17,7 +17,7 @@
 <app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
 <app-edit-publish-setting-modal #editPublishSettingModalComponent></app-edit-publish-setting-modal>
 <div *ngIf="error" style="margin-bottom: 20px">
-  <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
+  <alert [dismissible]="false" type="danger rounded">
     {{error}}
   </alert>
 </div>

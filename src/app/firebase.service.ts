@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 import {Guid} from 'guid-typescript';
 import {environment} from '../environments/environment';
 import {FirebaseApp} from "@angular/fire";
-
+import MD5 from 'crypto-js/md5';
 
 type  TableTypes = 'users' | 'assets' | 'collections';
 
@@ -38,6 +38,10 @@ export class FirebaseService {
 
   get currentUser() {
     return JSON.parse(localStorage.getItem('user'));
+  }
+
+  getMd5(file) {
+    return new MD5(file)
   }
 
   watchAssetsInCollection(collectionId): Observable<any> {
@@ -87,8 +91,14 @@ export class FirebaseService {
     return await this.storage.ref(url).getDownloadURL().toPromise();
   }
 
+  // async doesDocumentExists(path): boolean {
+  //   if (this.firestore.doc(path)) return true;
+  //   return false;
+  // }
+
   async uploadAsset(file, collectionId): Promise<any> {
     try {
+      console.log('MD5', this.getMd5(file));
       const originalAssetStorage = this.firebaseApp.storage(environment.firebase.originalAssetBucketName)
       // const assetRecord = await this.firestore.collection('sourceAssetFiles').add({userId: this.currentUser.uid})
 

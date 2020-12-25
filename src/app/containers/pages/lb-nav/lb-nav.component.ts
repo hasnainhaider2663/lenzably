@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
 })
 export class LbNavComponent implements OnInit {
   user;
-  didCheck = false;
 
   @Output() mobileMenuButtonEvent = new EventEmitter();
 
@@ -19,7 +18,6 @@ export class LbNavComponent implements OnInit {
   ngOnInit(): void {
     this.firebaseService.userObservable.subscribe(value => {
       this.user = value;
-      this.didCheck = true;
     } );
   }
 

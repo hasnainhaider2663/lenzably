@@ -43,7 +43,6 @@ export class EditPublishSettingModalComponent implements OnInit {
     {label: 'Sustainability', value: 'sustainability'},
   ];
   items;
-  category;
 
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
   unpublishedByArtist: false;

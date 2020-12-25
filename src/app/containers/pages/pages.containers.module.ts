@@ -51,6 +51,7 @@ import { LbTagsListComponent } from './lb-tags-list/lb-tags-list.component';
 import { LbGridComponent } from './lb-grid/lb-grid.component';
 import { ProfileInnerComponent } from './profile-inner/profile-inner.component';
 import { ProfileCollectionComponent } from './profile-collection/profile-collection.component';
+import { EditPublishSettingModalComponent } from './edit-publish-setting-modal/edit-publish-setting-modal.component';
 
 
 
@@ -90,7 +91,8 @@ import { ProfileCollectionComponent } from './profile-collection/profile-collect
     LbTagsListComponent,
     LbGridComponent,
     ProfileInnerComponent,
-    ProfileCollectionComponent
+    ProfileCollectionComponent,
+    EditPublishSettingModalComponent
   ],
   imports: [
     CommonModule,
@@ -112,40 +114,41 @@ import { ProfileCollectionComponent } from './profile-collection/profile-collect
     AlertModule,
     HeadroomModule
   ],
-  exports: [
-    AddNewProductModalComponent,
-    EditProductNameModalComponent,
-    EditProductDescriptionModalComponent,
-    EditProductCategoriesModalComponent,
-    EditProductTagsModalComponent,
-    ListPageHeaderComponent,
-    ProfileUserSocialComponent,
-    ProfilePhotosComponent,
-    ProfileWhoToFollowComponent,
-    ProfileRecentPostsComponent,
-    ProfilePostsComponent,
-    ProfileGalleryComponent,
-    ProfileFriendsComponent,
-    ProfileUserPortfolioComponent,
-    ProfileProcessComponent,
-    ProfilePortfolioItemsComponent,
-    BlogSideVideoComponent,
-    BlogCategoriesComponent,
-    BlogContentComponent,
-    FeatureComparisonComponent,
-    ProductDetailInfoAltComponent,
-    ProductDetailOrdersComponent,
-    ProductDetailCommentsComponent,
-    ProductDetailInfoComponent,
-    ProductDetailTabsComponent,
-    SectionArtistAboutComponent,
-    LbFooterComponent,
-    LbNavComponent,
-    LbNavMobileComponent,
-    LbTagsListComponent,
-    LbGridComponent,
-    ProfileInnerComponent
-  ]
+    exports: [
+        AddNewProductModalComponent,
+        EditProductNameModalComponent,
+        EditProductDescriptionModalComponent,
+        EditProductCategoriesModalComponent,
+        EditProductTagsModalComponent,
+        ListPageHeaderComponent,
+        ProfileUserSocialComponent,
+        ProfilePhotosComponent,
+        ProfileWhoToFollowComponent,
+        ProfileRecentPostsComponent,
+        ProfilePostsComponent,
+        ProfileGalleryComponent,
+        ProfileFriendsComponent,
+        ProfileUserPortfolioComponent,
+        ProfileProcessComponent,
+        ProfilePortfolioItemsComponent,
+        BlogSideVideoComponent,
+        BlogCategoriesComponent,
+        BlogContentComponent,
+        FeatureComparisonComponent,
+        ProductDetailInfoAltComponent,
+        ProductDetailOrdersComponent,
+        ProductDetailCommentsComponent,
+        ProductDetailInfoComponent,
+        ProductDetailTabsComponent,
+        SectionArtistAboutComponent,
+        LbFooterComponent,
+        LbNavComponent,
+        LbNavMobileComponent,
+        LbTagsListComponent,
+        LbGridComponent,
+        ProfileInnerComponent,
+        EditPublishSettingModalComponent
+    ]
 })
 export class PagesContainersModule {
 }

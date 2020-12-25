@@ -1,0 +1,24 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Category</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="mt-4">
+      <div class="custom-control custom-checkbox mb-4">
+        <input [(ngModel)]="unpublishedByArtist" type="checkbox" id="customCheckThis" class="custom-control-input"><label
+        for="customCheckThis" class="custom-control-label">Check this custom checkbox</label></div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary"
+            (click)="closeClicked()">{{'pages.cancel' | translate }}</button>
+    <button type="button" (click)="submit()"
+            class="btn btn-primary float-right">{{ 'pages.submit' | translate}}</button>
+  </div>
+</ng-template>
+

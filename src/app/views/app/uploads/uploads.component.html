@@ -15,6 +15,7 @@
 <app-edit-product-description-modal #editProductDescriptionModalComponent></app-edit-product-description-modal>
 <app-edit-product-categories-modal #editProductCategoriesModalComponent></app-edit-product-categories-modal>
 <app-product-edit-tags-modal #editProductTagsModalComponent></app-product-edit-tags-modal>
+<app-edit-publish-setting-modal #editPublishSettingModalComponent></app-edit-publish-setting-modal>
 <div *ngIf="error" style="margin-bottom: 20px">
   <alert [dismissOnTimeout]="10000" [dismissible]="true" type="danger rounded">
     {{error}}
@@ -37,6 +38,9 @@
   </ng-template>
   <ng-template (execute)="onContextMenuClick('category',$event.item)" contextMenuItem let-item>
     <i class="simple-icon-list mr-1"></i><span>Edit category</span>
+  </ng-template>
+  <ng-template (execute)="onContextMenuClick('publishing',$event.item)" contextMenuItem let-item>
+    <i class="simple-icon-list mr-1"></i><span>Publishing</span>
   </ng-template>
 </context-menu>
 

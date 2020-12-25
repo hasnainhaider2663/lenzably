@@ -9,6 +9,7 @@ import {EditProductDescriptionModalComponent} from '../../../containers/pages/ed
 import {EditProductCategoriesModalComponent} from '../../../containers/pages/edit-product-categories-modal/edit-product-categories-modal.component';
 import {EditProductTagsModalComponent} from '../../../containers/pages/edit-product-tags-modal/edit-product-tags-modal.component';
 import {ActivatedRoute} from "@angular/router";
+import {EditPublishSettingModalComponent} from '../../../containers/pages/edit-publish-setting-modal/edit-publish-setting-modal.component';
 
 @Component({
   selector: 'app-uploads',
@@ -41,6 +42,7 @@ export class UploadsComponent implements OnInit {
   @ViewChild('editProductDescriptionModalComponent', {static: true}) editProductDescriptionModalComponent: EditProductDescriptionModalComponent;
   @ViewChild('editProductCategoriesModalComponent', {static: true}) editProductCategoriesModalComponent: EditProductCategoriesModalComponent;
   @ViewChild('editProductTagsModalComponent', {static: true}) editProductTagsModalComponent: EditProductTagsModalComponent;
+  @ViewChild('editPublishSettingModalComponent', {static: true}) editPublishSettingModalComponent: EditPublishSettingModalComponent;
   user;
   assets;
   originalAssets;
@@ -214,6 +216,10 @@ export class UploadsComponent implements OnInit {
       case 'category':
         this.editProductCategoriesModalComponent.category = item.category;
         this.showModal(this.editProductCategoriesModalComponent);
+        break;
+        case 'publishing':
+        this.editPublishSettingModalComponent.unpublishedByArtist = item.unpublishedByArtist;
+        this.showModal(this.editPublishSettingModalComponent);
         break;
 
     }

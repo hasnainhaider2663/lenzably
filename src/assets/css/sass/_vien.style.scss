@@ -9408,14 +9408,14 @@ footer.page-footer {
 
 /* 38.Landing Page */
 .landing-page {
-  font-size: 1rem;
-  line-height: 1.6rem;
-  color: $secondary-color;
+  //font-size: 1rem;
+  //line-height: 1.6rem;
+  //color: $secondary-color;
 
-  @include respond-below(sm) {
+/*  @include respond-below(sm) {
     font-size: 0.9rem;
     line-height: 1.4rem;
-  }
+  }*/
 
   .mobile-menu {
     position: fixed;
@@ -9472,7 +9472,7 @@ footer.page-footer {
     transition: transform 0.5s;
   }
 
-  p {
+/*  p {
     font-size: 1rem;
     line-height: 1.6rem;
     color: $secondary-color;
@@ -9515,7 +9515,7 @@ footer.page-footer {
     @include respond-below(sm) {
       font-size: 1.1rem;
     }
-  }
+  }*/
 
   .semi-rounded {
     border-radius: 1rem !important;
@@ -10447,9 +10447,9 @@ footer.page-footer {
     }
   }
 
-  .page-item .page-link {
+/*  .page-item .page-link {
     line-height: 1.2;
-  }
+  }*/
 }
 
 .components-image {

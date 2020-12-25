@@ -19,7 +19,7 @@ type  TableTypes = 'users' | 'assets' | 'collections';
 export class FirebaseService {
 
   userObservable: Observable<any>;
-  assetTableName = 'previews/';
+  assetTableName = 'assets/';
 
   constructor(private firestore: AngularFirestore, private firebaseAuth: AngularFireAuth, public storage: AngularFireStorage, private firebaseApp: FirebaseApp) {
 
@@ -47,11 +47,11 @@ export class FirebaseService {
   getAssetsInCollection(collectionId, cb) {
     const sub = this.firestore.collection(this.assetTableName, x => x.where('collectionId', '==', collectionId)).valueChanges().subscribe(assets => {
 
-      assets.forEach(async asset => {
-        // @ts-ignore
-        asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
-
-      });
+      // assets.forEach(async asset => {
+      //   // @ts-ignore
+      //   // asset['thumbnailURL'] = await this.storage.ref(asset.fullPath).getDownloadURL().toPromise();
+      //
+      // });
       cb(assets);
       sub.unsubscribe();
     });

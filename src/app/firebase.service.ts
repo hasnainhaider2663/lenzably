@@ -93,7 +93,7 @@ export class FirebaseService {
 
   async uploadAsset(file, collectionId): Promise<any> {
     try {
-      console.log('MD5', this.getMd5(file));
+      // console.log('MD5', this.getMd5(file));
       const originalAssetStorage = this.firebaseApp.storage(environment.firebase.originalAssetBucketName)
       // const assetRecord = await this.firestore.collection('sourceAssetFiles').add({userId: this.currentUser.uid})
 

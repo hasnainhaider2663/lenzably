@@ -52,7 +52,7 @@
            class="col-xl-2 col-lg-4 col-12 col-sm-6 mb-4" >
         <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 580px;">
           <div class="position-relative">
-            <a href="javascript:;"><img [alt]="p?.name" [src]="p.previews.p_200x200.mediaLink" class="card-img-top img-contain"></a>
+            <a href="javascript:;"><img [alt]="p?.name" [src]="p.previews.p_200x200.mediaLink" loading="lazy" class="card-img-top img-contain"></a>
             <span
               [class]="'badge badge-pill position-absolute badge-top-left badge-secondary'">{{i}}</span>
           </div>

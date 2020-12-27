@@ -30,7 +30,7 @@
            class="col-xxl-2 col-xl-3 col-lg-4 col-12 col-sm-6 mb-4">
         <div [ngClass]="{'card': true, 'active':isSelected(p)}" style="min-height: 400px;">
           <div class="position-relative">
-            <a class="card-top" [routerLink]="'/app/collection/'+p.payload.doc.id">
+            <a class="card-top" [routerLink]="'/app/collection/'+p.payload?.doc?.id">
               <!--              <div class="folder-icon glyph-icon simple-icon-folder" *ngIf="p.tags.length < 4"></div>-->
 
               <div class="gallery clearfix" *ngIf="!p.previews || p.previews.length < 1">

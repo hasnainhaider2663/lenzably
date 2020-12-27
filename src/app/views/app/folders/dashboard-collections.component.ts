@@ -148,9 +148,9 @@ export class DashboardCollectionsComponent implements OnInit {
     if (item.value === 'latest') {
       this.assets = this.originalAssets.sort((x, y) => {
         // 11 < 12 means 12 should comes before 11 so that we get the latest item first
-        if (x.updated < y.updated) {
+        if (x.updatedAt < y.updatedAt) {
           return 1;
-        } else if (x.updated > y.updated) {
+        } else if (x.updatedAt > y.updatedAt) {
           return -1;
         }
         return 0;
@@ -160,9 +160,9 @@ export class DashboardCollectionsComponent implements OnInit {
     if (item.value === 'oldest') {
       this.assets = this.originalAssets.sort((x, y) => {
         // 11 < 12 means 12 comes after 11
-        if (x.updated < y.updated) {
+        if (x.updatedAt < y.updatedAt) {
           return -1;
-        } else if (x.updated > y.updated) {
+        } else if (x.updatedAt > y.updatedAt) {
           return 1;
         }
         return 0;

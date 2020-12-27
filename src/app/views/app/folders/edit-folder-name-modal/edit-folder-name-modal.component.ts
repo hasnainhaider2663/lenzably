@@ -15,7 +15,7 @@ export class EditFolderNameModalComponent {
     ignoreBackdropClick: true,
     class: 'modal-right'
   };
-  categories = [
+  categories = ([
     {label: 'Wallpapers', value: 'wallpapers'},
     {label: 'Nature', value: 'nature'},
     {label: 'People', value: 'people'},
@@ -41,13 +41,20 @@ export class EditFolderNameModalComponent {
     {label: 'Arts and Culture', value: 'artsandculture'},
     {label: 'History', value: 'history'},
     {label: 'Sustainability', value: 'sustainability'},
-  ];
+  ]).sort((x, y) => {
+    if (x.label.toLowerCase() < y.label.toLowerCase()) {
+      return -1;
+    } else if (x.label.toLowerCase() > y.label.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  });
 
   form;
   showSuccess;
   error;
   @ViewChild('template', {static: true}) template: TemplateRef<any>;
-  collection = {name: '', description: '', tags: [], category: {label: '', value: ''}};
+  collection = {name: '', description: '', tags: [], category: {label: '', value: ''}, updatedAt: new Date()};
   tags;
   category;
 
@@ -57,19 +64,19 @@ export class EditFolderNameModalComponent {
   show(): void {
     this.error = false;
     this.form = this.fb.group({
-      name: [this.collection.name || '', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
+      name: [this.collection.name || '', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z\' ]*')]],
       description: [this.collection.description || '', [Validators.required, Validators.minLength(10)]]
     });
 
     this.tags = this.collection.tags;
-    this.category = this.collection.category
+    this.category = this.collection.category;
 
     this.modalRef = this.modalService.show(this.template, this.config);
 
   }
 
   resetCollection() {
-    this.collection = {name: '', description: '', tags: [], category: {label: '', value: ''}};
+    this.collection = {name: '', description: '', tags: [], category: {label: '', value: ''}, updatedAt: new Date()};
   }
 
   addTagFn(addedName): { name: any; tag: true } {
@@ -81,6 +88,7 @@ export class EditFolderNameModalComponent {
   }
 
   async submit() {
+    const myCollection = Object.assign({}, this.collection);
     if (this.form.controls.name.status === 'INVALID') {
       this.error = 'Name is not valid';
       return;
@@ -100,13 +108,14 @@ export class EditFolderNameModalComponent {
       this.error = 'Invalid data';
       return;
     }
-    this.collection.name = this.form.value.name
-    this.collection.description = this.form.value.description
-    this.collection.tags = this.tags
-    this.collection.category = this.category
+    myCollection.name = this.form.value.name;
+    myCollection.description = this.form.value.description;
+    myCollection.tags = this.tags
+    myCollection.category = this.category
+    myCollection.updatedAt = new Date();
     this.error = undefined;
 
-    const myCollection = Object.assign({}, this.collection)
+
 
 
     // @todo this is critical code, do not mess
@@ -114,7 +123,7 @@ export class EditFolderNameModalComponent {
 
 
 
-    await this.firebaseService.updateOrCreateCollection(this.collection);
+    await this.firebaseService.updateOrCreateCollection(myCollection);
     this.showSuccess = true;
   }
 

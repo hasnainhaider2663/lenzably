@@ -40,7 +40,14 @@ export class EditProductCategoriesModalComponent {
     {label: 'Arts and Culture', value: 'artsandculture'},
     {label: 'History', value: 'history'},
     {label: 'Sustainability', value: 'sustainability'},
-  ];
+  ].sort((x, y) => {
+    if (x.label.toLowerCase() < y.label.toLowerCase()) {
+      return -1;
+    } else if (x.label.toLowerCase() > y.label.toLowerCase()) {
+      return 1;
+    }
+    return 0;
+  });
   items;
   category;
 

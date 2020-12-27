@@ -40,9 +40,9 @@ export class FirebaseService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  getMd5(file) {
-    return new MD5(file)
-  }
+  // getMd5(file) {
+  //   return new MD5(file)
+  // }
 
   watchAssetsInCollection(collectionId): Observable<any> {
     return this.firestore.collection(this.assetTableName, x => x.where('collectionId', '==', collectionId)).valueChanges();

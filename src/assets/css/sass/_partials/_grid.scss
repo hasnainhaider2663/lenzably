@@ -7,15 +7,92 @@
       top: 0;
       height: 100%;
       width: 100%;
-      .hover-element{
+      color: black;
+      &:before{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        content: '';
+        background: rgba(255,255,255,0.9);
+        border: 1px solid #000000;
+      }
+      .gird-item-hover__inner{
+        z-index: 9;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        transform: translate(-50%, -50%);
+      }
+      .title{
+        font-size: 18px;
+        margin-bottom: 10px;
+        span{
+          display: inline-block;
+          position: relative;
+          padding-bottom: .5rem;
+          &:before{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            width: 100%;
+            background: black;
+          }
+        }
+      }
+      .related-tags{
+        padding-left: 0;
+        margin-bottom: 0;
+        li{
+          display: inline-block;
+          margin-bottom: 0;
+          &:first-child{
+            a{
+              color: black;
+              font-style: normal;
+              font-weight: bold;
+            }
+          }
+          a{
+            color: #323232;
+            display: block;
+            padding: 2px 5px;
+            font-style: italic;
+          }
+        }
+      }
+      .gird-item-hover__buttons{
         position: absolute;
         right: 10px;
         top: 10px;
+        z-index: 9;
+        a{
+          display: inline-block;
+          margin: 2px;
+          height: 35px;
+          width: 35px;
+          //border-radius: 50%;
+          text-align: center;
+          line-height: 35px;
+          color: white;
+          background-color: rgba(0,0,0,0.5);
+        }
+      }
+      .hover-element{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
         text-align: center;
-        height: 30px;
+        height: 35px;
         display: inline-block;
-        width: 30px;
-        background: rgba(255,255,255,0.5);
+        width: 70px;
+        color: white;
+        line-height: 35px;
+        background-color: rgba(0,0,0,0.5);
         i{
           font-size: 18px;
           line-height: 30px;

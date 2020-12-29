@@ -25,6 +25,10 @@ export class TopnavComponent implements OnInit, OnDestroy {
   isDarkModeActive = false;
   searchKey = '';
   user: any;
+  notifications: [{title: string, time: string , image: string}] =
+    [{image : '/assets/img/profiles/l-2.jpg' , time: '09.04.2018 - 12:45' , title: 'Joisse Kaycee just sent a new comment!'},
+      {image : '/assets/img/profiles/l-2.jpg' , time: '09.04.2018 - 12:45' , title: 'Joisse Kaycee just sent a new comment!'},
+      {image : '/assets/img/profiles/l-2.jpg' , time: '09.04.2018 - 12:45' , title: 'Joisse Kaycee just sent a new comment!'}];
 
   constructor(
     private sidebarService: SidebarService,
@@ -75,6 +79,7 @@ export class TopnavComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.firebaseService.userObservable.subscribe(x => {
+      // console.log('caught a user');
       this.user = x
     });
     // if (await this.authService.getUser()) {

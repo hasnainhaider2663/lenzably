@@ -28,6 +28,7 @@ export class FirebaseService {
         const user = JSON.parse(JSON.stringify(mUser));
 
         user['isArtist'] = true;
+        user['avatar'] = mUser.photoURL;
         // user.uid = 'VgbSx1fiEpfuwGMNrqaB';
         // user.id = 'VgbSx1fiEpfuwGMNrqaB';
         console.log('UU # 987');
